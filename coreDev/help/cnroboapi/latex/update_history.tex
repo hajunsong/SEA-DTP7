@@ -1,0 +1,450 @@
+\section*{version info \-: version.\-year.\-month.\-day(core\-Server)}
+
+\subsubsection*{10057.\-19.\-01.\-15}
+
+\begin{DoxyVerb}     add - getUserParams, getRobotConf, checksum 기능 추가
+           checksum 실패 시 error message 및 log 출력.
+
+           setRobotConf, setUserParams시
+           checksum, backup file 생성 및 save message log에 저장
+           system sync 실행
+
+           setRobotConf - userParams.conf.sum, userParams.conf.2 - (checksum file, backup file)
+           setUserParams - robot.conf.sum, robot.conf.2 - (checksum file, backup file)
+
+           makeCheckSumFile - file에 대한 checksum file을 생성
+           makeCheckSumDir - Dir에 대한 checksum file을 생성
+           checkSumFile - file과 checksum file을 비교하여 결과 return
+           checkSumDir - dir와 checksum file을 비교하여 결과 return
+
+           초기 로딩 시 variable 및 zeroing data checksum 실행.
+
+     eidt - variable 및 macro program 저장 시 system sync 실행
+
+            파일 쓰기, 이동, 복사, 저장 api에 sync 추가, 저장 시 시간이 소요될 수 있음.
+\end{DoxyVerb}
+
+
+\subsubsection*{10056.\-19.\-01.\-03}
+
+\begin{DoxyVerb}     add -  database api cp, move, rm 수정
+\end{DoxyVerb}
+
+
+\subsubsection*{10055.\-18.\-11.\-30}
+
+\begin{DoxyVerb}     add -  macro 명령어 ERESET 추가- ERESET은 macro program에서 error를 reset 한다.
+\end{DoxyVerb}
+
+
+\subsubsection*{10054.\-18.\-10.\-16}
+
+\begin{DoxyVerb}     edit - setSmoothOption 설정 시 smooth_option.ini file로 save, coreServer loading 시 load 되도록 수정
+\end{DoxyVerb}
+
+
+\subsubsection*{10054.\-18.\-10.\-11}
+
+\begin{DoxyVerb}     edit - setSmoothOption 설정 시 초기화 되던 문제 수정
+          - moveToPostion2 동작 시 stable time 설정치 만큼 동작되지 않던 현상 수정
+\end{DoxyVerb}
+ \subsubsection*{10054.\-18.\-07.\-16}
+
+\begin{DoxyVerb}  add - jog debug message 추가.
+      - coreSim과의 screen data를 주고받는 방법 변경. 별도의 thread로 data 처리 후 전송.
+
+  edit - saftey error io 동작 처리를 emg 동작과 동일하게 변경.
+\end{DoxyVerb}
+
+
+\subsubsection*{10053.\-18.\-09.\-12}
+
+\begin{DoxyVerb}     edit - coreSim과의 remote control시 screen 취득 방법 개선
+\end{DoxyVerb}
+
+
+\subsubsection*{10053.\-18.\-06.\-19}
+
+\begin{DoxyVerb}  add - saveJogSpeed 추가.
+
+ edit - getChannelSize 배열로 변경, DedicatedSignal명칭 변경,  di, do 배열 size를 4 -> 32로 변경
+\end{DoxyVerb}
+
+
+\subsubsection*{10052.\-18.\-08.\-21}
+
+\begin{DoxyVerb}     edit - resetError 시 variable ErrorCode의 값이 초기화 되도록 수정.
+\end{DoxyVerb}
+
+
+\subsubsection*{10052.\-18.\-06.\-18}
+
+\begin{DoxyVerb}   add - getLocalVariableList, getLocalVariableCount 로컬변수 데이터 취득
+       - getULimit,  setULimit, getLLimit, setLLimit 유저 리밋 설정 api
+       - getAOValueTable, getAOSpec, setAOSpec, getAIValueTable, getAISpec 아놀로그 데이터 취득 api.
+
+  edit - getVariableType 수정, getChannelSize 수정
+\end{DoxyVerb}
+
+
+\subsubsection*{10051.\-18.\-08.\-08}
+
+\begin{DoxyVerb}     edit - coreServer Start할 때 모든 설정이 로딩 된 이후에 Server Thread가 start 되도록 변경.
+\end{DoxyVerb}
+
+
+\subsubsection*{10051.\-18.\-06.\-08}
+
+\begin{DoxyVerb}     edit - getJogSpeed 동작 시 ui 멈추는 현상 수정.
+\end{DoxyVerb}
+
+
+\subsubsection*{10050.\-18.\-06.\-05}
+
+\begin{DoxyVerb}     edit - 제어문의 경우 들여쓰기 되어 저장되도록 설정, load 시에도 들여쓰기 됨, 들여쓰기 설정은
+             PROGRAM_INDENTATION 옵션으로 설정 가능. 기본 8로 되어있음.
+\end{DoxyVerb}
+
+
+\subsubsection*{10049.\-18.\-06.\-01}
+
+\begin{DoxyVerb}      edit - getProgramSteps, 들여쓰기 기능 추가.
+             remote로 ProgramLoad 시 들여쓰기 기능 됨.
+\end{DoxyVerb}
+
+
+\subsubsection*{10048.\-18.\-05.\-18}
+
+\begin{DoxyVerb}       add - setDPTBuzzerOn2, on, off interval time를 각각 설정할 수 있다. 단위는 10msec
+\end{DoxyVerb}
+
+
+\subsubsection*{10047.\-18.\-05.\-14}
+
+\begin{DoxyVerb}      edit - setDPTBuzzerOn, setDPTBuzzerOff -> setDTPBuzzerOn, setDTPBuzzerOff 오타로 인한 명칭 수정.
+
+    delete - setHoldRun 함수는 있으나 기능이 구현되어있지 않으므로 삭제, holdProgram과 개념상 같은 기능.
+\end{DoxyVerb}
+
+
+\subsubsection*{10046.\-18.\-05.\-04}
+
+\begin{DoxyVerb}      edit - getRepeatCycleSyncMotionFlag 연속 check 하는 api로 변경, moving 중 program load할 때 sub task의 경우 load 안되던
+             현상 수정.
+\end{DoxyVerb}
+
+
+\subsubsection*{10045.\-18.\-05.\-03}
+
+\begin{DoxyVerb}       add - getWZCheckStatusTeach, Teach mode에서 WZ을 check & enable 하였을 때, WZone 설정 영역 안에 TCP가 있는지 확인.
+             getWZCheckStatusRepeat, Repeat mode에서 WZ을 check & enable 하였을 때, WZone 설정 영역 안에 TCP가 있는지 확인.
+
+      edit - resetAllError, error 발생 시 axis reset 하는 부분 추가.
+             moveToPosition, moveToPosition2 : linear 오류 수정, teach and repeat mode에서 동작되도록 수정
+             MoveL 및 MoveJ mode로 동작 시 속도가 느리던 현상 수정.
+\end{DoxyVerb}
+
+
+\subsubsection*{10044.\-18.\-04.\-23}
+
+\begin{DoxyVerb}       add - resetAllError, 모든 error를 clear 한다.
+             getResetErrorStatus, 모든 error를 clear 완료 시 false를 return 한다.
+             setRunSequenceTimer, servo_on, brake_on, run_ok timer를 설정 한다, executeProgram 시 시간을 갖고있다.
+             getRunSequenceTimer, servo_on, brake_on, run_ok timer를 설정 값을 확인 한다.
+
+      edit - servo on/off 수정, moveToPostion2 linear 동작 수정, keyswitch 관련 api refactoring.
+\end{DoxyVerb}
+
+
+\subsubsection*{10043.\-18.\-04.\-18}
+
+\begin{DoxyVerb}       add - getServoOnMode, servo on mode 확인
+             setServoOnMode, servo on mode 설정
+             getAxisServoOnMode, servo on mode axis별 check (servo on mode 가 3일 때 사용)
+             setAxisServoOnMode, servo on mode axis별 check (servo on mode 가 3일 때 사용)
+
+      edit - SRead2 문자열 개수 설정이 end 문자의 개수로 설정되어 end 문자열 만큼만 변수 data를 가지고 있던 현상 수정
+             Serial Read, Write, close 시 open 되지 않는 sid 혹은 문제가 있는 sid num를 입력 시 Fcntl로 먼저 check 후 실행하도록 수정.
+\end{DoxyVerb}
+
+
+\subsubsection*{10042.\-18.\-04.\-09}
+
+\begin{DoxyVerb}      edit - servoON 중복 code 수정, reboot system 수정, reboot 시 master stop 후 reboot 진행.
+\end{DoxyVerb}
+
+
+\subsubsection*{10041.\-18.\-04.\-05}
+
+\begin{DoxyVerb}      add  - trejectory 값을 취득하는 API 추가.
+             startTrajectoryLogging(), logging 시작
+             stopTrajectoryLogging(), logging 정지
+             getTrajectoryLogSize(int &size), log size 취득
+             getTrajectoryS(cn_trajectory *S, int size), 변위 값 취득
+             getTrajectoryCurJoint(cn_trajectory *trj, int size), 현재 joint ppr 값 취득
+             getTrajectoryCmdJoint(cn_trajectory *trj, int size), 명령 joint ppr 값 취득
+             getTrajectoryCmdTrans(cn_trajectory *trj, int size), 명령 trans 값 취득
+\end{DoxyVerb}
+
+
+\subsubsection*{10040.\-18.\-03.\-30}
+
+\begin{DoxyVerb}      add  - 프로그램 시작할 때 version 정보 표시.
+           - help manual 추가 coreDev/help/cnroboapi/CNRoboApi.html
+\end{DoxyVerb}
+
+
+\subsubsection*{10039.\-18.\-03.\-15}
+
+\begin{DoxyVerb}      add  - getVersion2 추가, 마스터, 커널, coreServer version을 볼 수 있는 API
+             REMOTE_SERVER_PORT 추가, remote 동작 시 port를 설정할 수 있음.
+\end{DoxyVerb}
+
+
+\subsubsection*{10038.\-18.\-02.\-07 }
+
+\begin{DoxyVerb}      edit - coreCat dec_0003, coreConLib dec_0003
+\end{DoxyVerb}
+
+
+\subsubsection*{10037.\-18.\-01.\-08 }
+
+\begin{DoxyVerb}      add - getOverrideDIn
+
+     edit - setOverrideDIn
+\end{DoxyVerb}
+
+
+\subsubsection*{10036.\-17.\-11.\-15 }
+
+\begin{DoxyVerb}      add - eventExcute
+
+     edit - ImportVariablFile
+\end{DoxyVerb}
+
+
+\subsubsection*{10035.\-17.\-09.\-11 }
+
+\begin{DoxyVerb}       add - macro에 local var를 사용할 수 있게 추가, call program 시 인자값을 사용할 수 있도록 추가
+             cg4300 빌드
+             OverrideDIn 추가 강제로 din을 동작.
+
+      edit - database path에 갈호가 들어갔을 때 삭제하는 code 삽입
+             var를 file에서 읽을 때 type, name만 있고 value가 없을 때 읽어오지 않도록 수정
+\end{DoxyVerb}
+
+
+\subsubsection*{10034.\-17.\-07.\-28 }
+
+\begin{DoxyVerb}      add - resetCurProgram -> move to step 1
+
+     edit - clearCurProgram -> unload macro program
+            cnsettings class
+            world zone
+\end{DoxyVerb}
+
+
+\subsubsection*{10033.\-17.\-07.\-07 }
+
+\begin{DoxyVerb}     add  - getCurBaseFrame, guswo base의 frame값을 얻을 수 있다.
+            track option 추가로 주행축사용 시 track option을 사용할 수 있다.
+            getCurTMatrix trans matrix 값을 취득할 수 있다.
+            coreLicense 추가
+            s-curve s모션이 가능하다.
+            winsock error message print 소켓에러시 에러메시지를 출력한다.
+            calcForward joint 값을 trans값으로 변환한다.
+
+     edit - main task : 1 , sub task : 4개
+            DI,DO 512점 까지 추가.
+            worldzone count 32개로 변경
+            save된 worldzone 데이터가 초기 시작시 load되도록 변경.
+            cn_tmat -> cn_trans2 변경
+            setEMGOn 방식 변경 입력을 줘야 off가 되던 방식에서 on이 되는 방식으로 변경.
+            TPCmdVariableImportFile trans 카운트를 nAxis에서 nTrans로 병경
+            translateArrVarName 변수의 이름을 리턴받는 방식변경.
+
+   delete - setAOValueTable 기능을 제거
+\end{DoxyVerb}
+
+
+\subsubsection*{10032.\-17.\-03.\-21 }
+
+\begin{DoxyVerb}     add  - get, setServoOnPerAxis 각 축별로 servo On 을 설정하거나 상태를 얻는다.
+            clacInverse Trans 값을 joint 값으로 변환한다.
+            get, setRepeatCycleSyncMotionFlag macro의 cycle 동작이 완전히 완료 될 때 현재 cycle을 chceck 하게 한다.
+            cycle이 완료되기 전에 cycle을 1로 바꾸거나 -1로 바꿀 때 마지막 step이 동작 중에도 적용되어 마지막 step이
+            완 료되었을 때 cycle check를 하게 한다, flag 상태를 얻는다.
+            WZSaveAll 현재 world zone 상태를 저장한다.
+            WZGetEntityOperator Operator를 얻는다.
+
+     edit - error return code 수정
+            executeProgram2 -> executeProgram 수정
+            TPCmdRunProgramCount repeat mode에서도 수정되도록 수정
+            trans variable api p와 eu에 정확하게 data가 입력되고 출력되도록 수정.
+\end{DoxyVerb}
+
+
+\subsubsection*{10031.\-17.\-02.\-14 }
+
+\begin{DoxyVerb}     add  - getSelectedLogList 날짜 범위를 지정하여 log를 받을 수 있다.
+            get, setWZCheckFlag WZCheck를 시작하고 시작했는지 확인하는 함수이다.
+            isWarning warning 상태를 확인한다, getWarningCode warningCode를 얻는,다 clearWarningCode warning상태를 clear한다.
+            setCheckKey check key를 설정한다. //Forward or stop
+
+     edit - runNxtStepOver, runBackStepOver, enum CNR_SLAVE_TYPE, setCheckMode, setCheckProgram
+\end{DoxyVerb}
+
+
+\subsubsection*{10030.\-17.\-02.\-06 }
+
+\begin{DoxyVerb}     add  - get, setSoftLimitMonitorFlag homing 중 software로 설정된 limit 범위를 벗어나도 error로 처리하지 않게한다.
+            get, setInchingAccTime inching 동작에대한 가감속 값을 설정한다.
+            get, setWZCheckFlag 현재 위치에서 동작 시 안전 범위를 넘어가는지 check를 시작한다.
+            importProgram, importProgramList 특정 위치에 있는 macro program을 import 한다.
+
+    edit  - world zone api가  <h3> 10030 version 부터 정상적으로 동작된다.
+\end{DoxyVerb}
+
+
+\subsubsection*{10029.\-17.\-01.\-17 }
+
+\begin{DoxyVerb}     add  - checkDirFileExist directory 및 file의 존재를 확인하는 함수이다.
+            rebootSystem 시스템을 재부팅 합니다.
+
+     edit - importVariable -> getVariableFile, exportVariable -> createVariableFile,
+            importProgram -> getProgramFile, exportProgram -> createProgramFile
+            applyVariableFile -> importVariable, extractVariableFile -> exportVariable
+\end{DoxyVerb}
+
+
+\subsubsection*{10028 }
+
+\begin{DoxyVerb}     add  - runNxtStepOver 하나의 step 동작이 모두 완료될 때 까지 macro를 실행한다, call program의 경우
+            호출된 macro program이 전부 실행된 시점에서 하나의 step 동작이 완료된 것으로 인정된다.
+            runToNextMotionStep 모션 명령만 1 step 동작한다.
+            runBackStepOver runToNextStepOver과 기본적으로 같으나 현재 step의 바로 전 step을 동작 시킨다.
+\end{DoxyVerb}
+
+
+\subsubsection*{10027 }
+
+\begin{DoxyVerb}     add  - database를 구축할 수 있는 API 추가.
+            importVariable 서버에 지정한 위치에 있는 variable file의 내용을 가져온다.
+            exportVariable 서버에 지정한 위치로 variable file을 보낸다.
+            importProgram 서버에 지정한 위치에 있는 program file(macro file)의 내용을 가져온다.
+            exportProgram 서버에 지정한 위치로 program file을(macro file) 보낸다.
+            makeDatabaseDir 서버에 지정한 위치에 directory를 생성한다.
+            makeDatabaseText 서버에 지정한 위치에 text file을 생성한다(생성외에 쓰기는 하지 않는다.
+            copyDatabaseDir 서버에 지정한 위치에 있는 directory를 copy 하여 지정한 위치에 paste 한다.
+            copyDatabaseFile 서버에 지정한 위치에 있는 file 을copy 하여 지정한 위치에 paste 한다.
+            moveDatabaseDir 서버에 지정한 위치에 있는 directory를 지정한 위치로 이동시킨다.(rename 공용)
+            moveDatabaseFile 서버에 지정한 위치에 있는 file을 지정한 위치로 이동시킨다.(rename 공용)
+            deleteDatabaseDir  서버에 지정한 /mnt 하위 위치에 있는 driectory를 삭제한다.
+            deleteDatabaseFile 서버에 지정한 위치에 있는 file을 삭제한다.
+            getDatabaseDirCount 서버에 지정한 위치에 있는 directory의 개수를 얻는다.
+            getDatabaseFileCount 서버에 지정한 위치에 있는 file의 개수를 얻는다.
+            getDatabaseDirList 서버에 지정한 위치에 있는 directory list을 얻는다.
+            getDatabaseFileList 서버에 지정한 위치에 있는 file list를 얻는다.
+            saveDatabaseFile 서버에 지정한 위치로 file을 보낸다, text, bin 형식 등으로 가능.
+            loadDatabaseFile 서버에 지정한 위치에 있는 file을 얻는다 text, bin 형식 등으로 가능.
+            applyVariableFile type, varName, data 형식으로 저장되어 있는 variable text file에 있는 variable을
+            선언한다.
+            extractVariableFile 현재 저장되어있는 모든 변수들을 type, varName, data 형식으로 variable text file
+            생성 후 저장한다.
+\end{DoxyVerb}
+
+
+\subsubsection*{10026 }
+
+\begin{DoxyVerb}     add  - WZClear, WZAddBox, WZAddCyl, WZEnable, WZDisable, WZGetFlag, WZGetEntityCount, WZGetEntityType
+            WZGetEntityBox, WZGetEntityCyl, WZGetEntityFrame 등 안전영역 설정 추가.
+\end{DoxyVerb}
+
+
+\subsubsection*{10025 }
+
+\begin{DoxyVerb}     add  - get,setEulerAngleType EulerAngle A,B,C를 X, Y, Z 순서로 혹은 반대로 Z, Y, X로 설정할 수 있다.
+            get,setHybridJogMode base coord에서의 jog 동작을 설정한다. 예 를들어 기존 X, Y, Z, A, B, C 에서
+            X, Y, Z, Joint4, Joint5 등으로 동작을 설정할 수 있다.
+\end{DoxyVerb}
+
+
+\subsubsection*{10024 }
+
+\begin{DoxyVerb}     add  - get,setVariables 추가 필요한 변수를 array로 생성,설정하거나 얻어올 수 있다.
+            get,setCommandCycleTime client의 cycle time을 설정하거나 얻어올 수 있다, 어느 시점에서나 설정하여 적용할 수 있다.
+            get,setRtTaskFlag SCHED_RR를 실시간 선점형 task를 동작 시킨다, startService 이전에 설정해야한다.
+     edit - get,setVariable 의 trans 데이터를 받지 못하는 현상 수정.
+\end{DoxyVerb}
+
+
+\subsubsection*{10023 }
+
+\begin{DoxyVerb}     add  - getHoldDoneStatus hold 프로세스가 완료 되었을 때 현재 모든 동작이 완료되어 exeCuteProgram을 할 수 있는 상태가
+            되었을 때 true를 return 한다.
+\end{DoxyVerb}
+
+
+\subsubsection*{10022 }
+
+\begin{DoxyVerb}     add  - saveProgram, saveProgramAll, getProgramAutoSave, setProgramAutoSave 프로그램을 저장하는 API 추가하고
+            자동으로 저장되던 프로그램을 수동 저장으로 변경, 자동으로 저장해야할 경우 setProgramAutoSave를 사용한다, 주의사항은
+            프로그램 생성, 편집, 삭제 시 프로그램을 저장하기 때문에 자주 혹은 과도하게 많이 저장할 경우 사용하지 않도록 한다.
+            getVariableAutoSave, setVariableAutoSave은
+            자동으로 저장되던 변수를 수동 저장으로 변경, 자동으로 저자애야할 경우 setVariableAutoSave를 사용한다, 주의사항은
+            변수의 생성, 편집, 삭제 시 변수를 저장하기 때문에 자주 혹은 과도하게 많이 저장할 경우 사용하지 않도록 한다.
+
+     edit - program and variable autoSave -> manual save
+\end{DoxyVerb}
+
+
+\subsubsection*{10021}
+
+\begin{DoxyVerb}     add  - setEnableDeivatedSignal 추가 system IO를 enable/disable할 수 있다.
+            getPDOT_StausWord 추가 Driver의 상태를 확인한다.
+            setStableTime 추가 모터 이동 위치로 조금 더 정확하게 이동하기위해 사용한다.
+            get, setAutoRunSubProgram 초기 coreServer 실행 시 subProgram도 함께 실행되도록 한다.
+            moveToPosition2 추가 stableTime 적용된 API이다.
+            moveToHome 추가
+
+     delete - setProgramRun, stopProgram, moveToPosition에서 argment stableTime 제거
+
+     edit - macro Program Name, step, Variable Name size를 일관화 하기 위해서 #define 으로 변경.
+            tpcmdstatus.cpp에서 getCurProgramStack을 getCurProgramStack2로 변경하여 사용.
+            get,setProgramList, clearProgram 사용 시 호출할 프로그램이 NULL일 경우 다음으로 진행되지 않고 return 하도록 변경
+            setCurProgramClean -> clearCurProgram
+            gerCurProgramStack -> getCurProgramStack
+\end{DoxyVerb}
+
+
+\subsubsection*{10020}
+
+\begin{DoxyVerb}     add  - get, setHomePosition 추가 homeposition과 범위를 인자값으로 설정할 수 있으며 get으로 설정된값을 얻는다.
+            macro program에서 HOME, HOME2의 이동 위치를 결정한다.
+            getSlavecount 현재 사용 중인 slave의 수량을 리턴한다.
+            getSlavetype 현재 사용 중인 slave의 타입을 리턴한다, index를 입력 시 index에 해당하는 type을 리턴한다.
+
+     edit - getAI count 수정 아날로그 in + out count 제거
+            setDI을 사용할 수있도록 수정 후 setDI의 인자 값을 수정, 이유는 +-부호로 입력을 주거나 빼기 때문에 cn_ui32서에 int로 변경하고였다
+            사용하지 않을 인자 값은 제거하였다, 주로 디버깅 용도로 사용한다.
+\end{DoxyVerb}
+
+
+\subsubsection*{10019 }
+
+\begin{DoxyVerb}    add  - executeProgram2 추가 executeProgram2에는 task 인자를 추가 하였다.
+           getCurProgramStack 추가 현재 task에 올라와 실행되고 있는 macro Program의 목록을 얻는다.
+           getRunningMainStepIndex는 call Program을 사용했을 경우 현재 step이 call 중인 macro를 가리키므로
+           메인으로 load된 macro의 현재 step을 얻을 수 있도록 추가 하였다.
+           get, setInchingAlgur inching setp을 degee 단위로 get, set 할수 있다. degee는 모터 타입이 R 타입일 때 적용되며 T 타입은
+           get, setInchingStep
+
+    edit - Client, Server 구조변경
+           programReset 사용 시 CurentProgramStack에서 가장 첫 번째 stack에 있는 macro Program의 첫 번째 step으로 step 초기화된다.
+           variableAutoSave macro동작이 완료되어 장비가 hold 상태이거나 중간에 hold 하였을 때 variableSave 되도록 수정.
+           ethetcat Error Reset code 다음 실행 동작으로 Dribver가 OPmode로 올라오는 코드 추가.
+           getVariableList에 문자 filter기능을 추가하여 이상 문자는 출력하지 하지 않도록 수정.
+           한글이나 특수 문자가 입력된 변수가 출력될 시 deletVariable로 삭제할 수 있도록 수정.
+           ethercat reset 속도 개선.
+           Client, Server 구조변경으로 인하여 data buf max size 1M fixed.\end{DoxyVerb}
+ 

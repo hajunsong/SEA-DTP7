@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FormIO</class>
+ <widget class="QWidget" name="FormIO">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>747</width>
+    <height>491</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QStackedWidget" name="stackedWidget">
+     <property name="currentIndex">
+      <number>3</number>
+     </property>
+     <widget class="QWidget" name="pageSystem"/>
+     <widget class="FormDO" name="pageDO"/>
+     <widget class="FormDI" name="pageDI"/>
+     <widget class="FormAO" name="pageAO"/>
+     <widget class="FormAI" name="pageAI"/>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="btnSystem">
+       <property name="text">
+        <string>System</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnDO">
+       <property name="text">
+        <string>DO</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnDI">
+       <property name="text">
+        <string>DI</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnAO">
+       <property name="text">
+        <string>AO</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnAI">
+       <property name="text">
+        <string>AI</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FormDO</class>
+   <extends>QWidget</extends>
+   <header>formdo.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FormDI</class>
+   <extends>QWidget</extends>
+   <header>formdi.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FormAI</class>
+   <extends>QWidget</extends>
+   <header>formai.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FormAO</class>
+   <extends>QWidget</extends>
+   <header>formao.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

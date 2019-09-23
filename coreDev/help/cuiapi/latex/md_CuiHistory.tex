@@ -1,0 +1,413 @@
+\section*{version info \-: branchs major.\-minor.\-date (core\-Con), M\-: master, R\-:Release}
+
+\par
+
+
+\subsection*{-\/ M 3.\-6.\-308}
+
+
+\begin{DoxyEnumerate}
+\item 프로그램 에디터에서 한글 주석을 달 수 있는 기능 추가
+\item User Level 기능 활성, User Level을 설정하지 않았을 경우 초기 Settings -\/$>$ User Level 버튼 누름 후 number dialog popup 시 ok를 누르면 접속된다.
+\item memory 기록 버그 수정
+\item variable import 기능 추가.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ M 3.\-6.\-0222}
+
+
+\begin{DoxyEnumerate}
+\item trans 변수 문제 해결
+\end{DoxyEnumerate}
+
+\subsection*{-\/ M 3.\-6.\-0219}
+
+
+\begin{DoxyEnumerate}
+\item settings tab, monitor 기능과 tuning 기능 merge
+\item data tab, variable import 추가 되었으며 data 및 program tab에서 export 됨, format \-: .vdf(variable data file)
+\item config error 시 safe mode에 접속되도록 변경, safe mode는 dryrun mode
+\item jog tab에 home move 기능 추가
+\item variable string value save 문제 해결
+\item 사용자 등급 추가
+\end{DoxyEnumerate}
+
+\subsection*{-\/ M 3.\-6.\-0131}
+
+
+\begin{DoxyEnumerate}
+\item 모든 Release Branch를 master로 merge
+\end{DoxyEnumerate}
+
+\subsection*{-\/ R 3.\-6.\-0117}
+
+
+\begin{DoxyEnumerate}
+\item 모든 저장 code에 sync 추가
+\end{DoxyEnumerate}
+
+\subsection*{-\/ R 3.\-5.\-1219}
+
+
+\begin{DoxyEnumerate}
+\item print dequeue api가 개선되었으므로 dequeue print backtrace 정보 확인할 수 있는 code 제거.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ R 3.\-5.\-1207}
+
+
+\begin{DoxyEnumerate}
+\item memory debugging test code 삽입, M\-E\-M\-L\-O\-G\-\_\-\-F\-L\-A\-G = 1 설정 시 1분마다 memory 상태 logging.
+\item print dequeue bug (get\-T\-P\-Write bug)수정.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ M 3.\-3.\-1203}
+
+
+\begin{DoxyEnumerate}
+\item memory cheching 추가 10분 마다 process memory 기록, corecon.\-conf에 작성 ex) M\-E\-M\-L\-O\-G\-\_\-\-F\-L\-A\-G = 1 설정 시 1분 마다 memory 상태 기록.
+\item servo motor off wait time option 추가, robot config에 작성 ex) M\-O\-T\-O\-R\-\_\-\-O\-F\-F\-\_\-\-W\-A\-I\-T\-\_\-\-T\-I\-M\-E = 0.\-1 설정 시 0.\-1초 후 off
+\end{DoxyEnumerate}
+
+\subsection*{-\/ M 3.\-3.\-1116}
+
+
+\begin{DoxyEnumerate}
+\item memory checking 추가 1day P\-M12\-:00에 기록
+\item memory 95\% 초과 시 log 기록
+\item get\-Stream\-Out\-Data\-Ptr\-: device로 출력할 data pointer 취득
+\item get\-Stream\-In\-Data\-Ptr\-: device로부터 입력 받은 data pointer 취득
+\item slave type 추가\-: C\-N\-R\-\_\-\-S\-L\-A\-V\-E\-\_\-\-T\-Y\-P\-E\-\_\-\-S\-T\-R\-E\-A\-M
+\end{DoxyEnumerate}
+
+\subsection*{-\/ R 3.\-4.\-1106}
+
+1.\-dequeue print backtrace 정보 확인할 수 있는 code 삽입
+
+\subsection*{-\/ M 3.\-3.\-1105}
+
+
+\begin{DoxyEnumerate}
+\item gain tuning command position, current position 취득 추가.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ M 3.\-3.\-1102}
+
+
+\begin{DoxyEnumerate}
+\item get\-P\-D\-O\-R\-\_\-\-Target\-Position\-: 지령 위치 값 취득, axis ppr
+\item get\-P\-D\-O\-T\-\_\-\-Actual\-Position\-: 현재 위치 값 취득, axis ppr
+\item following error\-: cmd pos -\/ cur pos
+\item cmd delta\-: cmd pos -\/ prev cmd pos
+\end{DoxyEnumerate}
+
+\subsection*{-\/ M 3.\-3.\-1024}
+
+
+\begin{DoxyEnumerate}
+\item plugin 실패 원인 메시지 출력
+\item variable zero data checksum confirm 메시지 출력.
+\item physical ram memory info 5\% 이하로 남았을 때 logging
+\end{DoxyEnumerate}
+
+\subsection*{-\/ M 3.\-3.\-919}
+
+
+\begin{DoxyEnumerate}
+\item Tuning 시 safety io가 앞에 설치 되었을 때 number가 밀리는 현상 수정.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ M 3.\-3.\-911}
+
+
+\begin{DoxyEnumerate}
+\item dryrun 중에는 중복실행이 가능하고 리얼타임 모드에서는 중복실행 불가.
+\item remote제어시 커서 enable, mouse\-Move Event 추가
+\item motion 중 타켓포인트 수정 명령 추가 $>$$>$ Prefetch\-Sig \mbox{[}O\-N/\-O\-F\-F\mbox{]} Chg\-Dest \mbox{[}var\mbox{]}
+\item E\-R\-R\-O\-R C\-O\-D\-E \-: -\/14 발생 시 이전 모션의 정보도 log에 추
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 3.\-3.\-820}
+
+
+\begin{DoxyEnumerate}
+\item corecon 중복실행 방지 기능 추가.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 3.\-2.\-816}
+
+
+\begin{DoxyEnumerate}
+\item core\-Con -\/ settings motor tuning 기능 추가.
+\item 프로그램 execute 시 task status가 1로 바꼈다가 2로 바뀌는 현상 수정
+\item program start 시 status 시작 준비가 되지 않을 경우 max 10sec 동안 동작 조건이 되지 않아 동작되지 않을 경우 error 발
+\item load\-Cur\-Program 추가, 기능\-: set\-Cur\-Program은 사용 시 task status가 hold 상태이지만 load\-Run\-Program은 thread만 생성하고 task status는 no use 이다.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 3.\-1.\-809}
+
+
+\begin{DoxyEnumerate}
+\item Ether\-C\-A\-T Master Link Error 옵션 'corecon.\-conf' file에 추가 -\/ info로만 출력, error로 출력, 조건부 출력
+\begin{DoxyItemize}
+\item M\-A\-S\-T\-E\-R\-\_\-\-L\-I\-N\-K\-\_\-\-E\-R\-R\-O\-R\-\_\-\-S\-T\-O\-P, F\-A\-L\-S\-E 시 log와 message만 출력, T\-R\-U\-E 시 error 처리
+\item M\-A\-S\-T\-E\-R\-\_\-\-L\-I\-N\-K\-\_\-\-E\-R\-R\-O\-R\-\_\-\-D\-E\-L\-A\-Y, 단위 sec, default 0.\-2sec
+\end{DoxyItemize}
+\item cuiapi execute error 시 log 출력되도록 추가.
+\item Driver Error number 0x0 문제 수정
+\item Data file .bak, .2 등 Recover 전에 Conform 메시지 출력
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 3.\-0.\-621}
+
+
+\begin{DoxyEnumerate}
+\item set\-Enable\-Dedicated\-Signal -\/$>$ set\-Dedicated\-Signal 로 명칭 변경.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-518}
+
+
+\begin{DoxyEnumerate}
+\item set\-D\-P\-T\-Buzzer\-On2, on, off interval time를 각각 설정할 수 있다. 단위는 10msec
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-515}
+
+
+\begin{DoxyEnumerate}
+\item Joint, String 변수 길이를 19자로 설정하여 저장 시 저장 알고리즘에 문제가 발생했던 현상 수
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-514}
+
+
+\begin{DoxyEnumerate}
+\item set\-Hold\-Run 삭제 -\/ 기능이 동작되도록 구현되어있지 않으며 hold\-Program과 기능이 겹치므로 삭제.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-511}
+
+
+\begin{DoxyEnumerate}
+\item set\-D\-T\-P\-Buzzer\-Off, set\-D\-T\-P\-Buzzer\-On 명칭 수정.
+\item R\-C-\/3.\-0 version
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-424}
+
+
+\begin{DoxyEnumerate}
+\item reset\-All\-Error, axis error 발생 시 axis reset 하는 부분 다시 추가.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-423}
+
+
+\begin{DoxyEnumerate}
+\item Command pos. has suddenly changed error 발생 시 error 정보 추가, error 발생 시 info가 우선적으로 출력되고 error 발생.
+\begin{DoxyItemize}
+\item Max R\-P\-M 정보
+\item Cur R\-P\-M 정보
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-419}
+
+
+\begin{DoxyEnumerate}
+\item \hyperlink{classCUIApp_a248c0a953c6af72b5419d7b001b5dd39}{C\-U\-I\-App\-::set\-Cur\-Program()} 사용 시 설정한 macro Program이 자동으로 loading 되던 것을 수정,
+\begin{DoxyItemize}
+\item Auto\-Loading\-Flag를 추가하여 자동 loading on/off 되도록 변경. 기본은 자동 loading
+\end{DoxyItemize}
+\item 자동 loading할 프로그램을 따로 설정할 수 있도록 \hyperlink{classCUIApp_a400be7d1d827f7a7db158f84a50b65ff}{C\-U\-I\-App\-::save\-Run\-Program()} 추가.
+\item corecon.\-conf에 \char`\"{}\-T\-A\-S\-K\-\_\-\-A\-U\-T\-O\-\_\-\-L\-O\-A\-D\-I\-N\-G\char`\"{} option 추가로 자동 loading 기능을 enable, diable할 수 있도록 추가.
+\begin{DoxyItemize}
+\item 용도 \-: 디버깅, task별로 loading할 프로그램이 설정 된 상태에서 자동 loading할지 하지 않을지를 결정할 수 \par
+ 있다, 기존 방식대로 자동 loading을 하지 않기 위해서는 ini file에 있는 내용을 삭제해야하지만 자동 로딩\par
+ enable/disable이 있으면 삭제하지 않아도 된다.
+\end{DoxyItemize}
+\item C\-U\-I\-App\-::reset\-Al\-Status 동작 시 servo off, on 되던 현상 수정.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-413}
+
+
+\begin{DoxyEnumerate}
+\item Command pos. has suddenly changed error 발생 시 error 정보 기록.
+\begin{DoxyItemize}
+\item Motion 정보
+\item Interpolation param
+\item joint old postion
+\item joint new position
+\item encoder limit value
+\end{DoxyItemize}
+\item max 명령 encoder 값을 취득하는 \hyperlink{classCUIApp_a2d46b9b2b22bb7246d3792cf4bad2f44}{C\-U\-I\-App\-::get\-Max\-Command\-Enc} A\-P\-I 추가
+\item Error Reset 시 D\-O\-U\-T Off/\-On 현상 개선.
+\item S\-D\-O Error 발생 시 통신속도 지연되던 현상 개선.
+\item S\-D\-O Error 발생 시 메일박스가 Full이 되었을 때 Clear 되지 않던 현상 개선.
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-330}
+
+
+\begin{DoxyEnumerate}
+\item O\-S Timer값을 return하는 명령어 추가\par
+ usec 단위로 return하기 때문에, 하나의 숫자로 읽을 수 없어, 세단위로 나누어 읽어야 한다.\par
+ 즉, day -\/ sec -\/ usec 으로 나누어 읽어야 하며, 사용법은\par
+
+
+usec = Sys\-Timer( 1, 1 ) \-: 1번 타이머의 usec 부분\par
+ sec = Sys\-Timer( 1, 2 ) \-: 2번 타이머의 sec 부분\par
+ day = Sys\-Timer(1, 3) \-: 3번 타이머의 day 부분\par
+
+
+지나간 시간을 재고 싶으면,\par
+ Set\-Sys\-Timer 1 로 하면 1번 timer가 내부에 latch되고,\par
+ Sys\-Timer(1)로 읽으면, 차이 값이 return된다.\par
+
+
+ex)\par
+ Set\-Sys\-Timer 1\par
+ Wait\-Time 0.\-1\par
+ usec = Sys\-Timer(1, 1)\par
+ T\-P\-Write 2, \char`\"{}elapsed = \%d us\char`\"{}, usec\par
+
+
+set\-Timer와 같이 1$\sim$9 까지 사용 가능하다.
+\item 초기 loading 시 현재 version을 log file에 기록
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-315}
+
+
+\begin{DoxyEnumerate}
+\item 사용하지 않는 함수 삭제 get\-Recv\-Data\-Sync\-Flag(); get\-Send\-Data\-Sync\-Flag(); get\-Recv\-Data\-Error\-Count(); get\-Send\-Data\-Error\-Count();
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-312}
+
+
+\begin{DoxyEnumerate}
+\item 시뮬레이터에서 locking 시 T\-P를 제어할 수 있으며 corecon의 경우 T\-P 에서 제어권이 사라질 때 까지 U\-I를 조작할 수 없게된다.\par
+ 또한 T\-P에서 다른 기능을 조작할 수 없지만 Release하여 시뮬레이터 locking을 해제할 수 있다.\par
+ custom ui의 경우는 아래 추가한 A\-P\-I를 사용하여 corecon과 동일하게 구현할 수 있다. 
+\begin{DoxyItemize}
+\item \hyperlink{classCUIApp_af7ae494817cae7f75cc8c6ebe6734b06}{C\-U\-I\-App\-::get\-Sim\-Remote\-Locking\-State()} 추가
+\begin{DoxyItemize}
+\item 시뮬레이터가 제어권을 갖고 있는지 상태 확인
+\end{DoxyItemize}
+\item \hyperlink{classCUIApp_ad71f35d03ef250c61d8ce09ca8d7711d}{C\-U\-I\-App\-::unlock\-Sim\-Remote\-Control()} 추가
+\begin{DoxyItemize}
+\item 시뮬레이터의 제어권을 해제할 수 있는 명령어
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item R\-E\-M\-O\-T\-E\-\_\-\-S\-C\-R\-E\-E\-N 옵션 추가, corecon.\-conf에 R\-E\-M\-O\-T\-E\-\_\-\-S\-C\-R\-E\-E\-N = T\-R\-U\-E 사용 시 시뮬레이터 screen제어를 목적으로 사용하며 \par
+ 시뮬레이터에서 T\-P에 locking 하여도 corecon에는 release할 수 있는 dialog가 팝업되지 않는다.\par
+ R\-E\-M\-O\-T\-E\-\_\-\-S\-C\-R\-E\-E\-N = F\-A\-L\-S\-E 일 경우 remote dialog가 팝업된다. 
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-309}
+
+
+\begin{DoxyEnumerate}
+\item corecon ethercat 수정
+\begin{DoxyItemize}
+\item working count monitoring system 구현.
+\item 1000 cycle 동안 측정된 wc 수 logging
+\item Error 기준을 넘을 시 error 발생과 함께 몇 사이클 연속 wc가 발생했는지 logging
+\end{DoxyItemize}
+\item 시계 진단 \-: master, slave 들이 reference slave 시계와 얼마나 정확히 일치하고 있는 지 확인하는 것입니다. 
+\item Sequence timing 진단 \-: 전송된 데이터가 충분한 여유를 가지고, 각 slave에 전달되어 slave동작이 원활이 작동되는 것을 확인하는 것입니다.
+\begin{DoxyItemize}
+\item 나머지, frame의 lost count나, Realtime task의 주기의 변화정도등을 확인할 수 있고, 기타의 E\-S\-C의 register값을 확인할 수 있습니다.
+\item (단, 이더켓 마스터는 2018.\-03.\-09 이후의 버전이어야 합니다.) 
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-308}
+
+
+\begin{DoxyEnumerate}
+\item \hyperlink{classCUIApp_a6c61ac6cf4cf719bad5459bbefc37659}{C\-U\-I\-App\-::get\-Version()} 함수 수정
+\begin{DoxyItemize}
+\item master version 취득 수정.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-5.\-306}
+
+
+\begin{DoxyEnumerate}
+\item \hyperlink{classCUIApp_a6c61ac6cf4cf719bad5459bbefc37659}{C\-U\-I\-App\-::get\-Version()} 함수 추가
+\begin{DoxyItemize}
+\item corecon, master, kernel version 정보 취득 -\/ master 취득에 bug 있어서 수정 예.
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat}{C\-U\-I\-Ecat} 관련 함수에 대한 설명 추가
+\item corecon에 master backup, upgrade 추가, sdcard backup, upgrade 추가
+\begin{DoxyItemize}
+\item 경로 \-: corecon -\/$>$ settings -\/$>$ S\-W Upgrade
+\item usb와 sdcard가 동시에 삽입 되었을 때에는 usb만 인식하도록 동작.
+\end{DoxyItemize}
+\item R\-T\-O\-S 정주기성 check용 A\-P\-I
+\begin{DoxyItemize}
+\item \hyperlink{classCUIEcat_a49fba779055b9959e804b3d6587f9799}{C\-U\-I\-Ecat\-::get\-End\-Event\-Error\-Count()}
+\begin{DoxyItemize}
+\item app 과 master의 cycle time err 발생 시 count up
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_ab62988589c529181b1b9716910d6e66a}{C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Avg()}
+\begin{DoxyItemize}
+\item Master의 정주기성 평균 cycle time
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_aee10d1bfa0042f7f7eed3fb799353643}{C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Min()}
+\begin{DoxyItemize}
+\item Master의 정주기성 최소 cycle time
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_af6d43ab5430d66093cec76234055baa7}{C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Max()}
+\begin{DoxyItemize}
+\item Master의 정주기성 최대 cycle time
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_adeb5b823fd182c274bcac03a9cfae560}{C\-U\-I\-Ecat\-::get\-Rt\-Task\-Runtime\-Avg()}
+\begin{DoxyItemize}
+\item Master의 수행시간 평균 cycle time 중 master에서 사용하는 시간
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_a563eabb48053cfa9ec88213b96914179}{C\-U\-I\-Ecat\-::get\-Rt\-Rask\-Runtime\-Min()}
+\begin{DoxyItemize}
+\item Master의 수행시간 최소 cycle time 중 master에서 사용하는 시간
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_a49de2bbe30a82bd57c5c3ce86234fece}{C\-U\-I\-Ecat\-::get\-Rt\-Task\-Runtime\-Max()}
+\begin{DoxyItemize}
+\item Master의 수행시간 최대 cycle time 중 master에서 사용하는 시간
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Ether\-C\-A\-T Master Sync 확인
+\begin{DoxyItemize}
+\item \hyperlink{classCUIEcat_aa3925bea5f3005eb3148258af76bbb56}{C\-U\-I\-Ecat\-::get\-D\-C\-Time\-Diag\-Table()}
+\begin{DoxyItemize}
+\item master와 slave 간의 D\-C sync 시간
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item file 비교 tools
+\begin{DoxyItemize}
+\item linux cmp, diff
+\begin{DoxyItemize}
+\item cmp dmcvar.\-dat dmcvar.\-dat.\-2를 사용 시 파일이 같으면 message가 출력되지 않고 파일이 다르면
+\item dmcvar.\-dat dmcvar.\-dat2 differ\-: char 1, line 1
+\item 위와 같은 message가 출력되는 char 1, line 1은 첫 행에 char 1 부터 data가 다르다는 표시이다.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item 초기단계 O\-P 상태 check -\/ slave config check
+\begin{DoxyItemize}
+\item slave num, slave O\-P state
+\item corecon 시작시 master와 slave 초기화 단계에서 slave 수 또는 slave 상태가 O\-P상태로 변경되지 않을 때
+\item -\/1511 slave config error를 발생시킴
+\end{DoxyItemize}
+\item open error logging, dual file 저장(data mirroring 기능)
+\begin{DoxyItemize}
+\item 변수 저장 시 dmcvar.\-dat, dmcvar.\-dat.\-2에 함께 변수를 저장
+\item zeroing data 저장 시 dmcoff.\-dat, dmcoff.\-dat.\-2에 함께 data 저장
+\item 초기 open할 때 2개의 file을 전부 checksum 하여 정상적으로 checksum 되는 data를 사용.
+\item 정상적으로 checksum이 되지 않을 때에는 error 발생.
+\end{DoxyItemize}
+\item core\-Dev에 master 추가. 
+\end{DoxyEnumerate}

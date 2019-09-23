@@ -1,0 +1,91 @@
+\section*{version info \-: major.\-minor.\-day (master)}
+
+\par
+ \subsection*{-\/ 2.\-04.\-180312}
+
+
+\begin{DoxyEnumerate}
+\item S\-D\-O Error를 위한 마스터 상태 변경기능 제거
+\begin{DoxyItemize}
+\item 통신 Cable Error 시 S\-D\-O가 안될 때 Slave의 상태를 S\-A\-F\-E\-O\-P로 변경 후 O\-P로 변경 시 내부 Buffer가 Clear 되면서 다시 S\-D\-O 통신이 되는 기능이 있었음
+\item Digital Output의 경우에는 S\-A\-F\-E\-O\-P로 변경 시 모든 출력이 O\-F\-F 되는 문제가 발생함, 위험성이 많아서 이 기능을 제거함
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-03.\-180309}
+
+
+\begin{DoxyEnumerate}
+\item Actiau Shift Time 계산식 변경
+\begin{DoxyItemize}
+\item 기존 Actual Shift Time = Frame Send Time -\/ Next Sync0 Time 에서 Actual Shift Time = Next Sync0 Time -\/ Frame Send Time 으로 변경
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-02.\-180308}
+
+
+\begin{DoxyEnumerate}
+\item D\-C Timing Monitoring
+\begin{DoxyItemize}
+\item 실제 Actual Shift Time을 Master 내부에서 계산 후 Application에서 Display할 수 있도록 Decstats 구조체에 관련변수들을 추가하여 전달함
+\item Actual Shift Time = Frame Send Time -\/ Next Sync0 Time
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-01.\-180306}
+
+
+\begin{DoxyEnumerate}
+\item Master Version A\-P\-I 수정
+\begin{DoxyItemize}
+\item 기존 마스터 버전 1.\-5.\-2\-\_\-v2.\-00\-\_\-180306 형태에서 2.\-01.\-180306 형태로 변경
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 2.\-00.\-180306}
+
+
+\begin{DoxyEnumerate}
+\item Master Version A\-P\-I 수정
+\begin{DoxyItemize}
+\item 기존 마스터 버전 1.\-5.\-2\-\_\-180222 형태에서 1.\-5.\-2\-\_\-v2.\-00\-\_\-180306 형태로 변경
+\end{DoxyItemize}
+\item Start App Time 수정
+\begin{DoxyItemize}
+\item 실제 Actual shift time을 결정짓는 Start App Time의 시점을 Master R\-T Task의 Wakeup Event 시점과 최대한 가깝게 배치하여 shift time의 정확성을 향상시킴
+\item Shift time은 Cycle time의 50로 설정하는 것이 가장 안정적임
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 1.\-20.\-180222}
+
+
+\begin{DoxyEnumerate}
+\item Fast drift compensation
+\begin{DoxyItemize}
+\item 처음 부팅 후 O\-P Mode로 진입 후 D\-C Timing을 안정화 할 때 최대 20분정도 소용되는 문제가 있었음
+\item D\-C Timing의 drift compensation을 빠르게 할 수 있도록 변경함, 현재 안정화까지 최대 1분정도 소요됨
+\end{DoxyItemize}
+\item Decstats, D\-C Diag Table Clear Function
+\begin{DoxyItemize}
+\item Decstats 구조체의 변수들을 Clear 할 수 있는 변수를 추가함, ec\-\_\-stats\-\_\-all\-\_\-clear\-\_\-flag 변수에 '1' 값 세팅 시 구조체 전체 변수가 Clear 됨
+\item D\-C Diag Table을 Clear 할 수 있는 변수를 추가함, dc\-\_\-time\-\_\-table\-\_\-clear\-\_\-flag 변수에 '1' 값 세팅 시 Table 전체가 0으로 Clear됨
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{-\/ 1.\-10.\-180214}
+
+
+\begin{DoxyEnumerate}
+\item Master 상태 구조체 공유
+\begin{DoxyItemize}
+\item Master의 각종 상태를 Applicaiton에서 알 수 있도록 구조체화 하여 공유메모리를 통하여 공유하도록 함
+\end{DoxyItemize}
+\item S\-D\-O Error를 위한 마스터 상태 변경
+\begin{DoxyItemize}
+\item Slave 개수 변동 시 마스터에서 상태를 S\-A\-F\-E\-O\-P로 변경 후 O\-P로 변경하도록 하여 통신 에러시에도 S\-D\-O 통신이 다시 재개될 수 있도록 함
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+ 참고 내용이 장문이므로 설명을 위해서 본 문법을 사용  

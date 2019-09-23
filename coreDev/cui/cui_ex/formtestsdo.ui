@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FormTestSDO</class>
+ <widget class="QWidget" name="FormTestSDO">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>290</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="btnGetSDO">
+   <property name="geometry">
+    <rect>
+     <x>36</x>
+     <y>43</y>
+     <width>85</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>getSDO</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="txtAxisNumber">
+   <property name="geometry">
+    <rect>
+     <x>291</x>
+     <y>31</y>
+     <width>113</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="txtSDO">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>83</y>
+     <width>387</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSetSDO">
+   <property name="geometry">
+    <rect>
+     <x>136</x>
+     <y>28</y>
+     <width>85</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>setSDO</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>236</x>
+     <y>38</y>
+     <width>49</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Axis no.</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnGetSDOList">
+   <property name="geometry">
+    <rect>
+     <x>36</x>
+     <y>13</y>
+     <width>85</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>getSDOList</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,55 @@
+\#cuiapi update 내용
+
+\subsection*{kimdj/2018.\-03.\-06}
+
+
+\begin{DoxyEnumerate}
+\item \hyperlink{classCUIApp_a50b55afe3b66bc00cb1e2e34ed8db2b0}{C\-U\-I\-App\-::get\-Version()} 함수 추가
+\begin{DoxyItemize}
+\item corecon, master, kernel version 정보 취득
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat}{C\-U\-I\-Ecat} 관련 함수에 대한 설명 추가
+\item corecon에 master backup, upgrade 추가, sdcard backup, upgrade 추가
+\begin{DoxyItemize}
+\item 경로 \-: corecon -\/$>$ settings -\/$>$ S\-W Upgrade
+\item usb와 sdcard가 동시에 삽입 되었을 때에는 usb만 인식하도록 동작.
+\end{DoxyItemize}
+\item R\-T\-O\-S 정주기성 check용 A\-P\-I
+\begin{DoxyItemize}
+\item \hyperlink{classCUIEcat_a49fba779055b9959e804b3d6587f9799}{C\-U\-I\-Ecat\-::get\-End\-Event\-Error\-Count()}
+\begin{DoxyItemize}
+\item app 과 master의 cycle time err 발생 시 count up
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_ab62988589c529181b1b9716910d6e66a}{C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Avg()}
+\begin{DoxyItemize}
+\item Master의 정주기성 평균 cycle time
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_aee10d1bfa0042f7f7eed3fb799353643}{C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Min()}
+\begin{DoxyItemize}
+\item Master의 정주기성 최소 cycle time
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_af6d43ab5430d66093cec76234055baa7}{C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Max()}
+\begin{DoxyItemize}
+\item Master의 정주기성 최대 cycle time
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_adeb5b823fd182c274bcac03a9cfae560}{C\-U\-I\-Ecat\-::get\-Rt\-Task\-Runtime\-Avg()}
+\begin{DoxyItemize}
+\item Master의 수행시간 평균 cycle time 중 master에서 사용하는 시간
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_a563eabb48053cfa9ec88213b96914179}{C\-U\-I\-Ecat\-::get\-Rt\-Rask\-Runtime\-Min()}
+\begin{DoxyItemize}
+\item Master의 수행시간 최소 cycle time 중 master에서 사용하는 시간
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_a49de2bbe30a82bd57c5c3ce86234fece}{C\-U\-I\-Ecat\-::get\-Rt\-Task\-Runtime\-Max()}
+\begin{DoxyItemize}
+\item Master의 수행시간 최대 cycle time 중 master에서 사용하는 시간
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Ether\-C\-A\-T Master Sync 확인
+\begin{DoxyItemize}
+\item \hyperlink{classCUIEcat_aa3925bea5f3005eb3148258af76bbb56}{C\-U\-I\-Ecat\-::get\-D\-C\-Time\-Diag\-Table()}
+\begin{DoxyItemize}
+\item master와 slave 간의 D\-C sync 시간 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyEnumerate}

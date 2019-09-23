@@ -1,0 +1,150 @@
+
+* {
+    background-color: white;
+    font: 20px;
+}
+
+
+
+/* default button style */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color: rgb(133, 203, 255);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(128, 128, 128);
+    border-radius: 10px;
+    font: bold 20px;
+    padding: 0px;
+
+    outline:none;
+}
+
+QPushButton::checked{
+    color: rgb(255, 255, 255);
+    background-color: rgb(196, 30, 46);
+}
+
+QPushButton::pressed{
+    color: rgb(255, 255, 255);
+    background-color: rgb(196, 30, 46);
+}
+
+
+
+
+QPushButton#btnServo{
+    icon-size: 110px;
+    background-color: transparent;
+    border-color: transparent;
+    font: 20px;
+    padding: 0px;
+}
+
+QPushButton#btnCommon{
+    background-color: rgb(180,180,180);
+    border-color: black;
+    height: 40;
+
+
+}
+
+
+FormRun QLineEdit
+{
+    height: 50;
+}
+
+FormRun QPushButton
+{
+    width: 100;
+    height: 60;
+}
+
+FormProgram QPushButton
+{
+    width: 100;
+    height: 60;
+}
+
+
+DlgProgram QPushButton
+{
+    height: 60;
+}
+
+
+FormJog QPushButton
+{
+    background-color: rgb(128, 128, 128);
+    border-width: 5px;
+    border-radius: 25px;
+    border-color: rgb(250, 128, 114);
+
+}
+
+FormJog QPushButton::pressed
+{
+    background-color: rgb(250, 128, 114);
+    border-width: 5px;
+    border-radius: 25px;
+    border-color: rgb(250, 128, 114);
+}
+
+
+QPushButton#btnHoldRun,QPushButton#btnEnable,QPushButton#btnInching,
+QPushButton#btnTRmode,QPushButton#btnCoordinate,QPushButton#btnTeachSpeed,
+QPushButton#btnResetError{
+    background-color: rgb(255,255,255);
+    color: rgb(0,0,0);
+    border-radius: 10px;
+    border-width:3px;
+    border-color: rgb(150,150,150);
+}
+
+QPushButton#btnHoldRun::pressed,QPushButton#btnEnable::pressed,QPushButton#btnInching::pressed,
+QPushButton#btnTRmode::pressed,QPushButton#btnCoordinate::pressed,QPushButton#btnTeachSpeed::pressed,
+QPushButton#btnResetError::pressed{
+    background-color: rgb(255,255,255);
+    color: rgb(0,0,0);
+    border-radius: 10px;
+    border-width:3px;
+    border-color: rgb(0,0,0);
+}
+
+
+
+QListWidget::item{
+
+    height: 40px;
+}
+
+QListWidget::item::selected{
+    background-color: transparent;
+    }
+
+QListWidget#programList::item{
+
+    width: 200px;
+}
+
+QTableView::item{
+    margin: 30px;
+    height: 40px;
+}
+
+
+QLabel{
+    color: rgb(0,0,0);
+}
+QLabel#lblLogoText {
+   font: bold italic 32px;
+}
+QCheckBox{
+    color: rgb(0,0,0);
+}
+QLineEdit{
+    color: rgb(0,0,0);
+}
+
+

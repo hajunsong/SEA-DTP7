@@ -1,0 +1,31 @@
+\subsection*{-\/\-Custom U\-I 제작 완료 후 사용하는 방법}
+
+\section*{사용 방법}
+
+\section*{1) customui 제작}
+
+\begin{DoxyVerb}    ex) custom ui name : libcustomui.so
+\end{DoxyVerb}
+
+
+\section*{2) deploy corecon \& custom ui}
+
+\begin{DoxyVerb}    corecon과 libcustomui.so file을 TP에 deploy 한다.
+
+    corecon과 libcustomui.so file은 같은 path에 존재하여야한다.
+
+    deploy Path : /mnt/mtd5
+\end{DoxyVerb}
+
+
+\section*{3) corecon.\-conf 설정}
+
+\begin{DoxyVerb}    PLUGIN = libcustomui.so
+\end{DoxyVerb}
+
+
+\section*{4) 실행}
+
+\begin{DoxyVerb}    [프롬프트] cd mnt/mtd5
+    [프롬프트] ./corecon -qws &\end{DoxyVerb}
+ 

@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>resource/logo.png</file>
+    </qresource>
+    <qresource prefix="/icon">
+        <file>resource/poweroff.png</file>
+        <file>resource/poweron.png</file>
+        <file>resource/robotgeom32.png</file>
+        <file>resource/switch_off.png</file>
+        <file>resource/switch_on.png</file>
+        <file>resource/warning_16.png</file>
+        <file>resource/info_16.png</file>
+        <file>resource/error_16.png</file>
+    </qresource>
+    <qresource prefix="/style">
+        <file>styles/defstyle.css</file>
+        <file>styles/androidstyle.css</file>
+    </qresource>
+</RCC>

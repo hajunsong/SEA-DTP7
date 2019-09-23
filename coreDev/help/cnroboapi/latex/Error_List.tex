@@ -1,0 +1,1664 @@
+\begin{DoxyVersion}{Version}
+18.\-03.\-20, Rev 1.\-00, First edition 
+
+18.\-03.\-21, Rev 1.\-01, remarks 추가 
+
+18.\-08.\-24, Rev 1.\-02, 설명 추가
+\end{DoxyVersion}
+\section*{Error List page }
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1 }
+
+Speed overflow because of singular pose \begin{DoxyRemark}{Remarks}
+Joint의 속도가 최고 속도를 넘어서거나 Joint4 나 6이 \par
+ 나란히 일직선으로 있을 때 발생(싱귤러 위치) =$>$Joint 5의 각도를 바꾸거나 \par
+ Joint 속도를 느리게 바꾼다. 또는 joint 모드를 바꾼다. 
+\end{DoxyRemark}
+\begin{DoxyNote}{Note}
+singular
+\end{DoxyNote}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/2 }
+
+checkmode command jump \begin{DoxyRemark}{Remarks}
+check mode에서의 Command pos. has suddenly changed error 
+\end{DoxyRemark}
+\begin{DoxySeeAlso}{See Also}
+E\-R\-R\-O\-R C\-O\-D\-E -\/14
+\end{DoxySeeAlso}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/7 }
+
+no free memory \begin{DoxyRemark}{Remarks}
+Teach나 Program 편집을 할 메모리가 충분하지 않을 때 발생\par
+ =$>$ 사용하지 않는 Program과 변수를 지워 시스템의 메모리의 용량을 확보해야 한다.\-check\-Flag
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/8 }
+
+tags don't match \begin{DoxyRemark}{Remarks}
+시스템 메모리의 불량 블럭이 발생하였음 \par
+ =$>$ 시스템을 재시동하여 사용해 본다. \par
+ =$>$ 문제가 계속 발생할 시, 서비스 요청이 필요함 \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/9 }
+
+bad block size \begin{DoxyRemark}{Remarks}
+시스템 메모리 해제시 크기 이상 오류가 발생하였음 \par
+ =$>$ 시스템을 재시동하여 사용해 본다. \par
+ =$>$ 문제가 계속 발생할 시, 서비스 요청이 필요함 \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/10 }
+
+Address out of memory limits \begin{DoxyRemark}{Remarks}
+시스템 메모리 해제시 잘못된 주소를 사용한 오류가 발생하였음 \par
+ =$>$ 시스템을 재시동하여 사용해 본다. \par
+ =$>$ 문제가 계속 발생할 시, 서비스 요청이 필요함 \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/11 }
+
+data base error = system error \begin{DoxyRemark}{Remarks}
+프로그램 변수등의 데이터 관리에 이상 오류가 발생하였음 \par
+ =$>$ 시스템을 재시동하여 사용해 본다. \par
+ =$>$ 문제가 된 변수나 프로그램을 삭제 저장 후 재 시동하여 사용한다. \par
+ =$>$ 문제가 계속 발생할 시, 서비스 요청이 필요함 \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/14 }
+
+Command pos. has suddenly changed \begin{DoxyRemark}{Remarks}
+동작 지령치가 모터의 허용 가능 최고 속도보다 클 때 발생. \par
+ Repeat 모드에서는 최대 모터 속도(기본값은 정격 속도의 2배)를 초과하여 joint 이동 명령이 \par
+ 지시되었을 때 발생. Check 모드에서는 250mm/sec의 속도를 초과하여 \par
+ joint 이동 명령이 지시 되었을 때도 발생 \par
+ \par
+ =$>$ 로봇 config 에서 M\-A\-X\-\_\-\-R\-P\-M으로 설정된 모터의 최대 속도 설정이 올바른지 확인한다. \par
+ 정의되어 있지 않을 시 R\-P\-M의 2배로 설정된다. =$>$ 로봇 모션을 하는 동안 singular 조건을 확인하고, singular 위치 근처를 벗어난 위치로 teach한다. \par
+ =$>$ 표준 6축 수직다관절형 로봇일 경우, 손목축의 Singular 점 통과시 Move\-H(6축 옵션) 의 동작 명령을 사용해 본다 \par
+ =$>$ Singular 위치 근처를 통과시 속도를 허용속도 이내로 줄이기 바랍니다. \par
+ =$>$ Singular 위치 근처를 통과시 명령어를 Joint move 명령을 사용해 본다. \par
+ =$>$ 컨베이어 트랙 명령등을 사용시, 트랙킹 간 이동시 발생할 수 있음. \par
+ 이 경우엔, Break 명령을 통해, 모션을 완료 후 다른 모션으로 진행하도록 합니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/15 }
+
+Servo driver pos. and command has too much difference \begin{DoxyRemark}{Remarks}
+실시간 동작 지령치 이상을 감시하는 옵션을 사용할 경우에만 발생할 수 있으며\par
+ 제어기의 위치 지령치가 모터의 허용 가능 최고 속도보다 클 때 발생. \par
+ 모터의 허용 가능 최고 속도는 로봇 설정에서 M\-A\-X\-\_\-\-R\-P\-M으로 설정되고, 설정되어 있지 않을 시 기본값으로 정격속도(\-R\-P\-M)의 2배로 설정된다 \par
+ =$>$ 모터의 최대 속도 설정이 올바른지 확인 \par
+ =$>$ 로봇 기구의 Singular 자세 주변에서의 동작명령인지 확인
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/16 }
+
+Command pos. is out of motion limit \begin{DoxyRemark}{Remarks}
+프로그램 실행시 로봇의 지령 위치가 설정한 소프트웨어 리밋을 벗어났을 때 발생 \par
+ =$>$ 소프트웨어 리밋 설정이 올바른지 확인 \par
+ =$>$ Move\-L/\-Move\-C 명령 사용 구간에 발생할 경우, 발생 구간을 Move\-J로 회피하는 동작으로 프로그램을 수정해 본다 \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/22 }
+
+variable data checksum error \begin{DoxyRemark}{Remarks}
+저장된 변수데이터의 checksum오류가 발생했기 때문에, 저장데이터에 오류가 있을 수 있음 \par
+ 데이터 복원 후, 로봇의 동작이 정상적인지 확인을 반드시 해 주어야 함.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/23 }
+
+zeroing data checksum error \begin{DoxyRemark}{Remarks}
+저장된 로봇 원점데이터에 checksum오류가 발생했기 때문에, 로봇의 캘리브레이션 데이터에 오류가 있을 수 있음 \par
+ 데이터 복원 후, 로봇의 동작이 정상적인지 확인을 반드시 해 주어야 함.\par
+ =$>$ 배터리 교환, 모터 교체 등의 조치후 원점 데이터를 정상적으로 재 설정하지 않아 발생할 경우, 다시 로봇 캘리브레이션을 수행해야 함\par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/24 }
+
+program data checksum error \begin{DoxyRemark}{Remarks}
+저장된 프로그램 파일이 checksum오류가 발생했기 때문에, 로봇 프로그램에 오류가 있을 수 있음 \par
+ 데이터 복원 후, 로봇의 동작이 정상적인지 확인을 반드시 해 주어야 함. \par
+ =$>$ ftp 연결 등을 통한 직접 프로그램을 복사할 경우, 강제적인 프로그램 데이터의 변경이 발생할 수 있으므로\par
+ checksum 데이터의 업데이트하여야 함
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/25 }
+
+config data checksum error \begin{DoxyRemark}{Remarks}
+로봇 설정 파일이 checksum오류가 발생했기 때문에, 로봇 설정에 오류가 있을 수 있음 \par
+ 데이터 복원 후, 로봇의 동작이 정상적인지 확인을 반드시 해 주어야 함. \par
+ =$>$ ftp나 터미널 연결 등을 통한 직접 수정할 경우, checksum 데이터를 업데이트하여야 함 \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/26 }
+
+robot config data checksum error \begin{DoxyRemark}{Remarks}
+로봇 설정 파일이 checksum오류가 발생했기 때문에, 로봇 설정에 오류가 있을 수 있음 \par
+ 데이터 복원 후, 로봇의 동작이 정상적인지 확인을 반드시 해 주어야 함. \par
+ =$>$ ftp나 터미널 연결 등을 통한 직접 수정할 경우, checksum 데이터를 업데이트하여야 함 \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/29 }
+
+file write error \begin{DoxyRemark}{Remarks}
+설정된 저장 파일의 쓰기에서 오류가 발생하여 실패하였음. \par
+ =$>$ 재저장하여야 함 \par
+ =$>$ 빈도 발생이 증가시 내부 시스템 디스크의 오류 발생 가능이 있으므로, A\-S요청이 필요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/30 }
+
+file read error \begin{DoxyRemark}{Remarks}
+설정된 파일의 읽기에서 오류가 발생하여 실패하였음. \par
+ =$>$ 파일을 다시 읽거나, 시스템을 재시동 \par
+ =$>$ 빈도 발생이 증가시 내부 시스템 디스크의 오류 발생 가능이 있으므로, A\-S요청이 필요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/31 }
+
+standard memory allocation error \par
+ \begin{DoxyRemark}{Remarks}
+메모리 할당 요청에 실패하였음 \par
+ =$>$ 시스템 재시동 후에도 현상이 반복될 경우 A\-S요청이 필요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/32 }
+
+Duplicate files exist \begin{DoxyRemark}{Remarks}
+Duplicate files exist in programs folder \par
+ File(s) that has same name but different case exists. \par
+ System choose one of the files randomly. Files must be merged to one 
+\end{DoxyRemark}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1000 }
+
+Because System P\-O\-W\-E\-R Switch is off, can't run \begin{DoxyRemark}{Remarks}
+Power가 Off상태 이므로, 주어진 상태로의 전환이나, 프로그램을 시작할 수 없을 때 발생 \par
+ =$>$ 파워를 켜세요. \par
+ =$>$ 로봇 시스템에 따라, 제어함 혹은 T\-P상에서 Power On하여야 함
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1001 }
+
+Because of T\-E\-A\-C\-H mode, can't run \begin{DoxyRemark}{Remarks}
+Teach 모드일 때, 프로그램을 실행시킬 수 없을 때 발생 \par
+ =$>$ 제어기를 Repeat 모드로 바꾸세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1002 }
+
+Because of T\-E\-A\-C\-H L\-O\-C\-K O\-N can't run \begin{DoxyRemark}{Remarks}
+Teach lock이 켜진 상태이기 때문에, 요청한 작업을 수행할 수 없음 =$>$ Repeat 모드로 전환하여야 한다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1003 }
+
+Because of T\-E\-A\-C\-H L\-O\-C\-K O\-F\-F can't move in teach run \begin{DoxyRemark}{Remarks}
+Teach lock이 꺼진 상태이기 때문에, 요청한 작업을 수행할 수 없음 =$>$ Teach 모드로 전환하여야 한다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1004 }
+
+Need to release teach-\/enable switch \begin{DoxyRemark}{Remarks}
+T\-P의 Enable switch를 릴리즈하여야 한다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1006 }
+
+Need T\-E\-A\-C\-H mode \begin{DoxyRemark}{Remarks}
+Teach mode에서만 가능한 작업이므로 Teach mode전환이 필요함.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1007 }
+
+Because of H\-O\-L\-D mode, can't run \begin{DoxyRemark}{Remarks}
+Hold상태이므로 프로그램을 실행시킬 수 없을 때 발생 \par
+ =$>$ 제어기에 설정된 모든 Hold signal을 release하여야 함 \par
+ =$>$ 외부 전용신호가 설정되었을 수 있고, Teach 모드인 경우, Enable key가 On이 된 상태가 아닐 수도 있음
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1009 }
+
+Pushed E\-M\-E\-R\-G\-E\-N\-C\-Y S\-T\-O\-P button \begin{DoxyRemark}{Remarks}
+E\-M\-Stop 버튼이 눌러졌거나, 외부 E\-M\-Stop 신호가 끊어진 상태임 \par
+ =$>$ E\-M\-Stop 신호를 첵크하여, 해제한 후 동작하여야 함
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1010 }
+
+External safety error signal is detected \begin{DoxyRemark}{Remarks}
+외부 Safety 모듈로 부터의 에러가 검지되었습니다. \par
+ =$>$ Safety chain상의 에러를 제거후 리셋하기 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1011 }
+
+Servo on is required \begin{DoxyRemark}{Remarks}
+Device 설정이 잘못되어 E\-C\-A\-T 드라이버의 작동이 정상적이지 않을 경우 발생할 수 있습니다. \par
+ 또는, Hold 상태에서 Run상태로 진행하는 과정에서, servo on 시간이 지나도, servo on이 되지 않을 경우 발생 \par
+ =$>$ 로봇 설정 conf file을 확인 바랍니다. \par
+ =$>$ Hold -\/$>$ Run으로 상태 변환하는 Timing 설정 파라미터인 servo on, brake on, run ok timer의 설정을 확인 바랍니다 \par
+ =$>$ A\-P\-I를 통해 설정했을 경우, 관련 A\-P\-I를 확인 바랍니다. \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1100 }
+
+Program is already running \begin{DoxyRemark}{Remarks}
+현재 동작중인 프로그램을 실행하거나 편집하려고 할 때 발생 \par
+ =$>$ 실행중인 프로그램을 정지한 다음 실행/편집 하여주십시요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1101 }
+
+Robot control program is already running \begin{DoxyRemark}{Remarks}
+Main task프로그램이 실행 중입니다. \par
+ =$>$ Main task를 중지 시킨 후 실행시켜 주십시요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1102 }
+
+Can't continue. Use E\-X\-E\-C. \begin{DoxyRemark}{Remarks}
+실행하기 위해 Main task 혹은 sub Task에 Load되어 Task가 할당된 프로그램이 없을 경우 발생 \par
+ =$>$ 프로그램을 load한 후 실행시킨다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1103 }
+
+Can't be executed ( Robot is moving ) \begin{DoxyRemark}{Remarks}
+Robot이 움직이고 있을 때 발생 \par
+ =$>$ 로봇 동작을 멈추고 정지를 확인 후 지령을 내려주세요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1104 }
+
+Now on error status, Reset error and exec \begin{DoxyRemark}{Remarks}
+에러상태를 reset명령어를 통해 제거한 후 다시 실행해야 한다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1105 }
+
+Because now on error status, can't turn motor power \begin{DoxyRemark}{Remarks}
+에러 상태인 경우 Power on을 할 수 없으므로, 먼저 에러를 제거해야 한다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1106 }
+
+cannot D\-O command \begin{DoxyRemark}{Remarks}
+로봇 명령어를 임의로 실행하는 D\-O command로 실행 할 수 없는 로봇 명령어임
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1108 }
+
+stepper2 running \begin{DoxyRemark}{Remarks}
+Sub Task가 동작 중일 때 발생. \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1109 }
+
+D\-O not primed \begin{DoxyRemark}{Remarks}
+Do 명령 만으로 기존의 로봇 명령을 수행하려고 하였으나, 기존에 실행했던 명령어가 없을 경우 발생 \par
+ =$>$ 명령어를 입력하여야 한다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1110 }
+
+Can't delete program \begin{DoxyRemark}{Remarks}
+프로그램이 아직 사용중이거나 Lock이 걸려 있는 프로그램은 삭제할 수가 없음
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1111 }
+
+element not found \begin{DoxyRemark}{Remarks}
+element를 찾을 수 없을 때 발생 \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1112 }
+
+element of this type not found \begin{DoxyRemark}{Remarks}
+element type을 찾을 수 없을 때 발생 \par
+ =$>$ 올바른 형식의 인자 값을 넣어주세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1113 }
+
+element type not known \begin{DoxyRemark}{Remarks}
+element type을 확인할 수 없을 때 발생 \par
+ =$>$ 올바른 형식의 인자 값을 넣어주세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1114 }
+
+Can't execute, program might be used other task \begin{DoxyRemark}{Remarks}
+프로그램이　이미　사용되고 있을 때 발생 \par
+ ＝＞ 편집　중인　프로그램을　멈추거나　편집되고　있는　프로그램을　호출하는　동작중인　프로그램을　멈추시기 바랍니다.\par
+ ＝＞ 작성한 macro의 call, Interrupt, O\-N 명령 등 서브루틴을 실행하는 명령을 확인 바랍니다. 
+\end{DoxyRemark}
+\begin{DoxyNote}{Note}
+call program 에서 이미 사용중인 프로그램을 호출 할 경우 발생 합니다. 
+
+프로그램이 nested call (recursive call) 시 발생 합니다. 
+
+interrupt call 중에 interrupt가 또 호출 될 때 --$>$ nested call이 됩니다. 
+
+서로 다른 task에서 같은 macro를 사용할 때 발생합니다. 
+
+이미 다른 프로그램이 실행 중이거나, 프로그램 삭제, 이름 변경등이 일어나는 동안 프로그램을 실행 시킬 때 발생합니다. 
+
+이미 사용중인 프로그램을 E\-P\-S mode에서 program jump시 혹은 call시 발생합니다.
+\end{DoxyNote}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1117 }
+
+Envelope error before emergency stop on J\-Tm \begin{DoxyRemark}{Remarks}
+E\-S\-T\-O\-P으로 정지후 프로그램을 재개할 경우, 과도한 차이가 발생할 경우 발생합니다. \par
+ =$>$ 로봇의 위치를 안전한 위치로 이동 후 프로그램을 재개해 주세요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1120 }
+
+Can't do on Panel \begin{DoxyRemark}{Remarks}
+시스템의 내부 Lock 첵크에 실패하여 사용자 명령 실행에 실함.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1150 }
+
+Illegal input data \begin{DoxyRemark}{Remarks}
+명령어의 인자 값이 올바르지 않은 형식으로 입력되었을 때 발생 \par
+ =$>$ 올바른 형식의 인자 값을 넣어주세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1151 }
+
+Too many data \begin{DoxyRemark}{Remarks}
+명령어의 인자 값이 주어진 개수보다 많을 때 발생 \par
+ =$>$ 명령어에 맞는 인자 값을 넣어주세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1153 }
+
+Too big value\-: element d \begin{DoxyRemark}{Remarks}
+입력한 값이 허용치를 초과할 때 발생 \par
+ =$>$ 알맞는 값을 넣어주세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1154 }
+
+Too many transfer steps. \begin{DoxyRemark}{Remarks}
+입력 데이터 값이 허용되는 범위를 벗어났을 때 발생 \par
+ =$>$ 입력 데이터 값을 올바른 값으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1155 }
+
+Source step does not exist. \begin{DoxyRemark}{Remarks}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ \par
+ ＝＞ $\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1160 }
+
+Illegal W\-H\-E\-R\-E parameter \begin{DoxyRemark}{Remarks}
+W\-H\-E\-R\-E 파라미터가 올바르지않을 때 발생 \par
+ ＝＞ 알맞는 W\-H\-E\-R\-E 파라미터를 넣어주세 요\par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1161 }
+
+Illegal Sub\-Task number \begin{DoxyRemark}{Remarks}
+sub task number가 올바르지 않습니다 \par
+ ＝＞ 알맞는 sub task number를 입력해 주세요 \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1170 }
+
+Lower limit is greater than upper limit \begin{DoxyRemark}{Remarks}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ \par
+ ＝＞ $\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ \par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1200 }
+
+Syntax error \begin{DoxyRemark}{Remarks}
+구문 에러 \par
+ C\-L Language 명령어가 올바르지 않은 형식이나 스펠링이 맞지 않을 때 발생 \par
+ =$>$ 명령어의 형식이나 명령어의 스펠링을 올바르게 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1201 }
+
+Invalid Statement \begin{DoxyRemark}{Remarks}
+C\-L Language 명령어의 인자 값이 올바르지 않은 형식이나 스펠링이 맞지 않을 때 발생 \par
+ =$>$ 인자 값의 스펠링 또는 형식을 올바르게 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1202 }
+
+Ambiguous Statement \begin{DoxyRemark}{Remarks}
+축약된 명령어가 올바르지 않거나 문자가 빠진 것이 있을 때 발생 \par
+ =$>$ 올바른 축약 명령어로 수정하거나 전체 명령어로 입력하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1203 }
+
+Missing Statement Type \begin{DoxyRemark}{Remarks}
+명령어가 누락되었거나 맞지 않을때 발생 \par
+ =$>$ 올바른 명령어로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1204 }
+
+Can't execute in D\-O command \begin{DoxyRemark}{Remarks}
+Do 명령어에서 실행할수 없습니다.\par
+ =$>$
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1205 }
+
+statement cannot be executed \begin{DoxyRemark}{Remarks}
+C\-L 명령어를 실행 할 수 없습니다. \par
+ =$>$ C\-L명령어가 작동 가능한 조건인지 확인하기 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1206 }
+
+Not program instruction
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1207 }
+
+Expected to End of Command \begin{DoxyRemark}{Remarks}
+C\-L Language 명령어의 인자 값이 주어진　명령어의　인자　값　개수를　초과하였을　때　발생 \par
+ ＝＞　인자　값과　명령어의　형식을　확인하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1208 }
+
+Unexpected to End of Command \begin{DoxyRemark}{Remarks}
+C\-L Language 명령어의 인자 값이 주어진　명령어의　인자　값　개수를　만족하지　못하였을　때　발생 \par
+ ＝＞　인자　값과　명령어의　형식을　확인하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1209 }
+
+Expected to be A Comma
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1210 }
+
+Illegal Expression \begin{DoxyRemark}{Remarks}
+명령어 수식이　잘못 되었습니다. \par
+ ＝＞　올바른　형식과　숫자　식으로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1211 }
+
+llegal Function \begin{DoxyRemark}{Remarks}
+함수의　결과　값이　변수에　할당되었는데　데이터　호환이　일어나지　않았을　때　발생 \par
+ ＝＞함수의　값이　변수와　호환하는지　확인하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1212 }
+
+Illegal Argument of Function \begin{DoxyRemark}{Remarks}
+함수의　인자　값이　올바르지　않은　형식일　때　발생 \par
+ ＝＞함수　인자　값을　확인하고　올바른　형식으로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1213 }
+
+Invalid Value \begin{DoxyRemark}{Remarks}
+올바르지 않은 형식의 변수 또는 프로그램을 사용하였을 때 발생 \par
+ =$>$프로그램 이름과 변수를 올바른 형식으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1214 }
+
+Missing Variable Tag \begin{DoxyRemark}{Remarks}
+올바르지 않은 형식의 변수를 입력하였을 때 발생 \par
+ (b = \#a + b \-: Joint 변수와 숫자 변수를 연산할 수 없음) \par
+ =$>$ 호환가능한 형식의 변수를 사용하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1215 }
+
+Missing Subscript of Variable array \begin{DoxyRemark}{Remarks}
+변수　인덱스에　사용되는　변수　값이　정의되어 있지 않습니다. \par
+ ＝＞　배열　인덱스　값을　올바르게　입력하세요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1216 }
+
+Missing Parenthesis \begin{DoxyRemark}{Remarks}
+괄호의 짝이 맞지 않을 때 발생 \par
+ =$>$ 괄호의 짝이 맞는지 확인하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1217 }
+
+Expected to be A Binary Operator \begin{DoxyRemark}{Remarks}
+바이너리가 아닌 연산자가 바이너리 연산자 위치에 입력되었을 때 발생 \par
+ =$>$ 바이너리 연산자로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1218 }
+
+Illegal Constant \begin{DoxyRemark}{Remarks}
+영역을 벗어나거나 잘못된 상수값이 들어왔을때 발생\par
+ =$>$ 입력값을 다시 확인해주세요. port range \-: 0$\sim$65535, data type
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1219 }
+
+Illegal Qualifier  Illegal Qualifier \begin{DoxyRemark}{Remarks}
+잘못된 수식어 입니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1220 }
+
+Invalid Label
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1221 }
+
+Invalid Name
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1222 }
+
+Missing Specified String
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1223 }
+
+Bad Switch Name
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1224 }
+
+Ambiguous Switch Name \begin{DoxyRemark}{Remarks}
+C\-P On 과 같이 Off switch를 지시하는 명령어가 잘못되었을 경우 발생합니다. \par
+ =$>$ 올바른 명령어로 변경해 주세요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1225 }
+
+Illegal format indicater
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1226 }
+
+Duplicate Label \begin{DoxyRemark}{Remarks}
+하나의 프로그램 안에 Label이 동일한 이름으로 사용되었을때 발생 \par
+ =$>$ Label의 이름을 서로 다르게 변경하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1250 }
+
+Control structure error \begin{DoxyRemark}{Remarks}
+제어문 문법이 올바르지 않을 때 발생합니다. \par
+ =$>$ 올바른 구문을 사용하고 구조를 확인하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1251 }
+
+Bad E\-N\-D statement \begin{DoxyRemark}{Remarks}
+올바르지 않은 E\-N\-D 형식을 사용했을 때, 발생하는 에러입니다. \par
+ =$>$ 올바른 구문을 사용하고 구조를 확인하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1252 }
+
+Extra E\-N\-D statement \begin{DoxyRemark}{Remarks}
+E\-N\-D 형식이 대응하는 구조가 없을 때 발생합니다. \par
+ =$>$ 올바른 구문을 사용하고 E\-N\-D 구조를 확인하세요. \par
+ =$>$ 추가 E\-N\-D구문을 삭제하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1253 }
+
+Cannot terminate D\-O with E\-N\-D \begin{DoxyRemark}{Remarks}
+D\-O … U\-N\-T\-I\-L 명령어가 E\-N\-D 명령어를 수행하지 못했을 때 발생합니다. \par
+ =$>$ 올바른 구문을 사용하고 구조를 확인하세요.\par
+ =$>$ E\-N\-D 명령어가 생략되었을 경우 추가바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1254 }
+
+No V\-A\-L\-U\-E statement \begin{DoxyRemark}{Remarks}
+제어문 Siwch 다음에 Case가 없을 경우\par
+ case 구문을 추가 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1255 }
+
+preceding I\-F missing \begin{DoxyRemark}{Remarks}
+제어문 I\-F 문법 오류\par
+ I\-F 문법에 문제가 없는지 확인 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1256 }
+
+preceding C\-A\-S\-E missing \begin{DoxyRemark}{Remarks}
+제어문 Swich 문법 오류\par
+ Swich 문법에 문제가 없는지 확인 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1257 }
+
+preceding D\-O missing \begin{DoxyRemark}{Remarks}
+제어문 Do 문법 오류\par
+ Do 문법에 문제가 없는지 확인 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1258 }
+
+Can't find E\-N\-D \begin{DoxyRemark}{Remarks}
+제어문 마지막에 E\-N\-D가 없을 경우\par
+ 제어문 마지막에 E\-N\-D를 추가 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1259 }
+
+Control structure is too nested \begin{DoxyRemark}{Remarks}
+한　프로그램　안에　제어문을　１１개　초과하여　사용할　때　발생 \par
+ ＝＞　１１개　이하로　제어문을　사용하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1260 }
+
+element already exists \begin{DoxyRemark}{Remarks}
+변수　또는　프로그램 명이　이미　존재할　때　발생 \par
+ （메모리　안에　있는　다른 프로그램에　같은　명의 변수가　존재할　경우에도　발생） \par
+ ＝＞　변수　또는　프로그램　명을　변경하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1261 }
+
+element of different type exist \begin{DoxyRemark}{Remarks}
+다른 타입의 변수가 이미 존재할 때 발생 \par
+ （메모리　안에　있는　프로그램에　같은　이름이　존재할　경우에도　발생） \par
+ ＝＞　다른　변수　이름으로　변경하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1262 }
+
+name matches exactly, but type doesn't \begin{DoxyRemark}{Remarks}
+해당 변수의 타입이 적합하지 않아을 때 발생 \par
+ =$>$ 변수의 타입을 확인하신 후 적합한 값을 입력하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1266 }
+
+inadequate privilege for operation \begin{DoxyRemark}{Remarks}
+\par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1267 }
+
+privilege cannot be changed \begin{DoxyRemark}{Remarks}
+\par
+
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1280 }
+
+one of the strings is longer than M\-A\-X\-S\-T\-R\-L\-E\-N\-G\-T\-H \begin{DoxyRemark}{Remarks}
+해당프로그램의 문자열에 최대 길이를 넘어서는 항목이 있을 경우 발생\par
+ =$>$ 최대길이를 벗어나는 항목을 수정 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1290 }
+
+Default program name does no exist \begin{DoxyRemark}{Remarks}
+Defualt 프로그램이 조재하지 않을 때 발생 \par
+ =$>$ 새로운 프로그램을 생성 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1291 }
+
+Extra-\/\-End of Editor Instruction \begin{DoxyRemark}{Remarks}
+E\-N\-D 형식이 대응하는 구조가 없을 때 발생합니다. \par
+ =$>$ 올바른 구문을 사용하고 E\-N\-D 구조를 확인하세요. \par
+ =$>$ 추가 E\-N\-D구문을 삭제하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1292 }
+
+Bad Step Number \begin{DoxyRemark}{Remarks}
+입력된 Step Number 가 잘못되었을 때 발생 \par
+ =$>$ Step Number 확인 후 변경바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1293 }
+
+Bad Parameter of Editor Instruction \begin{DoxyRemark}{Remarks}
+입력된 파라미터가 잘못 되었을 때 발생\par
+ =$>$ 적합한 값을 입력 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1294 }
+
+Program is interlocked by another proceedure \begin{DoxyRemark}{Remarks}
+다른 task에서 해당 프로그램을 사용하고 있습니다.\par
+ 프로그램 명을 변경하거나, 다른 테스크에 열려있는 해당 프로그램을 닫으신 후 사용 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1295 }
+
+{\bfseries Invalid statement -\/ Replace not performed!}
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1299 }
+
+invalid tokenized statment \begin{DoxyRemark}{Remarks}
+적합하지 않은 접근
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1300 }
+
+program does not exist \begin{DoxyRemark}{Remarks}
+프로그램　내부에서　실행하려는　프로그램이　존재하지　않을　때　발생 \par
+ ＝＞　존재하는　프로그램으로　실행하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1301}
+
+No program step \begin{DoxyRemark}{Remarks}
+실행하려고　하는　특정　스텝이　존재하지　않을　때　발생 \par
+ ＝＞　유효한　스텝을　선택하고　실행하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1303 }
+
+undefined variable encountered \begin{DoxyRemark}{Remarks}
+명령어의　특정　인자　값으로　사용하는　변수가　정의되어　있지않을　때　발생 \par
+ ＝＞　변수를　올바른　형식으로　정의하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1304 }
+
+Loacation data is not defined \begin{DoxyRemark}{Remarks}
+B\-A\-S\-E, T\-O\-O\-L， P\-O\-I\-N\-T와　같은　명령어를　사용한　위치변수가　정의되어　있지　않을　때　발생 ＝＞　위치　변수를　정의하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1305 }
+
+End of list in E\-V\-A\-L, Invalid string input \begin{DoxyRemark}{Remarks}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ \par
+ =$>$ $\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1306 }
+
+There is no format. \begin{DoxyRemark}{Remarks}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ \par
+ =$>$ $\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1307 }
+
+Nonexistent program or label \begin{DoxyRemark}{Remarks}
+명령어에서　사용된　프로그램　이름　또는　ｌａｂｅｌ이　존재하지　않을　때　발생 \par
+ ＝＞　프로그램　또는　ｌａｂｅｌ을　정의하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1308 }
+
+out of range value \begin{DoxyRemark}{Remarks}
+로봇 이동　범위　값을　벗어난　숫자　변수가　사용되었을　때　발생 \par
+ ＝＞　로봇　이동　범위　안의　값으로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1310 }
+
+Divide by zero \begin{DoxyRemark}{Remarks}
+수학적으로 0으로 나누는 식이 포함 되어있을 때 발생, 주로 F\-R\-A\-M\-E 함수와 Circular interpolation 때 발생 \par
+ =$>$ 계산하는 값을 확인하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1311 }
+
+Floating point overflow \begin{DoxyRemark}{Remarks}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ \par
+ =$>$ $\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1312 }
+
+too long string \begin{DoxyRemark}{Remarks}
+산술, 비교 연산자 또는 L\-E\-N 함수와 연관된 문자열의 길이가 너무 길 때 발생 \par
+ =$>$ 올바른 형식으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1313 }
+
+expo negative in E\-V\-A\-L \begin{DoxyRemark}{Remarks}
+지수를 가진 숫자 변수는 양수여야만 합니다. 그렇지 않을 때 발생 \par
+ =$>$ 올바른 형식으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1314 }
+
+stack over in E\-V\-A\-L \begin{DoxyRemark}{Remarks}
+숫자 계산이 너무 복잡하여 계산할 수 없을 때 발생 \par
+ =$>$ 식을 단순하게 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1315 }
+
+no expression to evaluate \begin{DoxyRemark}{Remarks}
+인자　값의　타입이　호환하지　못하여　연산을　수행할　수　없을　때　발생 \par
+ ＝＞　연산을　수행할　수　있는　형식으로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1316 }
+
+unexpected error while evaluating expression \begin{DoxyRemark}{Remarks}
+연산하기　위해　사용된　인자　값이　호환되지　않거나　올바르지　않은　값일때　발생 \par
+ ＝＞식과　호환되는　인자　값으로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1317 }
+
+S\-Q\-R\-T parameter value is minus \begin{DoxyRemark}{Remarks}
+S\-Q\-R\-T 함수의 인자 값으로 음수가 들어왔을 때 발생 \par
+ =$>$ S\-Q\-R\-T 함수의 값은 음수가 들어올 수 없습니다. 다른 값으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1320 }
+
+Invalid array index \begin{DoxyRemark}{Remarks}
+배열 인덱스의 숫자가 범위를 벗어났거나 해당 인덱스의 배열 데이터가 없을 때 발생 \par
+ =$>$ 배열의 인덱스 값을 0$\sim$9999의 범위 안의 유효한 값으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1321 }
+
+invalid argument value \begin{DoxyRemark}{Remarks}
+명령어에서　사용된　특정　인자　값　변수가　올바르지　않을　때　발생 \par
+ ＝＞　올바른　형식의　인자　값　변수를　사용하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1322 }
+
+Illegal joint number \begin{DoxyRemark}{Remarks}
+Joint 숫자가 존재하지 않거나 올바르지 않은 형식을 입력했을 때 발생 \par
+ =$>$ 올바른 형식으로 재정의하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1323 }
+
+signal number over in F\-U\-N\-C \begin{DoxyRemark}{Remarks}
+S\-I\-G 또는 B\-I\-T\-S 명령어의 인자 값이 범위를 벗어났거나 \par
+ 올바르지 않은 형식을 입력하였을 때 발생 (함수 명령어에서 발생) \par
+ =$>$ 올바른 신호 값으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1324 }
+
+timer number over in F\-U\-N\-C \begin{DoxyRemark}{Remarks}
+Timer 명령어의 인자 값이 범위를 벗어났을 때 발생 \par
+ =$>$ 인자 값을 1$\sim$10의 범위 안으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1325 }
+
+ignal number over maximum \begin{DoxyRemark}{Remarks}
+R\-U\-N\-M\-A\-S\-K, S\-I\-G\-N\-A\-L, B\-I\-T\-S, P\-U\-L\-S\-E, W\-A\-I\-T 명령어의 신호값이 최대신호를 초과할 때 발생 \par
+ (Instrunction명령어에서 발생) \par
+ =$>$ 올바른 신호 값으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1327 }
+
+invalid time value \begin{DoxyRemark}{Remarks}
+D\-E\-L\-A\-Y 또는 T\-I\-M\-E\-R 명령어의 인자 값이 음수 일 때 발생 \par
+ =$>$ 인자 값을 음수로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1328 }
+
+no set value \begin{DoxyRemark}{Remarks}
+Bits 와　같은　명령어를　사용할　때　\-Argument설정　값이　없을　때　발생 \par
+ ＝＞　형식에 맞게 Argument 값을 수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1329 }
+
+illegal signal number \begin{DoxyRemark}{Remarks}
+R\-U\-N\-M\-A\-S\-K, S\-I\-G\-N\-A\-L, B\-I\-T\-S, P\-U\-L\-S\-E, or S\-W\-A\-I\-T와　같은　명령어에서　\par
+ 시스템에서　제공하는　범위를　넘어서는　신호　값을　사용하였을　때　발생 \par
+ ＝＞　신호　값을　확인하고　범위　안에서　제공하는　값으로　변경하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1333 }
+
+Invalid point operator \begin{DoxyRemark}{Remarks}
+Trans 포인트 연산자가 잘못 입력되었습니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1334 }
+
+program name is already exist \begin{DoxyRemark}{Remarks}
+프로그램 이름이 이미 존재합니다. \par
+ =$>$다른 이름으로 다시 입력해주세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1335 }
+
+Can't K\-I\-L\-L \begin{DoxyRemark}{Remarks}
+Main Task 프로그램을 종료할수 없습니다. \par
+ =$>$ 아직 프로그램이 실행 중인 상태이기 때문에 프로그램 상태가 중지상태가 되도록 한다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1336 }
+
+Can't P\-C\-K\-I\-L\-L \begin{DoxyRemark}{Remarks}
+Sub Task 프로그램을 종료할수 없습니다. \par
+ =$>$ 아직 프로그램이 실행 중인 상태이기 때문에 프로그램 상태가 중지상태가 되도록 한다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1337 }
+
+senyou signal
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1338 }
+
+not E\-P\-S mode \begin{DoxyRemark}{Remarks}
+E\-P\-S 모드가 아닙니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1339 }
+
+nagative number \begin{DoxyRemark}{Remarks}
+리턴값이 음수입니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1340 }
+
+too many subroutines \begin{DoxyRemark}{Remarks}
+한　프로그램　안에 E\-X\-T\-C\-A\-L\-L or C\-A\-L\-L 명령어를 사용하여 \par
+ Subroutine을　20개　초과하여 구성할 때　발생 \par
+ ＝＞　20개　이하로　\-Subroutine을　사용하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1341 }
+
+already signal O\-N, cannot use P\-U\-L\-S\-E \begin{DoxyRemark}{Remarks}
+이미 신호가 켜져있습니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1342 }
+
+nonexistent calling subroutine \begin{DoxyRemark}{Remarks}
+C\-A\-L\-L 명령어를 사용하여 존재하지 않는 프로그램을 호출할 때 발생 \par
+ =$>$ 존재하는 프로그램으로 수정한 후 실행하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1343 }
+
+nonexistent label \begin{DoxyRemark}{Remarks}
+라벨 또는 스탭이 존재하지 않습니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1344 }
+
+Can't execute \begin{DoxyRemark}{Remarks}
+다음스탭을 실행할수 없습니다. \par
+ =$>$ 프로그램 명령어가 Main Task나 Sub Task에서 실행 되어진 것이 아니라, 실행에 필요한 환경에 문제가 발생하였음 =$>$ 정상적인 프로그램 실행 순서로 재 실행해 보기 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1345 }
+
+nonexistent program \begin{DoxyRemark}{Remarks}
+프로그램이 존재하지 않습니다. =$>$ 프로그램을 확인하시고 다시 로드해주세요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1346 }
+
+no program found \begin{DoxyRemark}{Remarks}
+프로그램이 존재하지 않을 때 발생
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1347 }
+
+no location found \begin{DoxyRemark}{Remarks}
+위치를 찾을수 없습니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1350 }
+
+Lower out of absolute motion limit \begin{DoxyRemark}{Remarks}
+설정한 사용자 범위가 로봇　허용　범위의　최소　값보다　작을　때　발생 \par
+ ＝＞　허용되는　범위로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1351 }
+
+Higher out of absolute motion limit \begin{DoxyRemark}{Remarks}
+설정한 사용자 범위가 로봇　허용 범위의　최대　값보다　클　때　발생 \par
+ ＝＞　허용되는　범위로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1352 }
+
+Lower out of user motion limit \begin{DoxyRemark}{Remarks}
+사용자　설정　범위의　최소　값보다　작을　때　발생 \par
+ ＝＞　허용되는　범위로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1353 }
+
+Higher out of user motion limit \begin{DoxyRemark}{Remarks}
+사용자　설정　범위의　최대　값보다　클　때　발생 \par
+ ＝＞　허용되는　범위로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1354 }
+
+Current pos. is out of motion limit \begin{DoxyRemark}{Remarks}
+Soft\-Limit\-Monitor\-Flag가 A\-P\-I를 통해 설정될 경우에만 표시될 수 있음 \par
+ 현재　joint　값이　로봇　설정범위를　벗어났을　때　발생 \par
+ =$>$ 허용되는 범위의 Joint 값으로 변경 바랍니다. 
+
+check current position at for every clock time in repeat mode
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1355 }
+
+Motion start location is out of limit \begin{DoxyRemark}{Remarks}
+프로그램을 시작하거나 스텝을 움직이기 전에 위치가 로봇의 설정 범위 안에 있지 않을 때 발생 \par
+ =$>$ 로봇의 설정 범위를 확장시키거나 시작 위치를 올바른 범위 안으로 이동시키세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1356 }
+
+Motion end location is out of limit \begin{DoxyRemark}{Remarks}
+스텝을 움직일　때　다음　스템의　도착　위치가 로봇의 설정 범위 안에 있지 않을 때 발생 \par
+ =$>$ 로봇의 설정 범위를 확장시키거나 도착 위치를 올바른 범위 안으로 이동시키세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1357 }
+
+out of range \begin{DoxyRemark}{Remarks}
+스텝을 움직이기 전에 도착 위치가 로봇의 설정 범위 안에 있지 않을 때 발생 \par
+ inverse kinematics 해가 존재하지 영역으로 지령될 시 발생 \par
+ =$>$ 로봇의 설정 범위를 확장시키거나 도착 위치를 올바른 범위 안으로 이동시키세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1358 }
+
+illegal configuration, cannot linear motion \begin{DoxyRemark}{Remarks}
+linear motion을　수행할　때　시작지점의 로봇 모션 설정값과 목적위치의 모션 설정값이 다를 경우 생발 \par
+ ＝＞　joint명령어로　모션명령어를　변경하거나　다른　위치　값으로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1359 }
+
+Lower and Higher out of motion limit \begin{DoxyRemark}{Remarks}
+User limit 설정시 lower limit 이 upper limit 보다 큰 값으로 설정했을 때 발생 \par
+ =$>$ 적합한 user limit 값을 입력해야
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1371 }
+
+illegal jt number \begin{DoxyRemark}{Remarks}
+D\-R\-I\-V\-E　명령어에서　범위를　벗어난　로봇　설정　축의　값을　입력하였을　때　발생 \par
+ ＝＞　\-D\-R\-I\-V\-E　명령어를　사용하기　전에　로봇　설정　값을　확인하고　올바른　값으로　수정하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1372 }
+
+cnrtobins \begin{DoxyRemark}{Remarks}
+Sub Task　안에　모션명령어를　실행할　때　발생 \par
+ ＝＞　모션명령어를　삭제하고　프로그램을　실행하세요．
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1376 }
+
+cannot create circle \begin{DoxyRemark}{Remarks}
+Circular 좌표가 너무 좁거나 일자로 구성되어 있을 때 발생 \par
+ =$>$ 올바른 값으로 수정하세요.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1396 }
+
+Because option is not set up, can't execute \begin{DoxyRemark}{Remarks}
+옵션을 활성화 시키지 않았거나, 현재 라이센스로는 지원하지 않는 기능을 사용할 경우 발생\par
+ =$>$ 옵션 기능이 활성화 되어 있는지 확인 후 활성화 하거나, 옵션 설정에 필요정보를 입력 후 프로그램을 실행 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1397 }
+
+Must be custom robot \begin{DoxyRemark}{Remarks}
+Custom로봇이 아닌 경우 해당기능을 사용할 수 없습니다.\par
+ Custom 로봇으로 설정을 변경 후 기능을 사용바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1398 }
+
+Need precision point -\/ joint location \begin{DoxyRemark}{Remarks}
+Joint값이 들어가야 하는곳에 다른형식의 값이 들어갈 경우 발생\par
+ Joint값을 입력 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1399 }
+
+Illigal sig arg condition type \begin{DoxyRemark}{Remarks}
+Msig 설정이 잘못 되었을 경우 발생\par
+ 적합한 설정을 입력하시기 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1400 }
+
+Uncoincidence error \begin{DoxyRemark}{Remarks}
+Joint X의 불일치 에러 \par
+ 프로그램이 실행하는 동안 모든 Joint는 주어진 정밀도와 시간(약 5초 이내) 안에 전체적인 일치를 해야합니다. \par
+ 이 에러는 예상된　값과　실제　값의　차이가　정밀도　이상일　때　발생．　전형적인　원인은　아래와　같습니다． \par
+ 기계적　원인 \par
+ １．베어링의　손상 \par
+ ２．불충분한　기어　백래시 \par
+ ３．모터　브레이크가　풀리지　않은　경우 \par
+ ４．로봇의　Ａｒｍ이동이　주변부　기기　또는　손상으로　제한되었을　경우 \par
+ 전기적인　원인 \par
+ １．서보보드의　이상 \par
+ ２．파워블럭의　이상 \par
+ ３．모터　파워　또는　브레이크선의　손상 \par
+ ４．엔코더　손상 
+\end{DoxyRemark}
+\begin{DoxyNote}{Note}
+프로그램적인　원인 \par
+ １．로봇의 동작 계획시 예상했던 위치와 실제 구동 후 위치가 맞지 않을 경우에 발생합니다. \par
+ 주로 180도 이상의 이동시 발생할 수 있으며, 중간 위치를 두어, \par
+ 이동 경로를 구체적으로 지정하도록 합니다.
+\end{DoxyNote}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1401 }
+
+Limit switch is O\-N
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1402 }
+
+Limit switch signal line is cut
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1403 }
+
+Must be trans location \begin{DoxyRemark}{Remarks}
+trans값이 들어가야 하는곳에 다른형식의 데이터 들어갈 경우 발생\par
+ trans 데이터 값을 입력 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1404 }
+
+undefined parameter variable \begin{DoxyRemark}{Remarks}
+파라미터가 설정되어있지 않을 경우 발생합니다.\par
+ 변수에 값을 설정 후 사용하시기 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1405 }
+
+invalid parameter \begin{DoxyRemark}{Remarks}
+적합하지 않은 변수가 입력될 경우 발생합니다.\par
+ 적합한 변수를 입력 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1406 }
+
+mismatch parameter type \begin{DoxyRemark}{Remarks}
+적합하지 않은 형식의 변수가 입력될 경우 발생합니다.\par
+ 적합한 형식의 변수를 입력 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1407 }
+
+Overflow parameter size \begin{DoxyRemark}{Remarks}
+데이터의 사이즈를 벗어날 경우 발생\par
+ 형식에 적합한 사이즈를 확인 후 입력 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1500 }
+
+Not operational state \begin{DoxyRemark}{Remarks}
+Ether\-C\-A\-T master가 Op 상태가 아닙니다. \par
+ =$>$ Ether\-C\-A\-T 의 연결선을 확인하여, 문제가 없는지 확인합니다. \par
+ =$>$ Ether\-C\-A\-T slave 설정이 정확한지 확인합니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1503 }
+
+E\-C\-A\-T W\-C(working counter error ) \begin{DoxyRemark}{Remarks}
+Ether\-C\-A\-T 의 통신 상태가 좋지 않은 상태입니다. \par
+ =$>$ Ether\-C\-A\-T line상의 노이즈 요소를 제거하거나, 배선을 확인해주세요 \par
+ =$>$ Slave의 설정이 정확한지 확인해 주세요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1504 }
+
+E\-C\-A\-T overflow cyclic operation \-: 2msec or 4msec control cycle error \begin{DoxyRemark}{Remarks}
+통신 주기가 overflow되었습니다. \par
+ =$>$ C\-Y\-C\-L\-E\-\_\-\-T\-I\-M\-E 설정 변수를 늘려주기 바랍니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1505 }
+
+Slave in error state \-: slave-\/$>$status \& E\-R\-R\-O\-R\-\_\-\-B\-I\-T is on \begin{DoxyRemark}{Remarks}
+Ether\-C\-A\-T slave중 servo driver에서 에러가 발생했습니다. \par
+ =$>$ 해당 에러를 제거후, Reset혹은 Reboot해 주세요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1506 }
+
+E\-C\-A\-T overflow session operation \-: robot core running time over
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1507 }
+
+E\-C\-A\-T over software torque limit
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1508 }
+
+E\-C\-A\-T first W\-C error is decteded \-: just logging
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1509 }
+
+Some slaves are not operational state
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1510 }
+
+Some slaves are disconnected
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1511 }
+
+Slaves config are not correct \begin{DoxyRemark}{Remarks}
+처음 프로그램 loading 시 O\-P 상태와 통신 연결 상태가 정상적이지 않을 때 발생.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1512 }
+
+Required Touch\-Read\-S\-D\-O is O\-N
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1513 }
+
+Failed in S\-D\-O read
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1514 }
+
+Collision Detected
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1600 }
+
+network error \begin{DoxyRemark}{Remarks}
+T\-C\-P 관련 명령 수행 중, 에러가 발생했습니다. \par
+ =$>$ 네트웍 오류의 원인을 제거 후, 프로그램을 재 시작해 주십시요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1601 }
+
+socket down \begin{DoxyRemark}{Remarks}
+T\-C\-P의 Socket이 끊어졌습니다. \par
+ =$>$ 통신 상대방의 연결이 끊어졌기 때문에, 상대편의 상태를 확인 후 재 연결 혹은 프로그램을 재실행해 주십시요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1602 }
+
+time out \begin{DoxyRemark}{Remarks}
+통신 데이터의 대기 시간이 초과되었습니다. \par
+ =$>$ 통신 상대방의 상태가 종료되었거나, 네트워크 라인 상태가 불량일 수 있습니다.\-조치후 프로그램을 재 실행해 주십시요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1603 }
+
+serial open error
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1604 }
+
+serial close error
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1605 }
+
+socket is full \begin{DoxyRemark}{Remarks}
+request socket is declined because of the socket limit Check the T\-C\-P\-Close is used correctly to release sock
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1800 }
+
+Invalid track object \begin{DoxyRemark}{Remarks}
+Conveyor tracking object가 비정상입니다. \par
+ =$>$ Tracking parameter 혹은 비전과의 정보 교환을 확인해 주세요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/1900 }
+
+user function is not plugged-\/in \begin{DoxyRemark}{Remarks}
+정의된 User function이 없습니다. \par
+ =$>$ User function을 정의해 주세요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/2000 }
+
+invalid wzone id \begin{DoxyRemark}{Remarks}
+World zone id 오류입니다. \par
+ =$>$ World zone id는 1 $\sim$ 4까지 입니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/2001 }
+
+not enough run-\/time memory \-: malloc error \begin{DoxyRemark}{Remarks}
+System 메모리 오류입니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/2002 }
+
+too many entities in world zone \begin{DoxyRemark}{Remarks}
+한 World\-Zone을 구성하는 Entity가 너무 많습니다. \par
+ =$>$ Entity는 20개까지 제한되어 있습니다.
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/2003 }
+
+motion start location is out of world zone limit \begin{DoxyRemark}{Remarks}
+시작점이 world zone limit을 벗어났습니다. \par
+ =$>$ 동작 시작점을 재 설정해 주십시요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/2004 }
+
+motion end location is out of world zone limit \begin{DoxyRemark}{Remarks}
+동작 끝점이 world zone limit을 벗어났습니다. \par
+ =$>$동작 끝점을 재 설정해 주십시요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/2005 }
+
+current pos is out of world zone limit \begin{DoxyRemark}{Remarks}
+현재 위치가 world zone limit을 벗어났습니다. \par
+ =$>$ 위치를 재교시해 주십시요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/2006 }
+
+motion mid location is out of world zone limit \begin{DoxyRemark}{Remarks}
+동작 중간점이 world zone limit을 벗어났습니다. \par
+ =$>$ Move\-C등 동작 중간점이 필요한 명령어의 중간점이 world zone limit을 벗어난 경우입니다.\-재교시해 주십시요
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/2100 }
+
+Need multi arm mode \begin{DoxyRemark}{Remarks}
+The function needs multi-\/arm mode \par
+ =$>$ To enable multi-\/arm mode, refer to related detailed manual
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/3000 }
+
+io monitor is detected \begin{DoxyRemark}{Remarks}
+Mon\-Do 명령으로 설정한 D\-Out 포트가 어떤 명령어로 인해 변경되는지 모니터링할 때 D\-Out 포트가 변경될 시 출력 \par
+ =$>$ 멀티 Task로 동작시 D\-Out 설정을 Tracking할 떄 사용 =$>$ 에러정지는 하지 않음
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/4000 }
+
+same program is required \begin{DoxyRemark}{Remarks}
+프로그램 step만 변경시 기존 프로그램이 변경되어 있을 경우 에러 발생 \par
+ A\-P\-I를 통한 step 변경을 잘못 사용했을 경우, 발생할 수 있음
+\end{DoxyRemark}
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/9000 }
+
+start user error
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/9999 }
+
+end user error
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/650 }
+
+illegal circular motion
+
+
+
+ \subsubsection*{E\-R\-R\-O\-R C\-O\-D\-E \-: -\/10308 }
+
+motor power switch off \begin{DoxyRemark}{Remarks}
+서보 off 시 발생 
+\end{DoxyRemark}

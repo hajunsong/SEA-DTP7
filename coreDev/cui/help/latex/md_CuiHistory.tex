@@ -1,0 +1,100 @@
+\#cuiapi update 내용
+
+\subsection*{kimsh/2018.\-03.\-09}
+
+
+\begin{DoxyEnumerate}
+\item corecon ethercat 수정
+\begin{DoxyItemize}
+\item working count monitoring system 구현.
+\item 1000 cycle 동산 측정된 wc 수 logging
+\item Error 기준을 넘을 시 error 발생과 함께 몇 사이클 연속 wc가 발생했는지 logging
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{kimdj/2018.\-03.\-08}
+
+
+\begin{DoxyEnumerate}
+\item \hyperlink{classCUIApp_a50b55afe3b66bc00cb1e2e34ed8db2b0}{C\-U\-I\-App\-::get\-Version()} 함수 수정
+\begin{DoxyItemize}
+\item master version 취득 수정.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{kimdj/2018.\-03.\-06}
+
+
+\begin{DoxyEnumerate}
+\item \hyperlink{classCUIApp_a50b55afe3b66bc00cb1e2e34ed8db2b0}{C\-U\-I\-App\-::get\-Version()} 함수 추가
+\begin{DoxyItemize}
+\item corecon, master, kernel version 정보 취득 -\/ master 취득에 bug 있어서 수정 예.
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat}{C\-U\-I\-Ecat} 관련 함수에 대한 설명 추가
+\item corecon에 master backup, upgrade 추가, sdcard backup, upgrade 추가
+\begin{DoxyItemize}
+\item 경로 \-: corecon -\/$>$ settings -\/$>$ S\-W Upgrade
+\item usb와 sdcard가 동시에 삽입 되었을 때에는 usb만 인식하도록 동작.
+\end{DoxyItemize}
+\item R\-T\-O\-S 정주기성 check용 A\-P\-I
+\begin{DoxyItemize}
+\item \hyperlink{classCUIEcat_a49fba779055b9959e804b3d6587f9799}{C\-U\-I\-Ecat\-::get\-End\-Event\-Error\-Count()}
+\begin{DoxyItemize}
+\item app 과 master의 cycle time err 발생 시 count up
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_ab62988589c529181b1b9716910d6e66a}{C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Avg()}
+\begin{DoxyItemize}
+\item Master의 정주기성 평균 cycle time
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_aee10d1bfa0042f7f7eed3fb799353643}{C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Min()}
+\begin{DoxyItemize}
+\item Master의 정주기성 최소 cycle time
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_af6d43ab5430d66093cec76234055baa7}{C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Max()}
+\begin{DoxyItemize}
+\item Master의 정주기성 최대 cycle time
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_adeb5b823fd182c274bcac03a9cfae560}{C\-U\-I\-Ecat\-::get\-Rt\-Task\-Runtime\-Avg()}
+\begin{DoxyItemize}
+\item Master의 수행시간 평균 cycle time 중 master에서 사용하는 시간
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_a563eabb48053cfa9ec88213b96914179}{C\-U\-I\-Ecat\-::get\-Rt\-Rask\-Runtime\-Min()}
+\begin{DoxyItemize}
+\item Master의 수행시간 최소 cycle time 중 master에서 사용하는 시간
+\end{DoxyItemize}
+\item \hyperlink{classCUIEcat_a49de2bbe30a82bd57c5c3ce86234fece}{C\-U\-I\-Ecat\-::get\-Rt\-Task\-Runtime\-Max()}
+\begin{DoxyItemize}
+\item Master의 수행시간 최대 cycle time 중 master에서 사용하는 시간
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Ether\-C\-A\-T Master Sync 확인
+\begin{DoxyItemize}
+\item \hyperlink{classCUIEcat_aa3925bea5f3005eb3148258af76bbb56}{C\-U\-I\-Ecat\-::get\-D\-C\-Time\-Diag\-Table()}
+\begin{DoxyItemize}
+\item master와 slave 간의 D\-C sync 시간
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item file 비교 tools
+\begin{DoxyItemize}
+\item linux cmp, diff
+\begin{DoxyItemize}
+\item cmp dmcvar.\-dat dmcvar.\-dat.\-2를 사용 시 파일이 같으면 message가 출력되지 않고 파일이 다르면
+\item dmcvar.\-dat dmcvar.\-dat2 differ\-: char 1, line 1
+\item 위와 같은 message가 출력되는 char 1, line 1은 첫 행에 char 1 부터 data가 다르다는 표시이다.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item 초기단계 O\-P 상태 check -\/ slave config check
+\begin{DoxyItemize}
+\item slave num, slave O\-P state
+\item corecon 시작시 master와 slave 초기화 단계에서 slave 수 또는 slave 상태가 O\-P상태로 변경되지 않을 때
+\item -\/1511 slave config error를 발생시킴
+\end{DoxyItemize}
+\item open error logging, dual file 저장(data mirroring 기능)
+\begin{DoxyItemize}
+\item 변수 저장 시 dmcvar.\-dat, dmcvar.\-dat.\-2에 함께 변수를 저장
+\item zeroing data 저장 시 dmcoff.\-dat, dmcoff.\-dat.\-2에 함께 data 저장
+\item 초기 open할 때 2개의 file을 전부 checksum 하여 정상적으로 checksum 되는 data를 사용.
+\item 정상적으로 checksum이 되지 않을 때에는 error 발생.
+\end{DoxyItemize}
+\item core\-Dev에 master 추가. 
+\end{DoxyEnumerate}

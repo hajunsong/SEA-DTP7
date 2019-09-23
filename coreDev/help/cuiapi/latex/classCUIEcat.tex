@@ -1,0 +1,915 @@
+\hypertarget{classCUIEcat}{\section{C\-U\-I\-Ecat Class Reference}
+\label{classCUIEcat}\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classCUIEcat_a0f9a34ad0eb93fd5b5b508d23b478421}{read\-S\-D\-O} (int id, int index, int subindex, int bitsize, unsigned long $\ast$data)
+\item 
+int \hyperlink{classCUIEcat_a51e333dd134e6bd3ffacccc8b4dbf93c}{write\-S\-D\-O} (int id, int index, int subindex, int bitsize, unsigned long data)
+\item 
+int \hyperlink{classCUIEcat_a57b81ecc655ceceba421a89ac222edd2}{read\-Slave\-Reg} (int id, int index, int size, unsigned long $\ast$data)
+\item 
+int \hyperlink{classCUIEcat_a93785c42e09080da572de2ec958c827f}{write\-Slave\-Reg} (int id, int index, int size, unsigned long $\ast$data)
+\item 
+int \hyperlink{classCUIEcat_a7624c834deca3243eda90c269d22c663}{get\-Dec\-Error\-State} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_ab62988589c529181b1b9716910d6e66a}{get\-Rt\-Cycletime\-Avg} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_aee10d1bfa0042f7f7eed3fb799353643}{get\-Rt\-Cycletime\-Min} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_af6d43ab5430d66093cec76234055baa7}{get\-Rt\-Cycletime\-Max} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_adeb5b823fd182c274bcac03a9cfae560}{get\-Rt\-Task\-Runtime\-Avg} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_a563eabb48053cfa9ec88213b96914179}{get\-Rt\-Rask\-Runtime\-Min} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_a49de2bbe30a82bd57c5c3ce86234fece}{get\-Rt\-Task\-Runtime\-Max} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_aab8856e80c8cfcee4cb007d4adba10e6}{get\-Cur\-Working\-Count} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_a4a6ae9ad418142c1e048686063eab64d}{get\-Online\-Slave\-Num} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_a63e237aae8398d348bf306a32644eac4}{get\-Rt\-Task\-State} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_afa6be9b91db04dd2f80dc0abc401a305}{get\-Rt\-Task\-Count} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_aba200a70bcdff42fad9ec5faef6017ad}{get\-W\-C\-Change\-Count} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_affb9c24adc1110db865fe12a205c9e75}{get\-Online\-Slave\-Num\-Error\-Count} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_a63b3686e23653058635c9d7c1cf26252}{get\-Rdy\-Event\-Error\-Count} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_a20d8ed1c0b3d2cafbd98864f969677a5}{get\-App\-Event\-Error\-Count} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_a49fba779055b9959e804b3d6587f9799}{get\-End\-Event\-Error\-Count} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_a721382e4e2624ec021cda4a173b5fa6c}{get\-Wait\-Period\-Error\-Count} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_a8957db458414aa0a3d4e8af9167b5a63}{get\-Deep\-Sleep\-Error\-Count} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_a7cd108133cfbb78d08fec432de8d79f4}{get\-Wakeup\-Large\-Error\-Count} (unsigned short \&value)
+\item 
+int \hyperlink{classCUIEcat_ab9db5ac7dfc636819b1ece43d35ba7f4}{get\-Netdev\-Rx\-Length\-Errors} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_a9a6d7227eb81138a671e936dae1488ea}{get\-Netdev\-Rx\-Crc\-Errors} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_a6bb2c05f044bf6c0766b50027dc454e7}{get\-Netdev\-Rx\-Fifo\-Errors} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_a761302de2176ec87fbe3fd74609f70dd}{get\-Ecdev\-Tx\-Count} (\-\_\-\-\_\-uint64\-\_\-t \&value)
+\item 
+int \hyperlink{classCUIEcat_af0f350ed72a6a541ded432cbf4c70e56}{get\-Ecdev\-Rx\-Count} (\-\_\-\-\_\-uint64\-\_\-t \&value)
+\item 
+int \hyperlink{classCUIEcat_a22955872bac93e2cad78bcd3f92f7950}{get\-Ecdev\-Lost\-Packet} (unsigned int \&value)
+\item 
+int \hyperlink{classCUIEcat_a54cba199d61add01ac1a3e8d9556ee69}{get\-Ecdev\-Tx\-Bytes} (\-\_\-\-\_\-uint64\-\_\-t \&value)
+\item 
+int \hyperlink{classCUIEcat_abbfab5b1cfa7865b62d65568e8d7717d}{get\-Ecdev\-Rx\-Bytes} (\-\_\-\-\_\-uint64\-\_\-t \&value)
+\item 
+int \hyperlink{classCUIEcat_ab8f415bfde5990a430b9c914728c704a}{get\-Cur\-D\-C\-Diff\-Time} (int \&value)
+\item 
+int \hyperlink{classCUIEcat_aa3925bea5f3005eb3148258af76bbb56}{get\-D\-C\-Time\-Diag\-Table} (unsigned int $\ast$values, int size)
+\item 
+int \hyperlink{classCUIEcat_a8f374b27b638738365452c3af355f985}{reset\-All\-Dec\-Stats} ()
+\item 
+int \hyperlink{classCUIEcat_a6161809b8f173a498d84b88dd73a7c69}{reset\-D\-C\-Time\-Diag\-Table} ()
+\item 
+bool \hyperlink{classCUIEcat_ad3735a860c41fd65b46391cccc06797f}{get\-Dry\-Run\-Mode} ()
+\item 
+int \hyperlink{classCUIEcat_aa747cfc7b2ad2a3fb8331aa954ca5fa7}{get\-Master\-Status} (int $\ast$nresponding, int $\ast$link\-\_\-status)
+\item 
+int \hyperlink{classCUIEcat_a0c938af16ecdceaedc0ad19291d30412}{get\-P\-D\-O\-T\-\_\-\-Status\-Word} (int lidx)
+\item 
+int \hyperlink{classCUIEcat_ab8d3d89cb7f2423c7169e394f8249093}{get\-Slave\-Count} (int \&count)
+\item 
+int \hyperlink{classCUIEcat_aa76e7a892399d346d2b1cd62df405680}{get\-Slave\-Type} (int index, int \&type)
+\item 
+int \hyperlink{classCUIEcat_a2f5f74641c1a1e53211148ad9d553625}{get\-Slave\-Model} (Q\-String\-List \&slv\-List)
+\item 
+int \hyperlink{classCUIEcat_a274705f2b3039015250d7a9905b656ca}{get\-Slave\-Status} (int index, int \&status)
+\item 
+int \hyperlink{classCUIEcat_a40efffb366ee16bd654f049f99ffcf90}{get\-Slave\-Config\-Status} (int index, int \&alstate, int \&linkstate)
+\item 
+int \hyperlink{classCUIEcat_a8d4f878e23b62931681cfddce5e8e797}{get\-Slave\-I\-D} (int index, unsigned int \&vendor, unsigned int \&product)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classCUIEcat_a903ce71f0d20c4cb74d96cecdb51ae88}{static \hyperlink{classCUIEcat}{C\-U\-I\-Ecat} $\ast$ {\bfseries get\-Instance} ()}\label{classCUIEcat_a903ce71f0d20c4cb74d96cecdb51ae88}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classCUIEcat_a20d8ed1c0b3d2cafbd98864f969677a5}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-App\-Event\-Error\-Count@{get\-App\-Event\-Error\-Count}}
+\index{get\-App\-Event\-Error\-Count@{get\-App\-Event\-Error\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-App\-Event\-Error\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-App\-Event\-Error\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a20d8ed1c0b3d2cafbd98864f969677a5}
+A\-P\-P ev err, Master와 App 간의 App Event 에러 횟수 \par
+ Cycle Time마다 주기적으로 Master -\/$>$ App으로 송신하는 App Event 함수가 실패 시 카운터 증가 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_ab8f415bfde5990a430b9c914728c704a}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Cur\-D\-C\-Diff\-Time@{get\-Cur\-D\-C\-Diff\-Time}}
+\index{get\-Cur\-D\-C\-Diff\-Time@{get\-Cur\-D\-C\-Diff\-Time}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Cur\-D\-C\-Diff\-Time}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Cur\-D\-C\-Diff\-Time (
+\begin{DoxyParamCaption}
+\item[{int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_ab8f415bfde5990a430b9c914728c704a}
+Master와 Reference Clock의 현재 D\-C Timing의 차이 값 reference slave clock과 master clock의 차이 단위 \-: usec 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_aab8856e80c8cfcee4cb007d4adba10e6}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Cur\-Working\-Count@{get\-Cur\-Working\-Count}}
+\index{get\-Cur\-Working\-Count@{get\-Cur\-Working\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Cur\-Working\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Cur\-Working\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_aab8856e80c8cfcee4cb007d4adba10e6}
+Current working cnt, 현재 working counter 값 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_aa3925bea5f3005eb3148258af76bbb56}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-D\-C\-Time\-Diag\-Table@{get\-D\-C\-Time\-Diag\-Table}}
+\index{get\-D\-C\-Time\-Diag\-Table@{get\-D\-C\-Time\-Diag\-Table}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-D\-C\-Time\-Diag\-Table}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-D\-C\-Time\-Diag\-Table (
+\begin{DoxyParamCaption}
+\item[{unsigned int $\ast$}]{values, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_aa3925bea5f3005eb3148258af76bbb56}
+D\-Ctime diagnosis count table을 return 한다. reference slave clock과 master clock의 차이 50us 이상 나올 시 불안정 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em values} & \par
+ //\-D\-C Diagnosis Table \par
+ \mbox{[}0\mbox{]} = Total count \par
+ \mbox{[}1\mbox{]} = 1us 이하 \par
+ \mbox{[}2\mbox{]} = 2us 이하 \par
+ \mbox{[}3\mbox{]} = 5us 이하 \par
+ \mbox{[}4\mbox{]} = 10us 이하 \par
+ \mbox{[}5\mbox{]} = 20us 이하 \par
+ \mbox{[}6\mbox{]} = 50us 이하 \par
+ \mbox{[}7\mbox{]} = 100us 이하 \par
+ \mbox{[}8\mbox{]} = 200us 이하 \par
+ \mbox{[}9\mbox{]} = 500us 이하 \par
+ \mbox{[}10\mbox{]} = 500us 이상 \par
+ \mbox{[}11..15\mbox{]} = Reserved \\
+\hline
+\mbox{\tt in}  & {\em size} & \par
+ value count \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classCUIEcat_a6161809b8f173a498d84b88dd73a7c69}{C\-U\-I\-Ecat\-::reset\-D\-C\-Time\-Diag\-Table()} 
+
+\hyperlink{classCUIEcat_ab8f415bfde5990a430b9c914728c704a}{C\-U\-I\-Ecat\-::get\-Cur\-D\-C\-Diff\-Time()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a7624c834deca3243eda90c269d22c663}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Dec\-Error\-State@{get\-Dec\-Error\-State}}
+\index{get\-Dec\-Error\-State@{get\-Dec\-Error\-State}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Dec\-Error\-State}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Dec\-Error\-State (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a7624c834deca3243eda90c269d22c663}
+Dec Error State, 현재 Master Error 상태 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \par
+ 현재 Master Error 상태 변수 \par
+ bit 0\-: 현재 Slave 개수 Error 상태, 참조\-: \hyperlink{classCUIEcat_affb9c24adc1110db865fe12a205c9e75}{C\-U\-I\-Ecat\-::get\-Online\-Slave\-Num\-Error\-Count()} \par
+ bit 1\-: Ready Event Error 상태, 참조\-: \hyperlink{classCUIEcat_a63b3686e23653058635c9d7c1cf26252}{C\-U\-I\-Ecat\-::get\-Rdy\-Event\-Error\-Count()} \par
+ bit 2\-: App Event Error 상태, 참조\-: \hyperlink{classCUIEcat_a20d8ed1c0b3d2cafbd98864f969677a5}{C\-U\-I\-Ecat\-::get\-App\-Event\-Error\-Count()} \par
+ bit 3\-: End Event Error 상태, 참조\-: \hyperlink{classCUIEcat_a49fba779055b9959e804b3d6587f9799}{C\-U\-I\-Ecat\-::get\-End\-Event\-Error\-Count()} \par
+ bit 4\-: Wait Period Error 상태, 참조\-: \hyperlink{classCUIEcat_a721382e4e2624ec021cda4a173b5fa6c}{C\-U\-I\-Ecat\-::get\-Wait\-Period\-Error\-Count()} \par
+ bit 5\-: Deep Sleep Error 상태, 참조\-: \hyperlink{classCUIEcat_a8957db458414aa0a3d4e8af9167b5a63}{C\-U\-I\-Ecat\-::get\-Deep\-Sleep\-Error\-Count()} \par
+ bit 6\-: Wakeup Count Error 상태, 참조\-: \hyperlink{classCUIEcat_a7cd108133cfbb78d08fec432de8d79f4}{C\-U\-I\-Ecat\-::get\-Wakeup\-Large\-Error\-Count()} \par
+ bit 7\-: 현재 Error 상태 Flag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a8957db458414aa0a3d4e8af9167b5a63}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Deep\-Sleep\-Error\-Count@{get\-Deep\-Sleep\-Error\-Count}}
+\index{get\-Deep\-Sleep\-Error\-Count@{get\-Deep\-Sleep\-Error\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Deep\-Sleep\-Error\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Deep\-Sleep\-Error\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a8957db458414aa0a3d4e8af9167b5a63}
+Deep sleep err, Master R\-T Task의 오랜시간 Sleep 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_ad3735a860c41fd65b46391cccc06797f}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Dry\-Run\-Mode@{get\-Dry\-Run\-Mode}}
+\index{get\-Dry\-Run\-Mode@{get\-Dry\-Run\-Mode}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Dry\-Run\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-U\-I\-Ecat\-::get\-Dry\-Run\-Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_ad3735a860c41fd65b46391cccc06797f}
+Get Dryrun mode flag \begin{DoxyReturn}{Returns}
+Dryrun true 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a22955872bac93e2cad78bcd3f92f7950}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Ecdev\-Lost\-Packet@{get\-Ecdev\-Lost\-Packet}}
+\index{get\-Ecdev\-Lost\-Packet@{get\-Ecdev\-Lost\-Packet}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Ecdev\-Lost\-Packet}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Ecdev\-Lost\-Packet (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a22955872bac93e2cad78bcd3f92f7950}
+Lost Frame 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_abbfab5b1cfa7865b62d65568e8d7717d}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Ecdev\-Rx\-Bytes@{get\-Ecdev\-Rx\-Bytes}}
+\index{get\-Ecdev\-Rx\-Bytes@{get\-Ecdev\-Rx\-Bytes}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Ecdev\-Rx\-Bytes}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Ecdev\-Rx\-Bytes (
+\begin{DoxyParamCaption}
+\item[{\-\_\-\-\_\-uint64\-\_\-t \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_abbfab5b1cfa7865b62d65568e8d7717d}
+Receive Frame의 누적 크기(\-Byte) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_af0f350ed72a6a541ded432cbf4c70e56}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Ecdev\-Rx\-Count@{get\-Ecdev\-Rx\-Count}}
+\index{get\-Ecdev\-Rx\-Count@{get\-Ecdev\-Rx\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Ecdev\-Rx\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Ecdev\-Rx\-Count (
+\begin{DoxyParamCaption}
+\item[{\-\_\-\-\_\-uint64\-\_\-t \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_af0f350ed72a6a541ded432cbf4c70e56}
+Receive Frame 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a54cba199d61add01ac1a3e8d9556ee69}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Ecdev\-Tx\-Bytes@{get\-Ecdev\-Tx\-Bytes}}
+\index{get\-Ecdev\-Tx\-Bytes@{get\-Ecdev\-Tx\-Bytes}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Ecdev\-Tx\-Bytes}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Ecdev\-Tx\-Bytes (
+\begin{DoxyParamCaption}
+\item[{\-\_\-\-\_\-uint64\-\_\-t \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a54cba199d61add01ac1a3e8d9556ee69}
+Send Frame의 누적 크기(\-Byte) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a761302de2176ec87fbe3fd74609f70dd}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Ecdev\-Tx\-Count@{get\-Ecdev\-Tx\-Count}}
+\index{get\-Ecdev\-Tx\-Count@{get\-Ecdev\-Tx\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Ecdev\-Tx\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Ecdev\-Tx\-Count (
+\begin{DoxyParamCaption}
+\item[{\-\_\-\-\_\-uint64\-\_\-t \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a761302de2176ec87fbe3fd74609f70dd}
+Send Frame 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a49fba779055b9959e804b3d6587f9799}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-End\-Event\-Error\-Count@{get\-End\-Event\-Error\-Count}}
+\index{get\-End\-Event\-Error\-Count@{get\-End\-Event\-Error\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-End\-Event\-Error\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-End\-Event\-Error\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a49fba779055b9959e804b3d6587f9799}
+E\-N\-D ev err, Master와 App 간의 End Event 에러 횟수 \par
+ Cycle Time마다 주기적으로 App -\/$>$ Master으로 송신하는 End Event 함수가 실패 시 카운터 증가 app 과 Master간 data 이동 시 cycle time을 초과 했을 때 발생. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_aa747cfc7b2ad2a3fb8331aa954ca5fa7}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Master\-Status@{get\-Master\-Status}}
+\index{get\-Master\-Status@{get\-Master\-Status}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Master\-Status}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Master\-Status (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{nresponding, }
+\item[{int $\ast$}]{link\-\_\-status}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_aa747cfc7b2ad2a3fb8331aa954ca5fa7}
+마스터의 통신정보 상태를 받아옴 
+\begin{DoxyParams}{Parameters}
+{\em nresponding} & 반응하는 슬레이브의 수 \\
+\hline
+{\em link\-\_\-status} & 1일시 통신 되고있는 상태 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a9a6d7227eb81138a671e936dae1488ea}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Netdev\-Rx\-Crc\-Errors@{get\-Netdev\-Rx\-Crc\-Errors}}
+\index{get\-Netdev\-Rx\-Crc\-Errors@{get\-Netdev\-Rx\-Crc\-Errors}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Netdev\-Rx\-Crc\-Errors}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Netdev\-Rx\-Crc\-Errors (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a9a6d7227eb81138a671e936dae1488ea}
+Receive Frame C\-R\-C 에러 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a6bb2c05f044bf6c0766b50027dc454e7}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Netdev\-Rx\-Fifo\-Errors@{get\-Netdev\-Rx\-Fifo\-Errors}}
+\index{get\-Netdev\-Rx\-Fifo\-Errors@{get\-Netdev\-Rx\-Fifo\-Errors}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Netdev\-Rx\-Fifo\-Errors}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Netdev\-Rx\-Fifo\-Errors (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a6bb2c05f044bf6c0766b50027dc454e7}
+Receive Frame F\-I\-F\-O 에러 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_ab9db5ac7dfc636819b1ece43d35ba7f4}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Netdev\-Rx\-Length\-Errors@{get\-Netdev\-Rx\-Length\-Errors}}
+\index{get\-Netdev\-Rx\-Length\-Errors@{get\-Netdev\-Rx\-Length\-Errors}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Netdev\-Rx\-Length\-Errors}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Netdev\-Rx\-Length\-Errors (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_ab9db5ac7dfc636819b1ece43d35ba7f4}
+Receive Frame 길이 에러 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a4a6ae9ad418142c1e048686063eab64d}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Online\-Slave\-Num@{get\-Online\-Slave\-Num}}
+\index{get\-Online\-Slave\-Num@{get\-Online\-Slave\-Num}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Online\-Slave\-Num}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Online\-Slave\-Num (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a4a6ae9ad418142c1e048686063eab64d}
+Online slave num, 현재 연결 된 Slave device의 개수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_affb9c24adc1110db865fe12a205c9e75}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Online\-Slave\-Num\-Error\-Count@{get\-Online\-Slave\-Num\-Error\-Count}}
+\index{get\-Online\-Slave\-Num\-Error\-Count@{get\-Online\-Slave\-Num\-Error\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Online\-Slave\-Num\-Error\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Online\-Slave\-Num\-Error\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_affb9c24adc1110db865fe12a205c9e75}
+Online slave err, 연결 된 Slave device 갯수가 변동 된 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a0c938af16ecdceaedc0ad19291d30412}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-P\-D\-O\-T\-\_\-\-Status\-Word@{get\-P\-D\-O\-T\-\_\-\-Status\-Word}}
+\index{get\-P\-D\-O\-T\-\_\-\-Status\-Word@{get\-P\-D\-O\-T\-\_\-\-Status\-Word}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-P\-D\-O\-T\-\_\-\-Status\-Word}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-P\-D\-O\-T\-\_\-\-Status\-Word (
+\begin{DoxyParamCaption}
+\item[{int}]{lidx}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a0c938af16ecdceaedc0ad19291d30412}
+status word를 갖고옴 
+\begin{DoxyParams}{Parameters}
+{\em lidx} & slave index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a63b3686e23653058635c9d7c1cf26252}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Rdy\-Event\-Error\-Count@{get\-Rdy\-Event\-Error\-Count}}
+\index{get\-Rdy\-Event\-Error\-Count@{get\-Rdy\-Event\-Error\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Rdy\-Event\-Error\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Rdy\-Event\-Error\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a63b3686e23653058635c9d7c1cf26252}
+Ready ev err, Master와 App 간의 Ready Event 에러 횟수 \par
+ R\-T Task 시작 시 Master와 App이 모두 Ready가 된 상태에서 시작하지 않을 경우 카운터 증가 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_ab62988589c529181b1b9716910d6e66a}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Rt\-Cycletime\-Avg@{get\-Rt\-Cycletime\-Avg}}
+\index{get\-Rt\-Cycletime\-Avg@{get\-Rt\-Cycletime\-Avg}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Rt\-Cycletime\-Avg}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Avg (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_ab62988589c529181b1b9716910d6e66a}
+Dec R\-T Cycletime Avg, Master R\-T Task의 Cycle time 평균값 단위 \-: usec 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_af6d43ab5430d66093cec76234055baa7}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Rt\-Cycletime\-Max@{get\-Rt\-Cycletime\-Max}}
+\index{get\-Rt\-Cycletime\-Max@{get\-Rt\-Cycletime\-Max}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Rt\-Cycletime\-Max}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Max (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_af6d43ab5430d66093cec76234055baa7}
+Dec R\-T Cycletime Max, Master R\-T Task의 Cycle time 최대값 단위 \-: usec 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_aee10d1bfa0042f7f7eed3fb799353643}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Rt\-Cycletime\-Min@{get\-Rt\-Cycletime\-Min}}
+\index{get\-Rt\-Cycletime\-Min@{get\-Rt\-Cycletime\-Min}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Rt\-Cycletime\-Min}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Rt\-Cycletime\-Min (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_aee10d1bfa0042f7f7eed3fb799353643}
+Dec R\-T Cycletime Min, Master R\-T Task의 Cycle time 최소값 단위 \-: usec 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a563eabb48053cfa9ec88213b96914179}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Rt\-Rask\-Runtime\-Min@{get\-Rt\-Rask\-Runtime\-Min}}
+\index{get\-Rt\-Rask\-Runtime\-Min@{get\-Rt\-Rask\-Runtime\-Min}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Rt\-Rask\-Runtime\-Min}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Rt\-Rask\-Runtime\-Min (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a563eabb48053cfa9ec88213b96914179}
+Dec R\-T Task Runtime Min, Master R\-T Task 수행시간 최소값 단위 \-: nsec 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_afa6be9b91db04dd2f80dc0abc401a305}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Rt\-Task\-Count@{get\-Rt\-Task\-Count}}
+\index{get\-Rt\-Task\-Count@{get\-Rt\-Task\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Rt\-Task\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Rt\-Task\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_afa6be9b91db04dd2f80dc0abc401a305}
+R\-T task cnt, Master R\-T Task의 수행 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_adeb5b823fd182c274bcac03a9cfae560}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Rt\-Task\-Runtime\-Avg@{get\-Rt\-Task\-Runtime\-Avg}}
+\index{get\-Rt\-Task\-Runtime\-Avg@{get\-Rt\-Task\-Runtime\-Avg}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Rt\-Task\-Runtime\-Avg}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Rt\-Task\-Runtime\-Avg (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_adeb5b823fd182c274bcac03a9cfae560}
+Dec R\-T Task Runtime Avg, Master R\-T Task 수행시간 평균값 Master에서 소요되는 시간 단위 \-: nsec 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a49de2bbe30a82bd57c5c3ce86234fece}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Rt\-Task\-Runtime\-Max@{get\-Rt\-Task\-Runtime\-Max}}
+\index{get\-Rt\-Task\-Runtime\-Max@{get\-Rt\-Task\-Runtime\-Max}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Rt\-Task\-Runtime\-Max}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Rt\-Task\-Runtime\-Max (
+\begin{DoxyParamCaption}
+\item[{unsigned int \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a49de2bbe30a82bd57c5c3ce86234fece}
+Dec R\-T Task Runtime Max, Master R\-T Task 수행시간 최대값 단위 \-: nsec 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a63e237aae8398d348bf306a32644eac4}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Rt\-Task\-State@{get\-Rt\-Task\-State}}
+\index{get\-Rt\-Task\-State@{get\-Rt\-Task\-State}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Rt\-Task\-State}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Rt\-Task\-State (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a63e237aae8398d348bf306a32644eac4}
+R\-T task state, Master R\-T Task의 상태값 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \par
+ 0\-: R\-T Task Stop 상태 \par
+ 1\-: R\-T Task Run 상태 \par
+ 2\-: R\-T Task Stopping 상태 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a40efffb366ee16bd654f049f99ffcf90}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Slave\-Config\-Status@{get\-Slave\-Config\-Status}}
+\index{get\-Slave\-Config\-Status@{get\-Slave\-Config\-Status}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Slave\-Config\-Status}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Slave\-Config\-Status (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{int \&}]{alstate, }
+\item[{int \&}]{linkstate}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a40efffb366ee16bd654f049f99ffcf90}
+Slave의 준비상태 값을 얻는다 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & \par
+ slave num \\
+\hline
+\mbox{\tt out}  & {\em alstate} & \par
+ 1 \-: Init \par
+ 2 \-: Pre\-O\-P \par
+ 4 \-: Safe\-O\-P \par
+ 8 \-: O\-P \\
+\hline
+\mbox{\tt out}  & {\em linkstate} & \par
+ 0 \-: Offline \par
+ 1 \-: Online (link up) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_ab8d3d89cb7f2423c7169e394f8249093}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Slave\-Count@{get\-Slave\-Count}}
+\index{get\-Slave\-Count@{get\-Slave\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Slave\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Slave\-Count (
+\begin{DoxyParamCaption}
+\item[{int \&}]{count}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_ab8d3d89cb7f2423c7169e394f8249093}
+slave all count를 얻는다. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em count} & slaves count \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a8d4f878e23b62931681cfddce5e8e797}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Slave\-I\-D@{get\-Slave\-I\-D}}
+\index{get\-Slave\-I\-D@{get\-Slave\-I\-D}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Slave\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Slave\-I\-D (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{unsigned int \&}]{vendor, }
+\item[{unsigned int \&}]{product}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a8d4f878e23b62931681cfddce5e8e797}
+Slave의 I\-D 값을 얻는다. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & \par
+ slave index \\
+\hline
+\mbox{\tt out}  & {\em vendor} & \par
+ vendor id of Ether\-C\-A\-T device \\
+\hline
+\mbox{\tt out}  & {\em product} & \par
+ product code of Ether\-C\-A\-T device \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a2f5f74641c1a1e53211148ad9d553625}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Slave\-Model@{get\-Slave\-Model}}
+\index{get\-Slave\-Model@{get\-Slave\-Model}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Slave\-Model}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Slave\-Model (
+\begin{DoxyParamCaption}
+\item[{Q\-String\-List \&}]{slv\-List}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a2f5f74641c1a1e53211148ad9d553625}
+slave model 명칭을 얻는다. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em slv\-List} & \par
+ robot conf file에 작성한 device name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a274705f2b3039015250d7a9905b656ca}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Slave\-Status@{get\-Slave\-Status}}
+\index{get\-Slave\-Status@{get\-Slave\-Status}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Slave\-Status}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Slave\-Status (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{int \&}]{status}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a274705f2b3039015250d7a9905b656ca}
+Slave Status 정보를 얻는다. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & \par
+ slave num \\
+\hline
+\mbox{\tt out}  & {\em status} & \par
+ current status\-\_\-word \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_aa76e7a892399d346d2b1cd62df405680}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Slave\-Type@{get\-Slave\-Type}}
+\index{get\-Slave\-Type@{get\-Slave\-Type}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Slave\-Type}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Slave\-Type (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{int \&}]{type}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_aa76e7a892399d346d2b1cd62df405680}
+Slave Type를 얻는다. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & \\
+\hline
+\mbox{\tt out}  & {\em type} & 1\-: motor driver\par
+ 2\-: digital output\par
+ 4\-: digital input\par
+ 8\-: analog output\par
+ 16\-: analog input\par
+ 32\-: coupler ...\par
+ 64\-: counter ...\par
+ 7\-: digital input + digital output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a721382e4e2624ec021cda4a173b5fa6c}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Wait\-Period\-Error\-Count@{get\-Wait\-Period\-Error\-Count}}
+\index{get\-Wait\-Period\-Error\-Count@{get\-Wait\-Period\-Error\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Wait\-Period\-Error\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Wait\-Period\-Error\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a721382e4e2624ec021cda4a173b5fa6c}
+Wait period err, Master R\-T Task의 Sleep 계산 에러 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a7cd108133cfbb78d08fec432de8d79f4}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-Wakeup\-Large\-Error\-Count@{get\-Wakeup\-Large\-Error\-Count}}
+\index{get\-Wakeup\-Large\-Error\-Count@{get\-Wakeup\-Large\-Error\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-Wakeup\-Large\-Error\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-Wakeup\-Large\-Error\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a7cd108133cfbb78d08fec432de8d79f4}
+Master R\-T Task의 wakeup 시간 계산 에러 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_aba200a70bcdff42fad9ec5faef6017ad}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!get\-W\-C\-Change\-Count@{get\-W\-C\-Change\-Count}}
+\index{get\-W\-C\-Change\-Count@{get\-W\-C\-Change\-Count}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{get\-W\-C\-Change\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::get\-W\-C\-Change\-Count (
+\begin{DoxyParamCaption}
+\item[{unsigned short \&}]{value}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_aba200a70bcdff42fad9ec5faef6017ad}
+Working cnt change cnt, Working counter가 변동 된 횟수 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a0f9a34ad0eb93fd5b5b508d23b478421}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!read\-S\-D\-O@{read\-S\-D\-O}}
+\index{read\-S\-D\-O@{read\-S\-D\-O}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{read\-S\-D\-O}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::read\-S\-D\-O (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{index, }
+\item[{int}]{subindex, }
+\item[{int}]{bitsize, }
+\item[{unsigned long $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a0f9a34ad0eb93fd5b5b508d23b478421}
+servo driver에 입력된 parameter 값을 얻는다 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em id} & \par
+ hex code\par
+ slave id, servo driver no \\
+\hline
+\mbox{\tt in}  & {\em index} & \par
+ servo driver address \\
+\hline
+\mbox{\tt in}  & {\em subindex} & \par
+ servo driver sub address \\
+\hline
+\mbox{\tt in}  & {\em bitsize} & \par
+ data size(dec) \-: 8, 16, 32, -\/1(string) \\
+\hline
+\mbox{\tt out}  & {\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\begin{DoxyCode}
+\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data;
+\hyperlink{classCUIEcat_a0f9a34ad0eb93fd5b5b508d23b478421}{readSDO}(0,0x3013,00,10,&data);
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a57b81ecc655ceceba421a89ac222edd2}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!read\-Slave\-Reg@{read\-Slave\-Reg}}
+\index{read\-Slave\-Reg@{read\-Slave\-Reg}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{read\-Slave\-Reg}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::read\-Slave\-Reg (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{index, }
+\item[{int}]{size, }
+\item[{unsigned long $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a57b81ecc655ceceba421a89ac222edd2}
+slave 레지스터의 값을 읽는다 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em id} & \par
+ hex code\par
+ slave id, servo driver no \\
+\hline
+\mbox{\tt in}  & {\em index} & \par
+ servo driver register index \\
+\hline
+\mbox{\tt in}  & {\em size} & \par
+ data size \\
+\hline
+\mbox{\tt out}  & {\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+\end{DoxyCode}
+ \hypertarget{classCUIEcat_a8f374b27b638738365452c3af355f985}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!reset\-All\-Dec\-Stats@{reset\-All\-Dec\-Stats}}
+\index{reset\-All\-Dec\-Stats@{reset\-All\-Dec\-Stats}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{reset\-All\-Dec\-Stats}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::reset\-All\-Dec\-Stats (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a8f374b27b638738365452c3af355f985}
+dec\-\_\-stats Reset \begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a6161809b8f173a498d84b88dd73a7c69}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!reset\-D\-C\-Time\-Diag\-Table@{reset\-D\-C\-Time\-Diag\-Table}}
+\index{reset\-D\-C\-Time\-Diag\-Table@{reset\-D\-C\-Time\-Diag\-Table}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{reset\-D\-C\-Time\-Diag\-Table}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::reset\-D\-C\-Time\-Diag\-Table (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a6161809b8f173a498d84b88dd73a7c69}
+D\-C Timing Diag Table Reset \begin{DoxySeeAlso}{See Also}
+\hyperlink{classCUIEcat_aa3925bea5f3005eb3148258af76bbb56}{C\-U\-I\-Ecat\-::get\-D\-C\-Time\-Diag\-Table()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+success 0 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a51e333dd134e6bd3ffacccc8b4dbf93c}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!write\-S\-D\-O@{write\-S\-D\-O}}
+\index{write\-S\-D\-O@{write\-S\-D\-O}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{write\-S\-D\-O}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::write\-S\-D\-O (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{index, }
+\item[{int}]{subindex, }
+\item[{int}]{bitsize, }
+\item[{unsigned long}]{data}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a51e333dd134e6bd3ffacccc8b4dbf93c}
+servo driver에 parameter 값을 설정한다. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em id} & \par
+ hex code\par
+ slave id, servo driver no \\
+\hline
+\mbox{\tt in}  & {\em index} & \par
+ servo driver address \\
+\hline
+\mbox{\tt in}  & {\em subindex} & \par
+ servo driver sub address \\
+\hline
+\mbox{\tt in}  & {\em bitsize} & \par
+ data size(\-Dec) \-: 8, 16, 32, -\/1(string) \\
+\hline
+\mbox{\tt in}  & {\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0 
+\begin{DoxyCode}
+\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} data = 10;
+\hyperlink{classCUIEcat_a51e333dd134e6bd3ffacccc8b4dbf93c}{writeSDO}(0,0x3013,00,10,&data);
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\hypertarget{classCUIEcat_a93785c42e09080da572de2ec958c827f}{\index{C\-U\-I\-Ecat@{C\-U\-I\-Ecat}!write\-Slave\-Reg@{write\-Slave\-Reg}}
+\index{write\-Slave\-Reg@{write\-Slave\-Reg}!CUIEcat@{C\-U\-I\-Ecat}}
+\subsubsection[{write\-Slave\-Reg}]{\setlength{\rightskip}{0pt plus 5cm}int C\-U\-I\-Ecat\-::write\-Slave\-Reg (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{index, }
+\item[{int}]{size, }
+\item[{unsigned long $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{classCUIEcat_a93785c42e09080da572de2ec958c827f}
+slave 레지스터에 값을 설정한다. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em id} & \par
+ hex code\par
+ slave id, servo driver no \\
+\hline
+\mbox{\tt in}  & {\em index} & \par
+ servo driver register index \\
+\hline
+\mbox{\tt in}  & {\em size} & \par
+ data size \\
+\hline
+\mbox{\tt in}  & {\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success 0
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+cuiecat.\-h\item 
+cuiecat.\-cpp\item 
+cuiecat\-\_\-reg.\-cpp\item 
+cuiecat\-\_\-sdo.\-cpp\item 
+cuiecat\-\_\-slaves.\-cpp\item 
+cuiecat\-\_\-stats.\-cpp\end{DoxyCompactItemize}

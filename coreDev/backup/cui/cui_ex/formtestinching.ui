@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FormTestInching</class>
+ <widget class="QWidget" name="FormTestInching">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>290</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>23</y>
+     <width>421</width>
+     <height>243</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="txtInchingAngleValue_2"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="btnGetInchingAValue">
+      <property name="text">
+       <string>Get_InchingAValue</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_12">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>15</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Function_Name</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="btnSetInchingValue">
+      <property name="text">
+       <string>SetInchingValue</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="btnSetInchingAValue">
+      <property name="text">
+       <string>Set_InchingAValue</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="txtInchingAccTime"/>
+    </item>
+    <item row="6" column="0">
+     <widget class="QPushButton" name="btnSetInchingAccTime">
+      <property name="text">
+       <string>Set_InchingAcc</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="txtInchingValue"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="btnGetInchingValue">
+      <property name="text">
+       <string>GetInchingValue</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="txtInchingValue_2"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_13">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>15</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Argment</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QPushButton" name="btnGetInchingAccTime">
+      <property name="text">
+       <string>Get_InchingAcc</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="txtInchingAngleValue"/>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="txtInchingAccTime_2"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
