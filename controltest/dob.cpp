@@ -7,177 +7,76 @@ DOB::DOB(uint numbody)
 
     // read data
     start_time = 0;
-//    end_time = 5;
+    //    end_time = 5;
     h = 0.002;
     g = -9.80665;
 
-    double *A0_ptr = body[0].A0;
-    *(A0_ptr++) = 1;	*(A0_ptr++) = 0;	*(A0_ptr++) = 0;
-    *(A0_ptr++) = 0;	*(A0_ptr++) = 1;	*(A0_ptr++) = 0;
-    *(A0_ptr++) = 0;	*(A0_ptr++) = 0;	*(A0_ptr) = 1;
-    double *r0_ptr = body[0].r0;
-    *(r0_ptr++) = 0;	*(r0_ptr++) = 0;	*(r0_ptr++) = 0;
-    double *C01_ptr = body[0].C01;
-    *(C01_ptr++) = -0.0166539163382054;		*(C01_ptr++) = 0.999453663531633;	*(C01_ptr++) = 0.028548581817619;
-    *(C01_ptr++) = 0.999861118108942;		*(C01_ptr++) = 0.01666499242578;	*(C01_ptr++) = -0.000150071267613861;
-    *(C01_ptr++) = -0.00062575117796489;	*(C01_ptr++) = 0.0285421176622535;	*(C01_ptr++) = -0.999592394906453;
-    double *s01p_ptr = body[0].s01p;
-    *(s01p_ptr++) = 1.6046665738E-003;	*(s01p_ptr++) = -1.1277816472E-005;	*(s01p_ptr++) = -8.0873063368E-002;
+    body[0].A0[0] = 1;	body[0].A0[1] = 0;	body[0].A0[2] = 0;
+    body[0].A0[3] = 0;	body[0].A0[4] = 1;	body[0].A0[5] = 0;
+    body[0].A0[6] = 0;	body[0].A0[7] = 0;	body[0].A0[8] = 1;
 
-    double *Jip_ptr, *rhoip_ptr, *Cii_ptr, *Cij_ptr, *sijp_ptr;
+    body[0].r0[0] = 0;	body[0].r0[1] = 0;	body[0].r0[2] = 0;
+
+    ang2mat(M_PI, M_PI_2, M_PI_2, body[0].C01, false);
+    body[0].s01p[0] = 1.37633e-6;   body[0].s01p[1] = 0.0546755;    body[0].s01p[2] = 0.0116372;
+
     switch (num_body) {
-    case 6:
-        // body 6 variable
-        body[5].qi = 0;
-        body[5].qi_dot = 0;
-        body[5].mi = 25;
-        Jip_ptr = body[5].Jip;
-        *(Jip_ptr++) = 12;	*(Jip_ptr++) = 0;	*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;	*(Jip_ptr++) = 12;	*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;	*(Jip_ptr++) = 0;	*(Jip_ptr) = 12;
-        rhoip_ptr = body[5].rhoip;
-        *(rhoip_ptr++) = 0;	*(rhoip_ptr++) = -0.4;	*(rhoip_ptr++) = 0;
-        Cii_ptr = body[5].Cii;
-        *(Cii_ptr++) = 0;	*(Cii_ptr++) = 1;	*(Cii_ptr++) = 0;
-        *(Cii_ptr++) = 0;	*(Cii_ptr++) = 0;	*(Cii_ptr++) = 1;
-        *(Cii_ptr++) = 1;	*(Cii_ptr++) = 0;	*(Cii_ptr) = 0;
-        Cij_ptr = body[5].Cij;
-        *(Cij_ptr++) = 0;	*(Cij_ptr++) = -1;	*(Cij_ptr++) = 0;
-        *(Cij_ptr++) = 1;	*(Cij_ptr++) = 0;	*(Cij_ptr++) = 0;
-        *(Cij_ptr++) = 0;	*(Cij_ptr++) = 0;	*(Cij_ptr) = 1;
-        sijp_ptr = body[5].sijp;
-        *(sijp_ptr++) = 0;	*(sijp_ptr++) = -0.8;	*(sijp_ptr++) = 0;
-        body[5].K = 1500;
-        goto CASE5;
+        case 6:
+            // body 6 variable
+            goto CASE5;
 CASE5: case 5:
-        // body 5 variable
-        body[4].qi = 0;
-        body[4].qi_dot = 0;
-        body[4].mi = 20;
-        Jip_ptr = body[4].Jip;
-        *(Jip_ptr++) = 10;	*(Jip_ptr++) = 0;	*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;	*(Jip_ptr++) = 10;	*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;	*(Jip_ptr++) = 0;	*(Jip_ptr) = 10;
-        rhoip_ptr = body[4].rhoip;
-        *(rhoip_ptr++) = 0.35;	*(rhoip_ptr++) = 0;	*(rhoip_ptr++) = 0;
-        Cii_ptr = body[4].Cii;
-        *(Cii_ptr++) = 0;	*(Cii_ptr++) = 0;	*(Cii_ptr++) = -1;
-        *(Cii_ptr++) = 0;	*(Cii_ptr++) = 1;	*(Cii_ptr++) = 0;
-        *(Cii_ptr++) = 1;	*(Cii_ptr++) = 0;	*(Cii_ptr) = 0;
-        Cij_ptr = body[4].Cij;
-        *(Cij_ptr++) = 0;	*(Cij_ptr++) = -1;	*(Cij_ptr++) = 0;
-        *(Cij_ptr++) = 1;	*(Cij_ptr++) = 0;	*(Cij_ptr++) = 0;
-        *(Cij_ptr++) = 0;	*(Cij_ptr++) = 0;	*(Cij_ptr) = 1;
-        sijp_ptr = body[4].sijp;
-        *(sijp_ptr++) = 0.7;	*(sijp_ptr++) = 0;	*(sijp_ptr++) = 0;
-        body[4].K = 1500;
-        goto CASE4;
+            // body 5 variable
+            goto CASE4;
 CASE4: case 4:
-        // body 4 variable
-        body[3].qi = 0;
-        body[3].qi_dot = 1.745329252;
-        body[3].mi = 1.0;
-        Jip_ptr = body[3].Jip;
-        *(Jip_ptr++) = 2.9776690613E-001;	*(Jip_ptr++) = 0;					*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;					*(Jip_ptr++) = 1.9851127075E-001;	*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;					*(Jip_ptr++) = 0;					*(Jip_ptr) = 1.9851127075E-001;
-        rhoip_ptr = body[3].rhoip;
-        *(rhoip_ptr++) = 0;	*(rhoip_ptr++) = 0;	*(rhoip_ptr++) = 1.5E-002;
-        Cii_ptr = body[3].Cii;
-        *(Cii_ptr++) = -5.1034119673351e-12;	*(Cii_ptr++) = -5.10341196717883e-12;	*(Cii_ptr++) = 1;
-        *(Cii_ptr++) = 1.53102359017448e-11;	*(Cii_ptr++) = 1;						*(Cii_ptr++) = 5.10341196725696e-12;
-        *(Cii_ptr++) = -1;						*(Cii_ptr++) = 1.53102359017709e-11;	*(Cii_ptr) = -5.10341196725696e-12;
-        Cij_ptr = body[3].Cij;
-        *(Cij_ptr++) = 1;	*(Cij_ptr++) = 0;	*(Cij_ptr++) = 0;
-        *(Cij_ptr++) = 0;	*(Cij_ptr++) = 1;	*(Cij_ptr++) = 0;
-        *(Cij_ptr++) = 0;	*(Cij_ptr++) = 0;	*(Cij_ptr) = 1;
-        sijp_ptr = body[3].sijp;
-        *(sijp_ptr++) = 0;	*(sijp_ptr++) = 0;	*(sijp_ptr++) = 3.0E-002;
-        body[3].K = 1500;
-        goto CASE3;
+            // body 4 variable
+            goto CASE3;
 CASE3: case 3:
-        // body 3 variable
-        body[2].qi = 0;
-        body[2].qi_dot = 0;
-        body[2].mi = 5.4744153556;
-        Jip_ptr = body[2].Jip;
-        *(Jip_ptr++) = 7.9248847783E-002;	*(Jip_ptr++) = 0;					*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;					*(Jip_ptr++) = 7.9068985586E-002;	*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;					*(Jip_ptr++) = 0;					*(Jip_ptr) = 1.121114199E-002;
-        rhoip_ptr = body[2].rhoip;
-        *(rhoip_ptr++) = -7.7429032998E-003;	*(rhoip_ptr++) = 0.1250000069;	*(rhoip_ptr++) = 5.1742274065E-002;
-        Cii_ptr = body[2].Cii;
-        *(Cii_ptr++) = 0.703366121770584;	*(Cii_ptr++) = 0.706491212468702;		*(Cii_ptr++) = -0.0783981214692824;
-        *(Cii_ptr++) = 0.110872957629779;	*(Cii_ptr++) = -9.83988031674973e-05;	*(Cii_ptr++) = 0.993834582606231;
-        *(Cii_ptr++) = 0.702127684977479;	*(Cii_ptr++) = -0.707721807649149;		*(Cii_ptr) = -0.0783999806504246;
-        Cij_ptr = body[2].Cij;
-        *(Cij_ptr++) = -5.1034119673351e-12;	*(Cij_ptr++) = -1.53102359017448e-11;	*(Cij_ptr++) = -1;
-        *(Cij_ptr++) = 5.10341196717883e-12;	*(Cij_ptr++) = 1;						*(Cij_ptr++) = -1.53102359017709e-11;
-        *(Cij_ptr++) = 1;						*(Cij_ptr++) = -5.10341196725696e-12;	*(Cij_ptr) = -5.10341196725696e-12;
-        sijp_ptr = body[2].sijp;
-        *(sijp_ptr++) = -0.1036;	*(sijp_ptr++) = 0.25;	*(sijp_ptr++) = 4.4E-002;
-        body[2].K = 1500;
-        goto CASE2;
+            // body 3 variable
+            goto CASE2;
 CASE2: case 2:
-        // body 2 variable
-        body[1].qi = 0;
-        body[1].qi_dot = 0;
-        body[1].mi = 0.817690667;
-        Jip_ptr = body[1].Jip;
-        *(Jip_ptr++) = 8.6363165831E-003;	*(Jip_ptr++) = 0;					*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;					*(Jip_ptr++) = 8.1094047045E-003;	*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;					*(Jip_ptr++) = 0;					*(Jip_ptr) = 9.3971594815E-004;
-        rhoip_ptr = body[1].rhoip;
-        *(rhoip_ptr++) = -5.410667759E-005;	*(rhoip_ptr++) = 0.125;	*(rhoip_ptr++) = -2.0091982318E-002;
-        Cii_ptr = body[1].Cii;
-        *(Cii_ptr++) = -0.000878023682081522;	*(Cii_ptr++) = 0.999999614537133;		*(Cii_ptr++) = -1.02068239345139e-11;
-        *(Cii_ptr++) = 5.09444816694781e-12;	*(Cii_ptr++) = 1.0211300916729e-11;		*(Cii_ptr++) = 1;
-        *(Cii_ptr++) = 0.999999614537133;		*(Cii_ptr++) = 0.000878023682081522;	*(Cii_ptr) = -5.10341196725696e-12;
-        Cij_ptr = body[1].Cij;
-        *(Cij_ptr++) = 1;	*(Cij_ptr++) = 0;	*(Cij_ptr++) = 0;
-        *(Cij_ptr++) = 0;	*(Cij_ptr++) = 1;	*(Cij_ptr++) = 0;
-        *(Cij_ptr++) = 0;	*(Cij_ptr++) = 0;	*(Cij_ptr) = 1;
-        sijp_ptr = body[1].sijp;
-        *(sijp_ptr++) = 0;	*(sijp_ptr++) = 0.25;	*(sijp_ptr++) = 0;
-        body[1].K = 1500;
-        goto CASE1;
+            // body 2 variable
+            body[1].qi = 0;
+            body[1].qi_dot = 0;
+            body[1].mi = 0.489451904456537;
+
+            body[1].Jip[0] = 2.34784629597537e-004;  body[1].Jip[1] = 0;                      body[1].Jip[2] = 0;
+            body[1].Jip[3] = 0;                      body[1].Jip[4] = 4.60887362792117e-004;  body[1].Jip[5] = 2.38198731578976e-022;
+            body[1].Jip[6] = 0;                      body[1].Jip[7] = 2.38198731578976e-022;  body[1].Jip[8] = 2.35989837216437e-004;
+
+            body[1].rhoip[0] = -1.98952e-16; body[1].rhoip[1] = 0.00546345; body[1].rhoip[2] = 2.84217e-17;
+            ang2mat(M_PI_2, M_PI_2, 0, body[1].Cii, false);
+
+            body[1].sijp[0] = 0;    body[1].sijp[1] = 0; body[1].sijp[2] = 0;
+            ang2mat(0, 0, 0, body[1].Cij, false);
+            goto CASE1;
 CASE1: case 1:
-        // body 1 variable
-        body[0].qi = 0;
-        body[0].qi_dot = 1.745329252;
-        body[0].mi = 2.5846642779;
-        Jip_ptr = body[0].Jip;
-        *(Jip_ptr++) = 6.3434854815E-003;	*(Jip_ptr++) = 0;					*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;					*(Jip_ptr++) = 5.5594028536E-003;	*(Jip_ptr++) = 0;
-        *(Jip_ptr++) = 0;					*(Jip_ptr++) = 0;					*(Jip_ptr) = 3.7113051524E-003;
-        rhoip_ptr = body[0].rhoip;
-        *(rhoip_ptr++) = 1.6400029422E-002;	*(rhoip_ptr++) = -1.4726955847E-007;	*(rhoip_ptr++) = 6.2418368682E-002;
-        Cii_ptr = body[0].Cii;
-        *(Cii_ptr++) = 2.11290316466101e-05;	*(Cii_ptr++) = -0.252301899356726;		*(Cii_ptr++) = 0.967648567990752;
-        *(Cii_ptr++) = 0.999999999358353;		*(Cii_ptr++) = 3.33235275924839e-05;	*(Cii_ptr++) = -1.31467588017185e-05;
-        *(Cii_ptr++) = -2.8928511539209e-05;	*(Cii_ptr++) = 0.967648567647641;		*(Cii_ptr++) = 0.252301899898931;
-        Cij_ptr = body[0].Cij;
-        *(Cij_ptr++) = -5.10341196725696e-12;	*(Cij_ptr++) = 5.10341196725696e-12;	*(Cij_ptr++) = 1;
-        *(Cij_ptr++) = 1;						*(Cij_ptr++) = 2.60448137075416e-23;	*(Cij_ptr++) = 5.10341196725696e-12;
-        *(Cij_ptr++) = 0;						*(Cij_ptr++) = 1;						*(Cij_ptr++) = -5.10341196725696e-12;
-        sijp_ptr = body[0].sijp;
-        *(sijp_ptr++) = -4.4E-002;	*(sijp_ptr++) = 0.0;	*(sijp_ptr++) = 7.3E-002;
-        body[0].K = 1500;
+            // body 1 variable
+            body[0].qi = 0;
+            body[0].qi_dot = 0;
+            body[0].mi = 1.15828469407282;
+
+            body[0].Jip[0] = 3.33759019862649e-004;  body[0].Jip[1] = -2.09252503527173e-021; body[0].Jip[2] = -2.15421743813125e-008;
+            body[0].Jip[3] = -2.09252503527173e-021; body[0].Jip[4] = 1.75972275017953e-002;  body[0].Jip[5] = -3.70356905869084e-020;
+            body[0].Jip[6] = -2.15421743813125e-008; body[0].Jip[7] = -3.70356905869084e-020; body[0].Jip[8] = 1.72798722147092e-002;
+
+            body[0].rhoip[0] = 1.13687e-16; body[0].rhoip[1] = 4.70024e-15; body[0].rhoip[2] = 0.0114834;
+            ang2mat(M_PI_2, M_PI_2, 0, body[0].Cii, false);
+
+            body[0].sijp[0] = 0;    body[0].sijp[1] = -0.2; body[0].sijp[2] = 0.0147;
+            ang2mat(M_PI_2, M_PI_2, 0, body[0].Cij, false);
+            break;
     }
 
     // define Y vector
-    Y = new double[num_body];
-    Yp = new double[num_body];
-    Y_old = new double[num_body];
-    Yp_old = new double[num_body];
+    Y = new double[num_body - 1];
+    Yp = new double[num_body - 1];
+    Y_old = new double[num_body - 1];
+    Yp_old = new double[num_body - 1];
 
-    memset(Y, 0, sizeof(double) * num_body);
-    memset(Yp, 0, sizeof(double) * num_body);
-    memset(Y_old, 0, sizeof(double) * num_body);
-    memset(Yp_old, 0, sizeof(double) * num_body);
-
-    total_time = 0;
-    average_time = 0;
+    memset(Y, 0, sizeof(double) * (num_body - 1));
+    memset(Yp, 0, sizeof(double) * (num_body - 1));
+    memset(Y_old, 0, sizeof(double) * (num_body - 1));
+    memset(Yp_old, 0, sizeof(double) * (num_body - 1));
 }
 
 DOB::~DOB() {
@@ -195,30 +94,28 @@ void DOB::run(double *q, double *q_dot, double *tor, int *collision_flag)
         Y[0] = 0;
     }
     else {
-        double *Y_ptr = Y;
         for (uint i = 0; i < num_body; i++) {
-            *(Y_ptr++) = 0;
+            Y[i] = 0;
         }
     }
 
-    for (uint i = 0; i < num_body; i++) {
+    for (uint i = 0; i < num_body - 1; i++) {
         body[i].qi = q[i];
     }
-    for (uint i = 0; i < num_body; i++) {
+    for (uint i = 0; i < num_body - 1; i++) {
         body[i].qi_dot = q_dot[i];
     }
-    for (uint i = 0; i < num_body; i++) {
+    for (uint i = 0; i < num_body - 1; i++) {
         body[i].tor = tor[i];
     }
 
     analysis();
 
-    double *Yp_ptr = Yp;
-    for (uint i = 0; i < num_body; i++) {
-        *(Yp_ptr++) = body[i].yp;
+    for (uint i = 0; i < num_body - 1; i++) {
+        Yp[i] = body[i].yp;
     }
 
-    for (uint i = 0; i < num_body; i++) {
+    for (uint i = 0; i < num_body - 1; i++) {
         Y[i] = Y_old[i] + Yp_old[i] * h + 0.5*h*h*(Yp[i] - Yp_old[i]);
     }
 
@@ -242,8 +139,8 @@ void DOB::run(double *q, double *q_dot, double *tor, int *collision_flag)
         body[i].r_hat = body[i].K*(Y[i] - body[i].p);
     }
 
-    memcpy(Yp_old, Yp, sizeof(double) * num_body);
-    memcpy(Y_old, Y, sizeof(double) * num_body);
+    memcpy(Yp_old, Yp, sizeof(double) * (num_body - 1));
+    memcpy(Y_old, Y, sizeof(double) * (num_body - 1));
 
     t_current += h;
 

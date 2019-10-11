@@ -18,9 +18,9 @@ static double RAD2DEG = 180.0/M_PI;
 static double VEL2RPM = 0.01;
 static double RPM2DEG = 6;
 
-static double dob_pos[6] = {0,}, dob_vel[6] = {0,}, dob_tor[6] = {0,};
-static int collision[6] = {0,};
-static DOB dob(6);
+//static double dob_pos[1] = {0,}, dob_vel[1] = {0,}, dob_tor[1] = {0,};
+static int collision[1] = {0,};
+static DOB dob(1);
 //static double K = 0;
 
 static double diff = 0, diff_ang = 0, diff_rad = 0;

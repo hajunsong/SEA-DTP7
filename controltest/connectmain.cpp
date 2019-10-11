@@ -74,6 +74,8 @@ int cx_cmdtor()
         actual_torque = k*diff*ENC2DEG*DEG2RAD;
         pos_rad = pos*ENC2DEG*DEG2RAD;
         vel_rad = vel*ENC2DEG*DEG2RAD;
+
+        dob.run(&pos_rad, &vel_rad, &antual_torque, collision);
     }
 }
 
