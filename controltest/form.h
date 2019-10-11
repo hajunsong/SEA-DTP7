@@ -9,6 +9,7 @@
 #include <math.h>
 
 #include "functions.h"
+#include "cuiapi.h"
 
 namespace Ui {
 class Form;
@@ -24,23 +25,27 @@ public:
     
 private slots:
     void timeout();
-    void btnUpClicked();
-    void btnDownClicked();
-    void btnClearClicked();
-    void btnOnClicked();
-    void btnOffClicked();
-    void btnIntervalUpClicked();
-    void btnIntervalDownClicked();
+    void btnStartClicked();
+    void btnStopClicked();
+    void btnSetGainClicked();
+    void btnGetGainClicked();
+    void btnTurnOnClicked();
+    void btnTurnOffClicked();
+
 private:
     Ui::Form *ui;
     QTimer *timer;
 
-    long int enc1, enc2, pos, vel;
+    long int enc1, enc2, pos, vel, enc_diff;
     long tor;
     double pos_deg, vel_rpm, vel_deg;
     short tor_interval;
     double torque;
+    bool up_flag, down_flag, interval_up_flag, interval_down_flag;
+    short tick;
+
+    double TP_data[5];
+    bool flag;
 };
-const short tick = 50;
 
 #endif // FORM_H

@@ -1,4 +1,4 @@
-#include "form.h"
+﻿#include "form.h"
 #include "ui_form.h"
 
 extern "C" void* createTestSubWidget()
@@ -16,20 +16,28 @@ Form::Form(QWidget *parent) : QWidget(parent), ui(new Ui::Form)
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(timeout()));
-    timer->setInterval(10);
+    timer->setInterval(100);
     timer->start();
 
-    connect(ui->btnUp, SIGNAL(clicked()), this, SLOT(btnUpClicked()));
-    connect(ui->btnDown, SIGNAL(clicked()), this, SLOT(btnDownClicked()));
-    connect(ui->btnClear,SIGNAL(clicked()), this, SLOT(btnClearClicked()));
+    connect(ui->btnStart, SIGNAL(clicked()), this, SLOT(btnStartClicked()));
+    connect(ui->btnStop, SIGNAL(clicked()), this, SLOT(btnStopClicked()));
 
-    connect(ui->btnIntervalUp, SIGNAL(clicked()), this, SLOT(btnIntervalUpClicked()));
-    connect(ui->btnIntervalDown, SIGNAL(clicked()), this, SLOT(btnIntervalDownClicked()));
+    connect(ui->btnSetGain, SIGNAL(clicked()), this, SLOT(btnSetGainClicked()));
+    connect(ui->btnGetGain, SIGNAL(clicked()), this, SLOT(btnGetGainClicked()));
 
-    connect(ui->btnOn, SIGNAL(clicked()), this, SLOT(btnOnClicked()));
-    connect(ui->btnOff, SIGNAL(clicked()), this, SLOT(btnOffClicked()));
+    connect(ui->btnTurnOn, SIGNAL(clicked()), this, SLOT(btnTurnOnClicked()));
+    connect(ui->btnTurnOff, SIGNAL(clicked()), this, SLOT(btnTurnOffClicked()));
 
     tor_interval = 0;
+
+    up_flag = false;
+    down_flag = false;
+
+    tick = 1;
+    interval_up_flag = false;
+    interval_down_flag = false;
+
+    flag = false;
 }
 
 Form::~Form()
@@ -40,6 +48,7 @@ Form::~Form()
 void Form::timeout(){
     enc1 = get_enc1();
     enc2 = get_enc2();
+    enc_diff = get_enc_diff();
     pos = get_pos();
     vel = get_vel();
     tor = get_torque();
@@ -50,54 +59,75 @@ void Form::timeout(){
 
     ui->txtEnc1->setText(QString::number(enc1));
     ui->txtEnc2->setText(QString::number(enc2));
+    ui->txtEncDiff->setText(QString::number(enc_diff));
     ui->txtPos->setText(QString::number(pos));
-//    ui->txtPosDeg->setText(QString::number(0.001f,'f',6));
     ui->txtVel->setText(QString::number(vel));
-//    ui->txtVelRPM->setText(QString::number(vel_rpm, 'f', 6));
-//    ui->txtVelDeg->setText(QString::number(vel_deg, 'f', 6));
     ui->txtTor->setText(QString::number(tor));
-    printf("pos : %3.3f[DEG]\t vel : %3.3f[RPM], \t%3.3f[DEG/S]\t tor : %3.3f[Nm]\n", pos_deg, vel_rpm, vel_deg, torque);
-//    printf("enc1 : %ld\t, enc2 : %ld\t, tor : %f\n", enc1, enc2, K);
+//    printf("pos : %3.3f[DEG]\t vel : %3.3f[RPM], \t%3.3f[DEG/S]\n", pos_deg, vel_rpm, vel_deg);
+////    printf("enc1 : %ld\t, enc2 : %ld\t, tor : %f\n", enc1, enc2, K);
+
+//    long tmp_tor = get_torque();
+
+//    if (up_flag){
+//        short set_tor = static_cast<short>(tmp_tor) + tor_interval;
+//        set_torque(set_tor);
+//    }
+
+//    if (down_flag){
+//        short set_tor = static_cast<short>(tmp_tor) - tor_interval;
+//        set_torque(set_tor);
+//    }
+
+//    if (interval_up_flag){
+//        tor_interval += tick;
+//        ui->txtInterval->setText(QString::number(tor_interval));
+//    }
+
+//    if (interval_down_flag){
+//        tor_interval -= tick;
+//        ui->txtInterval->setText(QString::number(tor_interval));
+//    }
+
+//    get_data(TP_data);
+
+    if (flag){
+//        printf("pos : %f\t vel : %f\t diff : %f\t torque : %f\t torque_in : %f\n", TP_data[0], TP_data[1], TP_data[2], TP_data[3], TP_data[4]);
+    }
 }
 
-void Form::btnUpClicked()
+void Form::btnStartClicked()
 {
-    long tmp_tor = get_torque();
-
-    short set_tor = static_cast<short>(tmp_tor) + tor_interval;
-    set_torque(set_tor);
+    set_flag(true);
+    flag = true;
 }
 
-void Form::btnDownClicked(){
-    long tmp_tor = get_torque();
-
-    short set_tor = static_cast<short>(tmp_tor) - tor_interval;
-    set_torque(set_tor);
-}
-
-void Form::btnClearClicked()
+void Form::btnStopClicked()
 {
-    set_torque(0);
+    set_flag(false);
 }
 
-void Form::btnOnClicked()
-{
-    set_torque_mode(1);
+void Form::btnSetGainClicked(){
+    set_gain();
+
 }
 
-void Form::btnOffClicked()
-{
-    set_torque_mode(0);
+void Form::btnGetGainClicked(){
+    unsigned long data[15] = {0,};
+    get_gain(data);
+
+    for(int i = 0; i < 15; i++){
+        printf("%ld\t", data[i]);
+    }
+    printf("\n");
+
 }
 
-void Form::btnIntervalUpClicked()
+void Form::btnTurnOnClicked()
 {
-    tor_interval += tick;
-    ui->txtInterval->setText(QString::number(tor_interval));
+    set_turn_on();
 }
 
-void Form::btnIntervalDownClicked()
+void Form::btnTurnOffClicked()
 {
-    tor_interval -= tick;
-    ui->txtInterval->setText(QString::number(tor_interval));
+    set_turn_off();
 }

@@ -1,6 +1,6 @@
 #ifndef __CRBAPI_H__
 #define __CRBAPI_H__	1
-
+#include "crbtype.h"
 #define DLL_EXPORT __attribute__ ((visibility ("default")))
 
 
@@ -32,7 +32,7 @@ public:
     static int get_cur_torque(int id, short* tor);
     static int get_ref_torque(int id, short* tor);
 
-    static int get_user_input1(int id, long* input1, int naxis); //sea_torque
+    static int get_user_input1(int id, long* input1, int naxis); //encoder delta
     static int get_user_input2(int id, long* input2, int naxis);
     static int get_user_input3(int id, long* input3, int naxis);
 
@@ -58,6 +58,10 @@ public:
 
     static int get_cur_velocity(int id, long* value, int naxis);
 
+    static int set_cmd_joint(int id, float* joint);
+
+    static int set_rs485_pdo_communication(int value); // 0 == stop , 1 == communication start
+    static int get_rs485_pdo_communication();  // 0 == stop , 1 == communication start
 
 
 };

@@ -1,4 +1,4 @@
-
+﻿
 /*
  *  CUSTOMUI
  *
@@ -36,36 +36,45 @@ void* cui_get_subwidget()
 
 int cx_cmdtor()
 {
-    naxis = crbapi::get_axis_count();
 
-//    torque_mode[0] = 1;
+    if (flag){
+        if (turn_on){
+            if (delay == 0){
+                crbapi::set_rs485_pdo_communication(0);
 
-//    dob.run(dob_pos, dob_vel, dob_tor, collision);
+                sdoSetData += 500;
+                sdoSetData = sdoSetData > goal_vel ? goal_vel : sdoSetData;
 
-    crbapi::set_user_output2(0, torque_mode, 1);
+                capp->setSDO(0, &sdoIndexGoalVel, 1, &sdoSetData);
 
-    torque_value[0] = tor_1;
+                crbapi::set_rs485_pdo_communication(1);
+            }
+        }
 
-    crbapi::get_current_first_encoder(0, &enc1, 1);
-    crbapi::get_current_second_encoder(0, &enc2, 1);
-    crbapi::get_cur_enc(0, &pos);
-    crbapi::get_cur_velocity(0, &vel, 1);
+        if (turn_off){
+            capp->setServoOn(false);
+            sdoSetData = 0;
 
-    crbapi::set_user_output1(0, torque_value, 1);
-    crbapi::get_user_input1(0, get_torque_value, 1);
+            turn_off = false;
+            flag = false;
+        }
 
-//    if (vel > 0){
-//        K = a[0]*exp(b[0]*enc2) + c[0]*exp(d[0]*enc2);
-//    K = a[0]*exp(b[0]*enc2) + c[0]*exp(d[0]*enc2);
-//    }
-//    else{
-//        K = a[1]*exp(b[1]*enc2) + c[1]*exp(d[1]*enc2);
-//    }
-    K = p1*pow(enc2, 6) + p2*pow(enc2, 5) + p3*pow(enc2, 4) + p4*pow(enc2, 3) + p5*pow(enc2, 2) + p6*enc2 + p7;
-    diff = enc1 - enc2;
-    torque_cal = K*diff*ENC2DEG*DEG2RAD;
+        delay++;
+        if (delay >= 1000){
+            delay = 0;
+        }
 
-    return 0;
+        crbapi::get_current_first_encoder(0, &enc1, 1);
+        crbapi::get_current_second_encoder(0, &enc2, 1);
+        crbapi::get_user_input1(0, &enc_diff, 1);
+        crbapi::get_cur_enc(0, &pos);
+        crbapi::get_cur_velocity(0, &vel, 1);
+
+        diff = enc_diff*ENC2DEG*DEG2RAD;
+        actual_torque = k*diff*ENC2DEG*DEG2RAD;
+        pos_rad = pos*ENC2DEG*DEG2RAD;
+        vel_rad = vel*ENC2DEG*DEG2RAD;
+    }
 }
 
 void set_torque(short value)
@@ -77,7 +86,7 @@ void set_torque_mode(long value){
     torque_mode[0] = value;
 }
 
-long get_torque()
+short get_torque()
 {
     return get_torque_value[0];
 }
@@ -92,6 +101,10 @@ long int get_enc1(){
 
 long int get_enc2(){
     return enc2;
+}
+
+long int get_enc_diff(){
+    return enc_diff;//enc1/75 - enc2;
 }
 
 long int get_pos(){
@@ -112,4 +125,69 @@ double get_vel_rpm(){
 
 double get_vel_deg(){
     return vel*VEL2RPM*RPM2DEG;
+}
+
+void get_data(double *req_data)
+{
+    memcpy(req_data, TP_data, sizeof(double)*data_cnt);
+}
+
+void set_flag(bool in_flag){
+    if (!in_flag){
+        err_vel_accum = 0;
+        err_vel_prev = 0;
+    }
+    else{
+        crbapi::set_rs485_pdo_communication(0);
+
+        int index[2] = {sdoIndexOperatingMode, sdoIndexGoalVel};
+        unsigned long data[2] = {1, 0};
+        capp->setSDO(0, index, 1, data);
+
+        crbapi::set_rs485_pdo_communication(1);
+    }
+    capp->setServoOn(in_flag);
+    flag = in_flag;
+}
+
+void set_gain(){
+    crbapi::set_rs485_pdo_communication(0);
+
+    int sdoIndex[15] = {0x03160020, 0x031A0020, 0x031E0020, 0x03220020, 0x03260020,
+                        0x032A0020, 0x032E0020, 0x03320020, 0x03360020, 0x033A0020,
+                        0x033E0020, 0x03420020, 0x03460020, 0x034A0020, 0x034E0020};
+    unsigned long sdoSetData[15] = {0,};
+
+    capp->setSDO(0, sdoIndex, 15, sdoSetData);
+
+    crbapi::set_rs485_pdo_communication(1);
+}
+
+void get_gain(unsigned long *rdata){
+    crbapi::set_rs485_pdo_communication(0);
+
+    int sdoIndex[15] = {0x03160020, 0x031A0020, 0x031E0020, 0x03220020, 0x03260020,
+                        0x032A0020, 0x032E0020, 0x03320020, 0x03360020, 0x033A0020,
+                        0x033E0020, 0x03420020, 0x03460020, 0x034A0020, 0x034E0020};
+    unsigned long sdoGetData[15] = {0,};
+
+    capp->getSDO(0, sdoIndex, 15, sdoGetData);
+
+    for (int i = 0; i < 15; i++){
+        rdata[i] = sdoGetData[i];
+    }
+
+    crbapi::set_rs485_pdo_communication(1);
+}
+
+void set_turn_on(){
+    turn_on = true;
+    turn_off = false;
+    sdoSetData = 0;
+}
+
+void set_turn_off(){
+    turn_on = false;
+    turn_off = true;
+    sdoSetData = 0;
 }
