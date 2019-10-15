@@ -2,53 +2,44 @@
 #define VARIABLES_H
 
 
-#include "dob.h"
+#include "robotarm.h"
 #include "cuiapi.h"
 
-static int naxis;
-static short tor_1 = 0;
-static long int enc1 = 0, enc2 = 0, pos = 0, vel = 0, enc_diff = 0;
-static short torque_value[6] ={0,}; // sea torque value
-static long torque_mode[6] = {0,}; // 0 = sea position mode, 1 = sea torque mode
-static short get_torque_value[6] = {0,};
+#include <math.h>
 
-static double ENC2DEG = 360.0/262143.0;
-static double DEG2RAD = M_PI/180.0;
-static double RAD2DEG = 180.0/M_PI;
-static double VEL2RPM = 0.01;
-static double RPM2DEG = 6;
-
-//static double dob_pos[1] = {0,}, dob_vel[1] = {0,}, dob_tor[1] = {0,};
-static int collision[1] = {0,};
-static DOB dob(1);
-//static double K = 0;
-
-static double diff = 0, diff_ang = 0, diff_rad = 0;
-static double torque_cal = 0;
-static double pos_deg = 0, pos_rad = 0;
-static double vel_deg = 0, vel_rad = 0, vel_rpm = 0;
-static double actual_torque = 0, k = 696.602;
-const int data_cnt = 5;
-static double TP_data[data_cnt] = {0,};
-static double des_vel = 5*RPM2DEG*DEG2RAD, err_vel = 0, err_vel_accum = 0, err_vel_prev = 0, h = 0.002;
-static double Kp_vel = 9000, Kd_vel = 0, Ki_vel = 100;
-static double T_control = 0;
 static bool flag = false;
-
-static int sdoIndex = 0;
-static unsigned long sdoSetData = 0;
-static unsigned long sdoGetData = 0;
-static unsigned long goal_vel = 2700; // [0.01 RPM]
+static bool turn_on = false, turn_off = false;
+static int delay = 0;
 
 static CUIApp* capp = CUIApp::getInstance();
 
+static unsigned long sdoSetData = 0;
 static int sdoIndexGoalVel = 0x02280020;
-static int sdoIndexTorqueEnable = 0x02000008;
 static int sdoIndexOperatingMode = 0x000b0008;
-static long sdoSetDataGoalVel = 2700;
 
-static bool turn_on = false, turn_off = false;
+static unsigned long goal_vel = 2700; // [0.01 RPM]
 
-static int delay = 0;
+static long int enc1 = 0, enc2 = 0, pos = 0, vel = 0, enc_diff = 0;
+static double diff = 0;
+
+static double ENC2DEG = 360.0/262143.0;
+static double DEG2RAD = M_PI/180.0;
+//static double RAD2DEG = 180.0/M_PI;
+static double VEL2RPM = 0.01;
+static double RPM2DEG = 6;
+
+static double actual_torque = 0, k = 1100/*696.602*/, r_hat = 0, r_hat_filter = 0;
+static double pos_rad = 0, offset = 38.139, vel_rad = 0;
+
+static RobotArm robot(2,1);
+
+static const int data_cnt = 5;
+static const unsigned int max_indx = 600;
+static unsigned int indx;
+struct TP_data{
+    unsigned int indx;
+    double pos, vel, tor, r_hat, r_hat_filter;
+};
+static TP_data tpData[max_indx];
 
 #endif // VARIABLES_H

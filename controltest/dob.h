@@ -16,41 +16,6 @@ inline void tilde(double *a, double *b) {
     *(b++) = -a[1];	*(b++) = a[0];	*(b++) = 0;
 }
 
-inline void ang2mat(double ang_z1, double ang_x, double ang_z2, double *mat, bool deg_flag = true){
-    double z1, x, z2;
-    if (deg_flag){
-        z1 = ang_z1*M_PI/180.0;
-        x = ang_x*M_PI/180.0;
-        z2 = ang_z2*M_PI/180.0;
-    }
-    else{
-        z1 = ang_z1;
-        x = ang_x;
-        z2 = ang_z2;
-    }
-
-    double Rz1[9] = {cos(z1), -sin(z1), 0, sin(z1), cos(z1), 0, 0, 0, 1};
-    double Rx[9] = {1, 0, 0, 0, cos(x), -sin(x), 0, sin(x), cos(x)};
-    double Rz2[9] = {cos(z2), -sin(z2), 0, sin(z2), cos(z2), 0, 0, 0, 1};
-    double Rz1Rx[9] = {0,};
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            for(int k = 0; k < 3; k++){
-                Rz1Rx[i*3+j] += Rz1[i*3+k]*Rx[k*3+j];
-            }
-        }
-    }
-
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            mat[i*3+j] = 0;
-            for(int k = 0; k < 3; k++){
-                mat[i*3+j] += Rz1Rx[i*3+k]*Rz2[k*3+j];
-            }
-        }
-    }
-}
-
 class Body
 {
 public:
@@ -81,7 +46,8 @@ public:
     double des_vel, err_vel, err_vel_accum, err_vel_prev, T_control, T_control_vel, Kp_vel, Ki_vel, Kd_vel;
     // Residual
     double Tg, Tc, alpha;
-    double r_hat, K, p, Ta, yp, y, tor;
+    double r_hat, K, p, Ta, Td, yp;
+    double tor;
     double NThreshold, PThreshold;
 };
 
@@ -112,7 +78,10 @@ inline Body::Body(){
     K = 0;
     p = 0;
     Ta = 0;
+    Td = 0;
     yp = 0;
+
+    tor = 0;
 
     NThreshold = -999;
     PThreshold = 999;

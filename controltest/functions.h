@@ -11,7 +11,7 @@ extern long int get_vel();
 extern double get_pos_deg();
 extern double get_vel_rpm();
 extern double get_vel_deg();
-extern void get_data(double *req_data);
+extern void get_data(double *req_data, unsigned int *data_size);
 extern void set_flag(bool in_flag);
 extern void set_gain();
 extern void get_gain(unsigned long *rdata);

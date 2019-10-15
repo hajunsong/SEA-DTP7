@@ -4,6 +4,8 @@
  *
  */
 #include <stdio.h>
+#include <memory.h>
+#include <string.h>
 
 #include "crbtype.h"
 #include "crbapi.h"
@@ -36,7 +38,6 @@ void* cui_get_subwidget()
 
 int cx_cmdtor()
 {
-
     if (flag){
         if (turn_on){
             if (delay == 0){
@@ -56,90 +57,55 @@ int cx_cmdtor()
             sdoSetData = 0;
 
             turn_off = false;
-            flag = false;
         }
 
         delay++;
-        if (delay >= 1000){
+        if (delay >= 1000 && sdoSetData < 2200){
             delay = 0;
         }
 
-        crbapi::get_current_first_encoder(0, &enc1, 1);
-        crbapi::get_current_second_encoder(0, &enc2, 1);
+//        crbapi::get_current_first_encoder(0, &enc1, 1);
+//        crbapi::get_current_second_encoder(0, &enc2, 1);
         crbapi::get_user_input1(0, &enc_diff, 1);
         crbapi::get_cur_enc(0, &pos);
         crbapi::get_cur_velocity(0, &vel, 1);
 
         diff = enc_diff*ENC2DEG*DEG2RAD;
-        actual_torque = k*diff*ENC2DEG*DEG2RAD;
-        pos_rad = pos*ENC2DEG*DEG2RAD;
-        vel_rad = vel*ENC2DEG*DEG2RAD;
+        actual_torque = k*diff;
+        pos_rad = (pos*ENC2DEG - offset)*DEG2RAD;
+        vel_rad = vel*VEL2RPM*RPM2DEG*DEG2RAD;
 
-        dob.run(&pos_rad, &vel_rad, &antual_torque, collision);
+        robot.run_DOB_DTP(&pos_rad, &vel_rad, &actual_torque, &r_hat, &r_hat_filter);
+
+        tpData[indx].indx = indx;
+        tpData[indx].pos = pos_rad;
+        tpData[indx].vel = vel_rad;
+        tpData[indx].tor = actual_torque;
+        tpData[indx].r_hat = r_hat;
+        tpData[indx].r_hat_filter = r_hat_filter;
+
+        indx++;
+        if (indx >= max_indx) indx = max_indx - 1;
+
+        if (r_hat_filter > 0.17) set_turn_off();
     }
 }
 
-void set_torque(short value)
+void get_data(double *req_data, uint *data_size)
 {
-    tor_1 = value;
-}
-
-void set_torque_mode(long value){
-    torque_mode[0] = value;
-}
-
-short get_torque()
-{
-    return get_torque_value[0];
-}
-
-double get_torque_cal(){
-    return torque_cal;
-}
-
-long int get_enc1(){
-    return enc1;
-}
-
-long int get_enc2(){
-    return enc2;
-}
-
-long int get_enc_diff(){
-    return enc_diff;//enc1/75 - enc2;
-}
-
-long int get_pos(){
-    return pos;
-}
-
-double get_pos_deg(){
-    return pos*ENC2DEG;
-}
-
-long int get_vel(){
-    return vel;
-}
-
-double get_vel_rpm(){
-    return vel*VEL2RPM;
-}
-
-double get_vel_deg(){
-    return vel*VEL2RPM*RPM2DEG;
-}
-
-void get_data(double *req_data)
-{
-    memcpy(req_data, TP_data, sizeof(double)*data_cnt);
+    *data_size = indx;
+    for(uint i =0; i < *data_size; i++){
+        req_data[i*5 + 0] = tpData[i].pos;
+        req_data[i*5 + 1] = tpData[i].vel;
+        req_data[i*5 + 2] = tpData[i].tor;
+        req_data[i*5 + 3] = tpData[i].r_hat;
+        req_data[i*5 + 4] = tpData[i].r_hat_filter;
+    }
+    indx = 0;
 }
 
 void set_flag(bool in_flag){
-    if (!in_flag){
-        err_vel_accum = 0;
-        err_vel_prev = 0;
-    }
-    else{
+    if (in_flag){
         crbapi::set_rs485_pdo_communication(0);
 
         int index[2] = {sdoIndexOperatingMode, sdoIndexGoalVel};

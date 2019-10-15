@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "functions.h"
 #include "cuiapi.h"
+#include "functions.h"
 
 namespace Ui {
 class Form;
@@ -36,16 +36,11 @@ private:
     Ui::Form *ui;
     QTimer *timer;
 
-    long int enc1, enc2, pos, vel, enc_diff;
-    long tor;
-    double pos_deg, vel_rpm, vel_deg;
-    short tor_interval;
-    double torque;
-    bool up_flag, down_flag, interval_up_flag, interval_down_flag;
-    short tick;
-
-    double TP_data[5];
     bool flag;
+    double data[600*4];
+    unsigned int indx;
+
+    FILE *fp;
 };
 
 #endif // FORM_H

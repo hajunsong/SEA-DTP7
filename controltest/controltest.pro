@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui widgets
+QT += core gui
 
 TEMPLATE = lib
 CONFIG += plugin
@@ -29,13 +29,13 @@ INCLUDEPATH += ../coreDev/cui/include/ \
 SOURCES += \
     form.cpp \
     connectmain.cpp \
-    dob.cpp
+    robotarm.cpp
 
 HEADERS +=\
         ../coreDev/crobot/include/crbtype.h\
         ../coreDev/cui/include/cuiapi.h\
         form.h \
-        dob.h \
+        robotarm.h \
         functions.h \
         variables.h
 
