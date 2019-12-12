@@ -31,14 +31,17 @@ private slots:
     void btnGetGainClicked();
     void btnTurnOnClicked();
     void btnTurnOffClicked();
+    void btnUpClicked();
+	void btnDownClicked();
 
 private:
     Ui::Form *ui;
     QTimer *timer;
 
     bool flag;
-    double data[600*4];
+	double data[600*6];
     unsigned int indx;
+	long value;
 
     FILE *fp;
 };

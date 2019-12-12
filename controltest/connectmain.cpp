@@ -38,84 +38,112 @@ void* cui_get_subwidget()
 
 int cx_cmdtor()
 {
-    if (flag){
-        if (turn_on){
-            if (delay == 0){
-                crbapi::set_rs485_pdo_communication(0);
 
-                sdoSetData += 500;
-                sdoSetData = sdoSetData > goal_vel ? goal_vel : sdoSetData;
+//    if (flag){
+//        if (turn_on){
+//            if (delay == 0){
+//                crbapi::set_rs485_pdo_communication(0);
 
-                capp->setSDO(0, &sdoIndexGoalVel, 1, &sdoSetData);
+//                sdoSetData += 500;
+//                sdoSetData = sdoSetData > goal_vel ? goal_vel : sdoSetData;
 
-                crbapi::set_rs485_pdo_communication(1);
-            }
-        }
+//                capp->setSDO(0, &sdoIndexGoalVel, 1, &sdoSetData);
 
-        if (turn_off){
-            capp->setServoOn(false);
-            sdoSetData = 0;
+//                crbapi::set_rs485_pdo_communication(1);
+//            }
+//        }
 
-            turn_off = false;
-        }
+//        if (turn_off){
+//            capp->setServoOn(false);
+//            sdoSetData = 0;
 
-        delay++;
-        if (delay >= 1000 && sdoSetData < 2200){
-            delay = 0;
-        }
+//            turn_off = false;
+//        }
 
-//        crbapi::get_current_first_encoder(0, &enc1, 1);
-//        crbapi::get_current_second_encoder(0, &enc2, 1);
-        crbapi::get_user_input1(0, &enc_diff, 1);
-        crbapi::get_cur_enc(0, &pos);
-        crbapi::get_cur_velocity(0, &vel, 1);
+//        delay++;
+//        if (delay >= 1000 && sdoSetData < 2200){
+//            delay = 0;
+//        }
 
-        diff = enc_diff*ENC2DEG*DEG2RAD;
-        actual_torque = k*diff;
-        pos_rad = (pos*ENC2DEG - offset)*DEG2RAD;
-        vel_rad = vel*VEL2RPM*RPM2DEG*DEG2RAD;
+////        crbapi::get_current_first_encoder(0, &enc1, 1);
+////        crbapi::get_current_second_encoder(0, &enc2, 1);
+//        crbapi::get_user_input1(0, &enc_diff, 1);
+//        crbapi::get_cur_enc(0, &pos);
+//        crbapi::get_cur_velocity(0, &vel, 1);
 
-        robot.run_DOB_DTP(&pos_rad, &vel_rad, &actual_torque, &r_hat, &r_hat_filter);
+//        diff = enc_diff*ENC2DEG*DEG2RAD;
+//        actual_torque = k*diff;
+//        pos_rad = (pos*ENC2DEG - offset)*DEG2RAD;
+//        vel_rad = vel*VEL2RPM*RPM2DEG*DEG2RAD;
 
-        tpData[indx].indx = indx;
-        tpData[indx].pos = pos_rad;
-        tpData[indx].vel = vel_rad;
-        tpData[indx].tor = actual_torque;
-        tpData[indx].r_hat = r_hat;
-        tpData[indx].r_hat_filter = r_hat_filter;
+//        robot.run_DOB_DTP(&pos_rad, &vel_rad, &actual_torque, &r_hat, &r_hat_filter);
 
-        indx++;
-        if (indx >= max_indx) indx = max_indx - 1;
+//        tpData[indx].indx = indx;
+//        tpData[indx].pos = pos_rad;
+//        tpData[indx].vel = vel_rad;
+//        tpData[indx].tor = actual_torque;
+//        tpData[indx].r_hat = r_hat;
+//        tpData[indx].r_hat_filter = r_hat_filter;
 
-        if (r_hat_filter > 0.17) set_turn_off();
-    }
+//        indx++;
+//        if (indx >= max_indx) indx = max_indx - 1;
+
+//        if (r_hat_filter > 0.17) set_turn_off();
+//    }
+
+	if (flag){
+		crbapi::get_user_input1(0, &enc_diff, 1);
+		crbapi::get_cur_enc(0, &pos);
+		crbapi::get_cur_velocity(0, &vel, 1);
+
+		diff = enc_diff*ENC2DEG*DEG2RAD;
+		actual_torque = k*diff;
+		pos_rad = (pos*ENC2DEG - offset)*DEG2RAD;
+		vel_rad = vel*VEL2RPM*RPM2DEG*DEG2RAD;
+
+		robot.run_DOB_DTP(&pos_rad, &vel_rad, &actual_torque, &r_hat, &r_hat_filter);
+
+		tpData[indx].indx = indx;
+		tpData[indx].pos = pos_rad;
+		tpData[indx].vel = vel_rad;
+		tpData[indx].tor = actual_torque;
+		tpData[indx].r_hat = r_hat;
+		tpData[indx].r_hat_filter = r_hat_filter;
+
+		tpData[indx].value = value;
+
+		indx++;
+
+		if (indx >= max_indx) indx = max_indx - 1;
+	}
 }
 
 void get_data(double *req_data, uint *data_size)
 {
     *data_size = indx;
     for(uint i =0; i < *data_size; i++){
-        req_data[i*5 + 0] = tpData[i].pos;
-        req_data[i*5 + 1] = tpData[i].vel;
-        req_data[i*5 + 2] = tpData[i].tor;
-        req_data[i*5 + 3] = tpData[i].r_hat;
-        req_data[i*5 + 4] = tpData[i].r_hat_filter;
+		req_data[i*6 + 0] = tpData[i].pos;
+		req_data[i*6 + 1] = tpData[i].vel;
+		req_data[i*6 + 2] = tpData[i].tor;
+		req_data[i*6 + 3] = tpData[i].r_hat;
+		req_data[i*6 + 4] = tpData[i].r_hat_filter;
+		req_data[i*6 + 5] = tpData[i].value;
     }
     indx = 0;
 }
 
 void set_flag(bool in_flag){
-    if (in_flag){
-        crbapi::set_rs485_pdo_communication(0);
+//    if (in_flag){
+//        crbapi::set_rs485_pdo_communication(0);
 
-        int index[2] = {sdoIndexOperatingMode, sdoIndexGoalVel};
-        unsigned long data[2] = {1, 0};
-        capp->setSDO(0, index, 1, data);
+//        int index[2] = {sdoIndexOperatingMode, sdoIndexGoalVel};
+//        unsigned long data[2] = {1, 0};
+//        capp->setSDO(0, index, 1, data);
 
-        crbapi::set_rs485_pdo_communication(1);
-    }
-    capp->setServoOn(in_flag);
-    flag = in_flag;
+//        crbapi::set_rs485_pdo_communication(1);
+//    }
+	capp->setServoOn(in_flag);
+	flag = in_flag;
 }
 
 void set_gain(){
@@ -158,4 +186,27 @@ void set_turn_off(){
     turn_on = false;
     turn_off = true;
     sdoSetData = 0;
+}
+
+void set_torque_mode(){
+    mode = 1;
+    crbapi::set_user_output2(0, &mode, 1);
+}
+
+void set_up(){
+    value += 500;
+    crbapi::set_user_output1(0, &value, 1);
+}
+
+void set_down(){
+    value -= 500;
+    crbapi::set_user_output1(0, &value, 1);
+}
+
+void get_value(long *get_value){
+    *get_value = value;
+}
+
+void get_servo(bool *status){
+	*status = capp->getServoOn();
 }

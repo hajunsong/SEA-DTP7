@@ -19,16 +19,19 @@ Form::Form(QWidget *parent) : QWidget(parent), ui(new Ui::Form)
     timer->setInterval(200);
     timer->start();
 
-    connect(ui->btnStart, SIGNAL(clicked()), this, SLOT(btnStartClicked()));
-    connect(ui->btnStop, SIGNAL(clicked()), this, SLOT(btnStopClicked()));
+	connect(ui->btnStart, SIGNAL(clicked()), this, SLOT(btnStartClicked()));
+	connect(ui->btnStop, SIGNAL(clicked()), this, SLOT(btnStopClicked()));
 
-    connect(ui->btnSetGain, SIGNAL(clicked()), this, SLOT(btnSetGainClicked()));
-    connect(ui->btnGetGain, SIGNAL(clicked()), this, SLOT(btnGetGainClicked()));
+	connect(ui->btnSetGain, SIGNAL(clicked()), this, SLOT(btnSetGainClicked()));
+	connect(ui->btnGetGain, SIGNAL(clicked()), this, SLOT(btnGetGainClicked()));
 
-    connect(ui->btnTurnOn, SIGNAL(clicked()), this, SLOT(btnTurnOnClicked()));
-    connect(ui->btnTurnOff, SIGNAL(clicked()), this, SLOT(btnTurnOffClicked()));
+	connect(ui->btnTurnOn, SIGNAL(clicked()), this, SLOT(btnTurnOnClicked()));
+	connect(ui->btnTurnOff, SIGNAL(clicked()), this, SLOT(btnTurnOffClicked()));
 
-    flag = false;
+	connect(ui->btnUp, SIGNAL(clicked()), this, SLOT(btnUpClicked()));
+	connect(ui->btnDown, SIGNAL(clicked()), this, SLOT(btnDownClicked()));
+
+	flag = false;
 }
 
 Form::~Form()
@@ -37,21 +40,24 @@ Form::~Form()
 }
 
 void Form::timeout(){
-    get_data(data, &indx);
 
-    if (flag){
-        for(uint i = 0; i < indx; i++){
-            fprintf(fp, "%d\t%f\t%f\t%f\t%f\t%f\n", indx, data[i*5+0], data[i*5+1], data[i*5+2], data[i*5+3], data[i*5+4]);
-        }
-    }
+	if (flag){
+		get_data(data, &indx);
+//		get_value(&value);
+		for(uint i = 0; i < indx; i++){
+			fprintf(fp, "%d\t%f\t%f\t%f\t%f\t%f\t%f\n", indx, data[i*6+0], data[i*6+1], data[i*6+2], data[i*6+3], data[i*6+4], data[i*6+5]);
+			printf("%f\n",  data[i*6+5]);
+		}
+	}
 }
 
 void Form::btnStartClicked()
 {
-    set_flag(true);
-    flag = true;
+	set_flag(true);
+	flag = true;
 
-    fp = fopen("/mnt/mtd5/KETI_data.txt", "w+");
+	fp = fopen("/mnt/mtd5/KETI_data.txt", "w+");
+	set_torque_mode();
 }
 
 void Form::btnStopClicked()
@@ -85,4 +91,12 @@ void Form::btnTurnOnClicked()
 void Form::btnTurnOffClicked()
 {
     set_turn_off();
+}
+
+void Form::btnUpClicked(){
+    set_up();
+}
+
+void Form::btnDownClicked(){
+	set_down();
 }

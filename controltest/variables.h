@@ -39,7 +39,10 @@ static unsigned int indx;
 struct TP_data{
     unsigned int indx;
     double pos, vel, tor, r_hat, r_hat_filter;
+	long value;
 };
 static TP_data tpData[max_indx];
+static long mode = 0;
+static long value = 0;
 
 #endif // VARIABLES_H

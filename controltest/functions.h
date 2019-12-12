@@ -17,3 +17,8 @@ extern void set_gain();
 extern void get_gain(unsigned long *rdata);
 extern void set_turn_on();
 extern void set_turn_off();
+extern void set_up();
+extern void set_down();
+extern void get_value(long *get_value);
+extern void set_torque_mode();
+extern void get_servo(bool *status);
