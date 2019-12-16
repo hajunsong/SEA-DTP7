@@ -24,14 +24,14 @@ public:
     ~Form();
     
 private slots:
-    void timeout();
-    void btnStartClicked();
-    void btnStopClicked();
-    void btnSetGainClicked();
-    void btnGetGainClicked();
-    void btnTurnOnClicked();
-    void btnTurnOffClicked();
-    void btnUpClicked();
+	void timeout();
+	void btnStartClicked();
+	void btnStopClicked();
+	void btnSetGainClicked();
+	void btnGetGainClicked();
+	void btnTurnOnClicked();
+	void btnTurnOffClicked();
+	void btnUpClicked();
 	void btnDownClicked();
 
 private:

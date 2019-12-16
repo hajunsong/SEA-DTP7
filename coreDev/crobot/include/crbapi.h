@@ -1,8 +1,11 @@
 #ifndef __CRBAPI_H__
 #define __CRBAPI_H__	1
-#include "crbtype.h"
-#define DLL_EXPORT __attribute__ ((visibility ("default")))
 
+#ifdef X86VC
+#define DLL_EXPORT __declspec(dllexport)
+#else
+#define DLL_EXPORT __attribute__ ((visibility ("default")))
+#endif
 
 class DLL_EXPORT  crbapi
 {
@@ -62,6 +65,20 @@ public:
 
     static int set_rs485_pdo_communication(int value); // 0 == stop , 1 == communication start
     static int get_rs485_pdo_communication();  // 0 == stop , 1 == communication start
+
+    static int set_control_mode(int value);
+    static int get_control_mode();
+
+    static int set_user_output4(int id, long* output4, int naxis);
+    static int set_user_output5(int id, long* output5, int naxis);
+
+    static int set_control_coordinate(int value);
+    static int get_control_coordinate();
+
+    //collision in 485_system
+    static int set_collision_array(int id, int* value, int count); // value input pointer, count = array count and under 20
+    static void get_collision_array(int id, int* value, int count); // value output pointer, count = array count and under 20
+
 
 
 };

@@ -29,13 +29,11 @@ INCLUDEPATH += ../coreDev/cui/include/ \
 SOURCES += \
     form.cpp \
     connectmain.cpp \
-    robotarm.cpp
 
 HEADERS +=\
         ../coreDev/crobot/include/crbtype.h\
         ../coreDev/cui/include/cuiapi.h\
         form.h \
-        robotarm.h \
         functions.h \
         variables.h
 
