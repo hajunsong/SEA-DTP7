@@ -1,46 +1,54 @@
 #include "robotarm.h"
 
-#include "robotarm.h"
+RobotArm::Body::Body(){}
 
-Body::Body(){}
+RobotArm::Body::~Body(){}
 
-Body::~Body(){}
-
-void Body::ang2mat(double ang_z1, double ang_x, double ang_z2, double *mat, bool deg_flag)
+void RobotArm::ang2mat(double ang_z1, double ang_x, double ang_z2, double *mat, bool deg_flag)
 {
-	double z1, x, z2;
-	if (deg_flag){
-		z1 = ang_z1*M_PI/180.0;
-		x = ang_x*M_PI/180.0;
-		z2 = ang_z2*M_PI/180.0;
-	}
-	else{
-		z1 = ang_z1;
-		x = ang_x;
-		z2 = ang_z2;
-	}
+    double z1, x, z2;
+    if (deg_flag){
+        z1 = ang_z1*M_PI/180.0;
+        x = ang_x*M_PI/180.0;
+        z2 = ang_z2*M_PI/180.0;
+    }
+    else{
+        z1 = ang_z1;
+        x = ang_x;
+        z2 = ang_z2;
+    }
 
-	double Rz1[9] = {cos(z1), -sin(z1), 0, sin(z1), cos(z1), 0, 0, 0, 1};
-	double Rx[9] = {1, 0, 0, 0, cos(x), -sin(x), 0, sin(x), cos(x)};
-	double Rz2[9] = {cos(z2), -sin(z2), 0, sin(z2), cos(z2), 0, 0, 0, 1};
-	double Rz1Rx[9] = {0,};
-	for(int i = 0; i < 3; i++){
-		for(int j = 0; j < 3; j++){
-			for(int k = 0; k < 3; k++){
-				Rz1Rx[i*3+j] += Rz1[i*3+k]*Rx[k*3+j];
-			}
-		}
-	}
+    Rz1[0] = cos(z1);   Rz1[1] = -sin(z1);  Rz1[2] = 0;
+    Rz1[0] = sin(z1);   Rz1[1] =  cos(z1);  Rz1[2] = 0;
+    Rz1[0] = 0;         Rz1[1] = 0;         Rz1[2] = 1;
 
-	for(int i = 0; i < 3; i++){
-		for(int j = 0; j < 3; j++){
-			mat[i*3+j] = 0;
-			for(int k = 0; k < 3; k++){
-				mat[i*3+j] += Rz1Rx[i*3+k]*Rz2[k*3+j];
-			}
-		}
-	}
+    Rx[0] = 1;          Rx[1] = cos(x);     Rx[2] = -sin(x);
+    Rx[0] = 0;          Rx[1] = sin(x);     Rx[2] = cos(x);
+    Rx[0] = 0;          Rx[1] = 0;          Rx[2] = 1;
+
+    Rz2[0] = cos(z2);   Rz2[1] = -sin(z2);  Rz2[2] = 0;
+    Rz2[0] = sin(z2);   Rz2[1] =  cos(z2);  Rz2[2] = 0;
+    Rz2[0] = 0;         Rz2[1] = 0;         Rz2[2] = 1;
+
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            Rz1Rx[i*3+j] = 0;
+            for(int k = 0; k < 3; k++){
+                Rz1Rx[i*3+j] += Rz1[i*3+k]*Rx[k*3+j];
+            }
+        }
+    }
+
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            mat[i*3+j] = 0;
+            for(int k = 0; k < 3; k++){
+                mat[i*3+j] += Rz1Rx[i*3+k]*Rz2[k*3+j];
+            }
+        }
+    }
 }
+
 
 void RobotArm::mat(double *mat_1, double *mat_2, uint row_1, uint col_1, uint row_2, uint col_2, double *mat_3){
 	if (col_1 != row_2){
@@ -48,14 +56,12 @@ void RobotArm::mat(double *mat_1, double *mat_2, uint row_1, uint col_1, uint ro
 		return;
 	}
 
-	double temp;
 	for(uint i = 0; i < row_1; i++){
 		for(uint j = 0; j < col_2; j++){
-			temp = 0;
+			mat_3[i*col_2 + j] = 0;
 			for(uint k = 0; k < row_2; k++){
-				temp += mat_1[i*col_1 + k]*mat_2[k*col_2 + j];
+				mat_3[i*col_2 + j] += mat_1[i*col_1 + k]*mat_2[k*col_2 + j];
 			}
-			mat_3[i*col_2 + j] = temp;
 		}
 	}
 }
@@ -66,36 +72,10 @@ void RobotArm::mat(double *mat_1, double *vec_2, uint row_1, uint col_1, uint ro
 		return;
 	}
 
-	double temp;
 	for(uint i = 0; i < row_1; i++){
-		temp = 0;
+		vec_3[i] = 0;
 		for(uint j = 0; j < row_2; j++){
-			temp += mat_1[i*col_1 + j]*vec_2[j];
-		}
-		vec_3[i] = temp;
-	}
-}
-
-void RobotArm::rpy2mat(double yaw, double pitch, double roll, double *mat)
-{
-	double R_yaw[9] = {cos(yaw), -sin(yaw), 0, sin(yaw), cos(yaw), 0, 0, 0, 1};
-	double R_pitch[9] = {cos(pitch), 0, sin(pitch), 0, 1, 0, -sin(pitch), 0, cos(pitch)};
-	double R_roll[9] = {1, 0, 0, 0, cos(roll), -sin(roll), 0, sin(roll), cos(roll)};
-	double R_yaw_R_pitch[9] = {0,};
-	for(int i = 0; i < 3; i++){
-		for(int j = 0; j < 3; j++){
-			for(int k = 0; k < 3; k++){
-				R_yaw_R_pitch[i*3+j] += R_yaw[i*3+k]*R_pitch[k*3+j];
-			}
-		}
-	}
-
-	for(int i = 0; i < 3; i++){
-		for(int j = 0; j < 3; j++){
-			mat[i*3+j] = 0;
-			for(int k = 0; k < 3; k++){
-				mat[i*3+j] += R_yaw_R_pitch[i*3+k]*R_roll[k*3+j];
-			}
+			vec_3[i] += mat_1[i*col_1 + j]*vec_2[j];
 		}
 	}
 }
@@ -143,7 +123,7 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	memset(body[0].wi, 0, sizeof(double)*3);
 	memset(body[0].wit, 0, sizeof(double)*9);
 
-	Body::ang2mat(0, 0, 0, body[0].Cij);
+	ang2mat(0, 0, 0, body[0].Cij);
 	body[0].sijp[0] = 0; body[0].sijp[1] = 0; body[0].sijp[2] = 0;
 
 	body[0].ri_dot[0] = 0; body[0].ri_dot[1] = 0; body[0].ri_dot[2] = 0;
@@ -152,10 +132,10 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[0].u_vec[0] = 0; body[0].u_vec[1] = 0; body[0].u_vec[2] = 1;
 
 	// body 1 variables
-	Body::ang2mat(DH[0*4+3], DH[0*4+0], 0, body[1].Cij);
+	ang2mat(DH[0*4+3], DH[0*4+0], 0, body[1].Cij);
 	body[1].sijp[0] = 0; body[1].sijp[1] = 0; body[1].sijp[2] = DH[0*4+2];
 
-	Body::ang2mat(0, 0, 0, body[1].Cii, false);
+	ang2mat(0, 0, 0, body[1].Cii, false);
 	body[1].rhoip[0] = -0.0180406; body[1].rhoip[1] = -6.2926e-8; body[1].rhoip[2] = 0.0757967;
 	body[1].mi = 11.9167793720014;
 	body[1].Ixx = 2.27610950850461e-002;
@@ -169,11 +149,21 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[1].Jip[6] = body[1].Izx; body[1].Jip[7] = body[1].Iyz; body[1].Jip[8] = body[1].Izz;
 	body[1].u_vec[0] = 0; body[1].u_vec[1] = 0; body[1].u_vec[2] = 1;
 
+	body[1].r_hat = 0;
+	body[1].y = 0;
+	body[1].yp = 0;
+	body[1].K = 100;
+	body[1].p_linear = 0;
+	body[1].p_rotate = 0;
+	body[1].p = 0;
+	body[1].y_old = 0;
+	body[1].yp_old = 0;
+
 	// body 2 variables
-	Body::ang2mat(DH[1*4+3], DH[1*4+0], 0, body[2].Cij);
+	ang2mat(DH[1*4+3], DH[1*4+0], 0, body[2].Cij);
 	body[2].sijp[0] = 0; body[2].sijp[1] = DH[1*4+1]; body[2].sijp[2] = 0;
 
-	Body::ang2mat(M_PI, M_PI_2, M_PI_2, body[2].Cii, false);
+	ang2mat(M_PI, M_PI_2, M_PI_2, body[2].Cii, false);
 	body[2].rhoip[0] = -2.057e-10; body[2].rhoip[1] = 0.207743; body[2].rhoip[2] = 0.0923849;
 	body[2].mi = 5.91522581064282;
 	body[2].Ixx = 0.150219939704306;
@@ -187,11 +177,21 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[2].Jip[6] = body[2].Izx; body[2].Jip[7] = body[2].Iyz; body[2].Jip[8] = body[2].Izz;
 	body[2].u_vec[0] = 0; body[2].u_vec[1] = 0; body[2].u_vec[2] = 1;
 
+	body[2].r_hat = 0;
+	body[2].y = 0;
+	body[2].yp = 0;
+	body[2].K = 100;
+	body[2].p_linear = 0;
+	body[2].p_rotate = 0;
+	body[2].p = 0;
+	body[2].y_old = 0;
+	body[2].yp_old = 0;
+
 	// body 3 variables
-	Body::ang2mat(DH[2*4+3], DH[2*4+0], 0, body[3].Cij);
+	ang2mat(DH[2*4+3], DH[2*4+0], 0, body[3].Cij);
 	body[3].sijp[0] = DH[2*4+1]; body[3].sijp[1] = 0; body[3].sijp[2] = 0;
 
-	Body::ang2mat(M_PI_2, M_PI_2, -M_PI_2, body[3].Cii, false);
+	ang2mat(M_PI_2, M_PI_2, -M_PI_2, body[3].Cii, false);
 	body[3].rhoip[0] = 0.215869; body[3].rhoip[1] = -2.23777e-6; body[3].rhoip[2] = 0.0100272;
 	body[3].mi = 15.7745199951742;
 	body[3].Ixx = 0.695197497551249;
@@ -205,11 +205,21 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[3].Jip[6] = body[3].Izx; body[3].Jip[7] = body[3].Iyz; body[3].Jip[8] = body[3].Izz;
 	body[3].u_vec[0] = 0; body[3].u_vec[1] = 0; body[3].u_vec[2] = 1;
 
+	body[3].r_hat = 0;
+	body[3].y = 0;
+	body[3].yp = 0;
+	body[3].K = 100;
+	body[3].p_linear = 0;
+	body[3].p_rotate = 0;
+	body[3].p = 0;
+	body[3].y_old = 0;
+	body[3].yp_old = 0;
+
 	// body 4 variables
-	Body::ang2mat(DH[3*4+3], DH[3*4+0], 0, body[4].Cij);
+	ang2mat(DH[3*4+3], DH[3*4+0], 0, body[4].Cij);
 	body[4].sijp[0] = 0; body[4].sijp[1] = 0; body[4].sijp[2] = DH[3*4+2];
 
-	Body::ang2mat(M_PI_2, M_PI_2, M_PI_2, body[4].Cii, false);
+	ang2mat(M_PI_2, M_PI_2, M_PI_2, body[4].Cii, false);
 	body[4].rhoip[0] = -0.0199333; body[4].rhoip[1] = -5.23401e-6; body[4].rhoip[2] = 0.101482;
 	body[4].mi = 6.7196578180871;
 	body[4].Ixx = 1.17459661570413e-002;
@@ -223,11 +233,21 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[4].Jip[6] = body[4].Izx; body[4].Jip[7] = body[4].Iyz; body[4].Jip[8] = body[4].Izz;
 	body[4].u_vec[0] = 0; body[4].u_vec[1] = 0; body[4].u_vec[2] = 1;
 
+	body[4].r_hat = 0;
+	body[4].y = 0;
+	body[4].yp = 0;
+	body[4].K = 100;
+	body[4].p_linear = 0;
+	body[4].p_rotate = 0;
+	body[4].p = 0;
+	body[4].y_old = 0;
+	body[4].yp_old = 0;
+
 	// body 5 variables
-	Body::ang2mat(DH[4*4+3], DH[4*4+0], 0, body[5].Cij);
+	ang2mat(DH[4*4+3], DH[4*4+0], 0, body[5].Cij);
 	body[5].sijp[0] = 0; body[5].sijp[1] = 0; body[5].sijp[2] = DH[4*4+2];
 
-	Body::ang2mat(-M_PI_2, 0, 0, body[5].Cii, false);
+	ang2mat(-M_PI_2, 0, 0, body[5].Cii, false);
 	body[5].rhoip[0] = -5.23401e-6; body[5].rhoip[1] = 0.0199333; body[5].rhoip[2] = 0.0951822;
 	body[5].mi = 6.71965781808711;
 	body[5].Ixx = 1.05565233283315e-002;
@@ -241,11 +261,21 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[5].Jip[6] = body[5].Izx; body[5].Jip[7] = body[5].Iyz; body[5].Jip[8] = body[5].Izz;
 	body[5].u_vec[0] = 0; body[5].u_vec[1] = 0; body[5].u_vec[2] = 1;
 
+	body[5].r_hat = 0;
+	body[5].y = 0;
+	body[5].yp = 0;
+	body[5].K = 100;
+	body[5].p_linear = 0;
+	body[5].p_rotate = 0;
+	body[5].p = 0;
+	body[5].y_old = 0;
+	body[5].yp_old = 0;
+
 	// body 6 variables
-	Body::ang2mat(DH[5*4+3], DH[5*4+0], 0, body[6].Cij);
+	ang2mat(DH[5*4+3], DH[5*4+0], 0, body[6].Cij);
 	body[6].sijp[0] = 0; body[6].sijp[1] = 0; body[6].sijp[2] = DH[5*4+2];
 
-	Body::ang2mat(M_PI, M_PI_2, M_PI_2, body[6].Cii, false);
+	ang2mat(M_PI, M_PI_2, M_PI_2, body[6].Cii, false);
 	body[6].rhoip[0] = -2e-15; body[6].rhoip[1] = 0.0649685; body[6].rhoip[2] = 0.0983587;
 	body[6].mi = 4.37437692243246;
 	body[6].Ixx = 9.77371282823288e-003;
@@ -258,198 +288,205 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[6].Jip[3] = body[6].Ixy; body[6].Jip[4] = body[6].Iyy; body[6].Jip[5] = body[6].Iyz;
 	body[6].Jip[6] = body[6].Izx; body[6].Jip[7] = body[6].Iyz; body[6].Jip[8] = body[6].Izz;
 	body[6].u_vec[0] = 0; body[6].u_vec[1] = 0; body[6].u_vec[2] = 1;
+
+	body[6].r_hat = 0;
+	body[6].y = 0;
+	body[6].yp = 0;
+	body[6].K = 100;
+	body[6].p_linear = 0;
+	body[6].p_rotate = 0;
+	body[6].p = 0;
+	body[6].y_old = 0;
+	body[6].yp_old = 0;
+
+	f_cut = 500;
+	memset(time_zone, 0, sizeof(double)*3);
+	filter_indx = 0;
 }
 
 RobotArm::~RobotArm() {
 }
 
-void RobotArm::run_DOB_DTP(double *qi, double *qi_dot, double *Ta, double *r_hat, int *collision){
-	for(int i = 0; i < 1; i++){
-		body[1].qi = qi[0];
-		body[1].qi_dot = qi_dot[0];
-		body[1].Ta = Ta[0];
+void RobotArm::run_DOB_DTP(double *qi, double *qi_dot, double *Ta, double *limit_p, double *limit_n, int *collision, double *r_hat){
+	for(int i = 0; i < 6; i++){
+		body[i + 1].qi = 0;//qi[i];
+		body[i + 1].qi_dot = 0;//qi_dot[i];
+		body[i + 1].Ta = 0;//Ta[i];
 	}
 
 	kinematics();
 	dynamics();
 	residual();
 
-	r_hat[0] = body[1].r_hat;
+	for(int i = 0; i < 6; i++){
+		r_hat[i] = 0;//body[i + 1].r_hat;
+	}
+
 	high_pass_filter(r_hat, time_zone, r_hat_filter, h);
 
 	for(unsigned int i = 0; i < num_body; i++){
-		r_hat[i] = r_hat_filter[i];
+		if (r_hat_filter[i] > limit_p[i] || r_hat_filter[i] < limit_n[i]){
+			collision[i] = 1;
+		}
+		else{
+			collision[i] = 0;
+		}
 	}
 
 	for(unsigned int i = 0; i < num_body; i++){
-		collision[i] = 1;
+		r_hat[i] = r_hat_filter[i];
+		collision[i] = static_cast<int>(r_hat_filter[i]*1000);
 	}
 }
 
 void RobotArm::kinematics()
 {
-	Body *body0, *body1;
 	for (uint indx = 1; indx <= num_body; indx++) {
-		body0 = &body[indx - 1];
-		body1 = &body[indx];
 		// orientation
-		double *Aijpp_ptr = body1->Aijpp;
-		*(Aijpp_ptr++) = cos(body1->qi);	*(Aijpp_ptr++) = -sin(body1->qi);	*(Aijpp_ptr++) = 0;
-		*(Aijpp_ptr++) = sin(body1->qi);	*(Aijpp_ptr++) = cos(body1->qi);	*(Aijpp_ptr++) = 0;
-		*(Aijpp_ptr++) = 0;					*(Aijpp_ptr++) = 0;					*(Aijpp_ptr++) = 1;
+		body[indx].Aijpp[0] = cos(body[indx].qi);	body[indx].Aijpp[1] = -sin(body[indx].qi);	body[indx].Aijpp[2] = 0;
+		body[indx].Aijpp[3] = sin(body[indx].qi);	body[indx].Aijpp[4] = cos(body[indx].qi);	body[indx].Aijpp[5] = 0;
+		body[indx].Aijpp[6] = 0;				body[indx].Aijpp[7] = 0;				body[indx].Aijpp[8] = 1;
 
-		mat(body0->Ai, body0->Cij, 3, 3, 3, 3, body1->Ai_Cij);
-		mat(body1->Ai_Cij, body1->Aijpp, 3, 3, 3, 3, body1->Ai);
-		mat(body1->Ai_Cij, body1->u_vec, 3, 3, 3, body1->zi);
+		mat(body[indx-1].Ai, body[indx-1].Cij, 3, 3, 3, 3, body[indx].Ai_Cij);
+		mat(body[indx].Ai_Cij, body[indx].Aijpp, 3, 3, 3, 3, body[indx].Ai);
+//		mat(body[indx].Ai_Cij, body[indx].u_vec, 3, 3, 3, body[indx].zi);
 
 		// position
-		mat(body0->Ai, body0->sijp, 3, 3, 3, body0->sij);
+		mat(body[indx-1].Ai, body[indx-1].sijp, 3, 3, 3, body[indx-1].sij);
 		for (uint i = 0; i < 3; i++){
-			body1->ri[i] = body0->ri[i] + body0->sij[i];
+			body[indx].ri[i] = body[indx-1].ri[i] + body[indx-1].sij[i];
 		}
 	}
 
 	// End point
-	Body *body_end = &body[num_body];
-	mat(body_end->Ai, body_end->sijp, 3, 3, 3, body_end->sij);
+//	body_end = &body[num_body];
+	mat(body[num_body].Ai, body[num_body].sijp, 3, 3, 3, body[num_body].sij);
 	for (uint i = 0; i < 3; i++){
-		body_end->re[i] = body_end->ri[i] + body_end->sij[i];
+		body[num_body].re[i] = body[num_body].ri[i] + body[num_body].sij[i];
 	}
 
-	mat(body_end->Ai, body_end->Cij, 3, 3, 3, 3, body_end->Ae);
+	mat(body[num_body].Ai, body[num_body].Cij, 3, 3, 3, 3, body[num_body].Ae);
 
-	mat2rpy(body_end->Ae, body_end->ori);
+	mat2rpy(body[num_body].Ae, body[num_body].ori);
 
-//    body_end->ori[0] = atan2(body_end->Ae[2 * 3 + 1], body_end->Ae[2 * 3 + 2]);
-//    body_end->ori[1] = atan2(-body_end->Ae[2 * 3 + 0], sqrt(pow(body_end->Ae[2 * 3 + 1], 2.0) + pow(body_end->Ae[2 * 3 + 2], 2.0)));
-//    body_end->ori[2] = atan2(body_end->Ae[1 * 3 + 0], body_end->Ae[0 * 3 + 0]);
+//    body[num_body].ori[0] = atan2(body[num_body].Ae[2 * 3 + 1], body[num_body].Ae[2 * 3 + 2]);
+//    body[num_body].ori[1] = atan2(-body[num_body].Ae[2 * 3 + 0], sqrt(pow(body[num_body].Ae[2 * 3 + 1], 2.0) + pow(body[num_body].Ae[2 * 3 + 2], 2.0)));
+//    body[num_body].ori[2] = atan2(body[num_body].Ae[1 * 3 + 0], body[num_body].Ae[0 * 3 + 0]);
 }
 
-void RobotArm::dynamics()
-{
-	Body *body0, *body1, *body2;
+void RobotArm::dynamics(){
 	for(uint indx = 1; indx <= num_body; indx++){
-		body1 = &body[indx];
-		body0 = &body[indx - 1];
 		// velocity state
-		mat(body1->Ai_Cij, body1->u_vec, 3, 3, 3, body1->Hi);
-		tilde(body1->ri, body1->rit);
-		mat(body1->rit, body1->Hi, 3, 3, 3, body1->Bi);
-		memcpy(body1->Bi + 3, body1->Hi, sizeof(double)*3);
+		mat(body[indx].Ai_Cij, body[indx].u_vec, 3, 3, 3, body[indx].Hi);
+		tilde(body[indx].ri, body[indx].rit);
+		mat(body[indx].rit, body[indx].Hi, 3, 3, 3, body[indx].Bi);
+		memcpy(body[indx].Bi + 3, body[indx].Hi, sizeof(double)*3);
 		for (uint i = 0; i < 6; i++){
-			body1->Yih[i] = body0->Yih[i] + body1->Bi[i]*body1->qi_dot;
+			body[indx].Yih[i] = body[indx-1].Yih[i] + body[indx].Bi[i]*body[indx].qi_dot;
 		}
 
 		// cartesian velocity
 		for (uint i = 0; i < 3; i++){
 			for(uint j = 0; j < 3; j++){
-				body1->Ti[i*6 + j] = i == j ? 1 : 0;
-				body1->Ti[(i + 3)*6 + (j + 3)] = i == j ? 1 : 0;
-				body1->Ti[(i + 3)*6 + j] = 0;
-				body1->Ti[i*6 + (j + 3)] = -body1->rit[i*3 + j];
+				body[indx].Ti[i*6 + j] = i == j ? 1 : 0;
+				body[indx].Ti[(i + 3)*6 + (j + 3)] = i == j ? 1 : 0;
+				body[indx].Ti[(i + 3)*6 + j] = 0;
+				body[indx].Ti[i*6 + (j + 3)] = -body[indx].rit[i*3 + j];
 			}
 		}
 
-		mat(body1->Ti, body1->Yih, 6, 6, 6, body1->Yib);
-		memcpy(body1->ri_dot, body1->Yib, sizeof(double)*3);
-		memcpy(body1->wi, body1->Yib + 3, sizeof(double)*3);
-		tilde(body1->wi, body1->wit);
-		mat(body1->Ai, body1->rhoip, 3, 3, 3, body1->rhoi);
+		mat(body[indx].Ti, body[indx].Yih, 6, 6, 6, body[indx].Yib);
+		memcpy(body[indx].ri_dot, body[indx].Yib, sizeof(double)*3);
+		memcpy(body[indx].wi, body[indx].Yib + 3, sizeof(double)*3);
+		tilde(body[indx].wi, body[indx].wit);
+		mat(body[indx].Ai, body[indx].rhoip, 3, 3, 3, body[indx].rhoi);
 		for(uint i = 0; i < 3; i++){
-			body1->ric[i] = body1->ri[i] + body1->rhoi[i];
+			body[indx].ric[i] = body[indx].ri[i] + body[indx].rhoi[i];
 		}
-		mat(body1->wit, body1->rhoi, 3, 3, 3, body1->ric_dot);
+		mat(body[indx].wit, body[indx].rhoi, 3, 3, 3, body[indx].ric_dot);
 		for (uint i = 0; i < 3; i++){
-			body1->ric_dot[i] += body1->ri_dot[i];
+			body[indx].ric_dot[i] += body[indx].ri_dot[i];
 		}
 
 		// mass & force
-		mat(body1->Ai, body1->Cii, 3, 3, 3, 3, body1->Ai_Cii);
-		double temp[9] = {0,}, temp2 = 0;
-		mat(body1->Ai_Cii, body1->Jip, 3, 3, 3, 3, temp);
+		mat(body[indx].Ai, body[indx].Cii, 3, 3, 3, 3, body[indx].Ai_Cii);
+		mat(body[indx].Ai_Cii, body[indx].Jip, 3, 3, 3, 3, body[indx].Ai_Cii_Jip);
 		for(uint i = 0; i < 3; i++){
 			for(uint j = 0; j < 3; j++){
-				temp2 = 0;
+				body[indx].Jic[i*3 + j] = 0;
 				for(uint k = 0; k < 3; k++){
-					temp2 += temp[i*3 + k]*body1->Ai_Cii[j*3 + k];
+					body[indx].Jic[i*3 + j] += body[indx].Ai_Cii_Jip[i*3 + k]*body[indx].Ai_Cii[j*3 + k];
 				}
-				body1->Jic[i*3 + j] = temp2;
 			}
 		}
-		tilde(body1->ri_dot, body1->rit_dot);
-		tilde(body1->ric_dot, body1->rict_dot);
-		tilde(body1->ric, body1->rict);
-		double temp3[9] = {0,};
-		mat(body1->rict, body1->rict, 3, 3, 3, 3, temp3);
+		tilde(body[indx].ri_dot, body[indx].rit_dot);
+		tilde(body[indx].ric_dot, body[indx].rict_dot);
+		tilde(body[indx].ric, body[indx].rict);
+		mat(body[indx].rict, body[indx].rict, 3, 3, 3, 3, body[indx].rict_rict);
 		for(uint i = 0; i < 3; i++){
 			for(uint j = 0; j < 3; j++){
-				body1->Mih[i*6 + j] = i == j ? body1->mi : 0;
-				body1->Mih[(i + 3)*6 + j] = body1->mi*body1->rict[i*3 + j];
-				body1->Mih[i*6 + (j + 3)] = -body1->mi*body1->rict[i*3 + j];
-				body1->Mih[(i + 3)*6 + (j + 3)] = body1->Jic[i*3 + j] - body1->mi*temp3[i*3 + j];
+				body[indx].Mih[i*6 + j] = i == j ? body[indx].mi : 0;
+				body[indx].Mih[(i + 3)*6 + j] = body[indx].mi*body[indx].rict[i*3 + j];
+				body[indx].Mih[i*6 + (j + 3)] = -body[indx].mi*body[indx].rict[i*3 + j];
+				body[indx].Mih[(i + 3)*6 + (j + 3)] = body[indx].Jic[i*3 + j] - body[indx].mi*body[indx].rict_rict[i*3 + j];
 			}
 		}
-		body1->fic[0] = 0;
-		body1->fic[1] = 0;
-		body1->fic[2] = body1->mi*g;
-		body1->tic[0] = 0;
-		body1->tic[1] = 0;
-		body1->tic[2] = 0;
-		double rict_dot_wi[3] = {0,};
-		mat(body1->rict_dot, body1->wi, 3, 3, 3, rict_dot_wi);
+		body[indx].fic[0] = 0;
+		body[indx].fic[1] = 0;
+		body[indx].fic[2] = body[indx].mi*g;
+		body[indx].tic[0] = 0;
+		body[indx].tic[1] = 0;
+		body[indx].tic[2] = 0;
+		mat(body[indx].rict_dot, body[indx].wi, 3, 3, 3, body[indx].rict_dot_wi);
 		for (uint i = 0; i < 3; i++){
-			body1->Qih_g[i] = body1->fic[i];
-			body1->Qih_c[i] = body1->mi*rict_dot_wi[i];
-			body1->Qih[i] = body1->Qih_g[i] + body1->Qih_c[i];
+			body[indx].Qih_g[i] = body[indx].fic[i];
+			body[indx].Qih_c[i] = body[indx].mi*body[indx].rict_dot_wi[i];
+			body[indx].Qih[i] = body[indx].Qih_g[i] + body[indx].Qih_c[i];
 		}
-		double rict_fic[3] = {0,}, rict_rict_dot_wi[3] = {0,}, Jic_wi[3] = {0,}, wit_Jic_wi[3] = {0,};
-		mat(body1->rict, body1->fic, 3, 3, 3, rict_fic);
-		mat(body1->rict, rict_dot_wi, 3, 3, 3, rict_rict_dot_wi);
-		mat(body1->Jic, body1->wi, 3, 3, 3, Jic_wi);
-		mat(body1->wit, Jic_wi, 3, 3, 3, wit_Jic_wi);
+		mat(body[indx].rict, body[indx].fic, 3, 3, 3, body[indx].rict_fic);
+		mat(body[indx].rict, body[indx].rict_dot_wi, 3, 3, 3, body[indx].rict_rict_dot_wi);
+		mat(body[indx].Jic, body[indx].wi, 3, 3, 3, body[indx].Jic_wi);
+		mat(body[indx].wit, body[indx].Jic_wi, 3, 3, 3, body[indx].wit_Jic_wi);
 		for (uint i = 0; i < 3; i++){
-			body1->Qih_g[i + 3] = rict_fic[i];
-			body1->Qih_c[i + 3] = body1->mi*rict_rict_dot_wi[i] - wit_Jic_wi[i];
-			body1->Qih[i + 3] = body1->tic[i] + body1->Qih_g[i + 3] + body1->Qih_c[i + 3];
+			body[indx].Qih_g[i + 3] = body[indx].rict_fic[i];
+			body[indx].Qih_c[i + 3] = body[indx].mi*body[indx].rict_rict_dot_wi[i] - body[indx].wit_Jic_wi[i];
+			body[indx].Qih[i + 3] = body[indx].tic[i] + body[indx].Qih_g[i + 3] + body[indx].Qih_c[i + 3];
 		}
 
 		// velocity coupling
-		mat(body0->wit, body1->Hi, 3, 3, 3, body1->Hi_dot);
-		double rit_dot_Hi[3] = {0,}, rit_Hi_dot[3] = {0,};
-		mat(body1->rit_dot, body1->Hi, 3, 3, 3, rit_dot_Hi);
-		mat(body1->rit, body1->Hi_dot, 3, 3, 3, rit_Hi_dot);
+		mat(body[indx-1].wit, body[indx].Hi, 3, 3, 3, body[indx].Hi_dot);
+		mat(body[indx].rit_dot, body[indx].Hi, 3, 3, 3, body[indx].rit_dot_Hi);
+		mat(body[indx].rit, body[indx].Hi_dot, 3, 3, 3, body[indx].rit_Hi_dot);
 		for(uint i = 0; i < 3; i++){
-			body1->Di[i] = (rit_dot_Hi[i] + rit_Hi_dot[i])*body1->qi_dot;
-			body1->Di[i+3] = body1->Hi_dot[i]*body1->qi_dot;
+			body[indx].Di[i] = (body[indx].rit_dot_Hi[i] + body[indx].rit_Hi_dot[i])*body[indx].qi_dot;
+			body[indx].Di[i+3] = body[indx].Hi_dot[i]*body[indx].qi_dot;
 		}
 
-		memcpy(body1->Di_sum, body1->Di, sizeof(double)*6);
+		memcpy(body[indx].Di_sum, body[indx].Di, sizeof(double)*6);
 		for(uint indx2 = indx - 1; indx2 >= 1; indx2--){
 			for(uint i = 0; i < 6; i++){
-				body1->Di_sum[i] += body[indx2].Di[i];
+				body[indx].Di_sum[i] += body[indx2].Di[i];
 			}
 		}
 	}
 
 	// system EQM
-	for(uint i = num_body; i >= 1;  i--){
-		body1 = &body[i];
-		if (i == num_body){
-			memcpy(body1->Ki, body1->Mih, sizeof(double)*36);
-			memcpy(body1->Li, body1->Qih, sizeof(double)*6);
-			memcpy(body1->Li_g, body1->Qih_g, sizeof(double)*6);
-			memcpy(body1->Li_c, body1->Qih_c, sizeof(double)*6);
+	for(uint indx = num_body; indx >= 1;  indx--){
+		if (indx == num_body){
+			memcpy(body[indx].Ki, body[indx].Mih, sizeof(double)*36);
+			memcpy(body[indx].Li, body[indx].Qih, sizeof(double)*6);
+			memcpy(body[indx].Li_g, body[indx].Qih_g, sizeof(double)*6);
+			memcpy(body[indx].Li_c, body[indx].Qih_c, sizeof(double)*6);
 		}
 		else{
-			body2 = &body[i + 1];
 			for(uint i = 0; i < 36; i++){
-				body1->Ki[i] = body1->Mih[i] + body2->Ki[i];
+				body[indx].Ki[i] = body[indx].Mih[i] + body[indx + 1].Ki[i];
 			}
-			mat(body2->Ki, body2->Di, 6, 6, 6, body2->Ki_Di);
+			mat(body[indx + 1].Ki, body[indx + 1].Di, 6, 6, 6, body[indx + 1].Ki_Di);
 			for(uint i = 0; i < 6; i++){
-				body1->Li[i] = body1->Qih[i] + body2->Li[i] - body2->Ki_Di[i];
-				body1->Li_g[i] = body1->Qih_g[i] + body2->Li_g[i] - body2->Ki_Di[i];
-				body1->Li_c[i] = body1->Qih_c[i] + body2->Li_c[i] - body2->Ki_Di[i];
+				body[indx].Li[i] = body[indx].Qih[i] + body[indx + 1].Li[i] - body[indx + 1].Ki_Di[i];
+				body[indx].Li_g[i] = body[indx].Qih_g[i] + body[indx + 1].Li_g[i] - body[indx + 1].Ki_Di[i];
+				body[indx].Li_c[i] = body[indx].Qih_c[i] + body[indx + 1].Li_c[i] - body[indx + 1].Ki_Di[i];
 			}
 		}
 	}
@@ -458,86 +495,83 @@ void RobotArm::dynamics()
 	memset(Q_g, 0, sizeof(double)*num_body);
 	memset(Q_c, 0, sizeof(double)*num_body);
 	for(uint indx = 1; indx <= num_body; indx++){
-		body1 = &body[indx];
-		mat(body1->Ki, body1->Di_sum, 6, 6, 6, body1->Ki_Di_sum);
+		mat(body[indx].Ki, body[indx].Di_sum, 6, 6, 6, body[indx].Ki_Di_sum);
 		for(uint i = 0; i < 6; i++){
-			Q[indx - 1] += body1->Bi[i]*(body1->Li[i] - body1->Ki_Di_sum[i]);
-			Q_g[indx - 1] += body1->Bi[i]*(body1->Li_g[i] - body1->Ki_Di_sum[i]);
-			Q_c[indx - 1] += body1->Bi[i]*(body1->Li_c[i] - body1->Ki_Di_sum[i]);
+			Q[indx - 1] += body[indx].Bi[i]*(body[indx].Li[i] - body[indx].Ki_Di_sum[i]);
+			Q_g[indx - 1] += body[indx].Bi[i]*(body[indx].Li_g[i] - body[indx].Ki_Di_sum[i]);
+			Q_c[indx - 1] += body[indx].Bi[i]*(body[indx].Li_c[i] - body[indx].Ki_Di_sum[i]);
 		}
 	}
 
 	memset(M, 0, sizeof(double)*num_body*num_body);
 	for(uint indx = 1; indx <= num_body; indx++){
-		body1 = &body[indx];
 		for(uint indx2 = 1; indx2 <= num_body; indx2++){
-			body2 = &body[indx2];
-			double Ki_Bi[6] = {0,}, temp = 0;
 			if (indx == indx2){
-				mat(body1->Ki, body1->Bi, 6, 6, 6, Ki_Bi);
+				mat(body[indx].Ki, body[indx].Bi, 6, 6, 6, body[indx].Ki_Bi);
 			}
 			else if(indx < indx2){
-				mat(body2->Ki, body2->Bi, 6, 6, 6, Ki_Bi);
+				mat(body[indx2].Ki, body[indx2].Bi, 6, 6, 6, body[indx].Ki_Bi);
 			}
 			else if(indx > indx2){
-				mat(body1->Ki, body2->Bi, 6, 6, 6, Ki_Bi);
+				mat(body[indx].Ki, body[indx2].Bi, 6, 6, 6, body[indx].Ki_Bi);
 			}
-			temp = 0;
+			body[indx].temp_Bi_Ki_Bi = 0;
 			for(uint i = 0; i < 6; i++){
-				temp += body1->Bi[i]*Ki_Bi[i];
+				body[indx].temp_Bi_Ki_Bi += body[indx].Bi[i]*body[indx].Ki_Bi[i];
 			}
-			M[(indx - 1)*num_body + (indx2 - 1)] = temp;
+			M[(indx - 1)*num_body + (indx2 - 1)] = body[indx].temp_Bi_Ki_Bi;
 		}
 	}
 }
 
 void RobotArm::residual(){
-	body[1].alpha = Q_g - Q_c;
-	body[1].yp = body[1].Ta + body[1].alpha - body[1].r_hat;
+	for(uint indx = 1; indx <= num_body; indx++){
+		body[indx].alpha = Q_g[indx] - Q_c[indx];
+		body[indx].yp = body[indx].Ta + body[indx].alpha - body[indx].r_hat;
 
-	body[1].y = body[1].y_old + body[1].yp*h + 0.5*h*h*(body[1].yp - body[1].yp_old);
-
-	for(uint i = 1; i <= num_body; i++){
-		body[i].p_linear = 0;
-		for (uint j = 0; j < 3; j++) {
-			body[i].p_linear += pow(body[i].ric_dot[j], 2);
-		}
-		body[i].p_linear *= 0.5*body[i].mi;
-		double temp[3] = { 0, };
-		for (uint j = 0; j < 3; j++) {
-			for (uint k = 0; k < 3; k++) {
-				temp[k] += body[i].Jic[j * 3 + k] * body[i].wi[k];
-			}
-		}
-		body[i].p_rotate = 0;
-		for (uint j = 0; j < 3; j++) {
-			body[i].p_rotate += body[i].wi[j] * temp[j];
-		}
-		body[i].p = body[i].p_linear + 0.5*body[i].p_rotate;
+		body[indx].y = body[indx].y_old + body[indx].yp*h + 0.5*h*h*(body[indx].yp - body[indx].yp_old);
 	}
-	body[1].r_hat = body[1].K*(body[1].y - (body[1].p + body[2].p));
 
-	body[1].y_old = body[1].y;
-	body[1].yp_old = body[1].yp;
+	for(uint indx = 1; indx <= num_body; indx++){
+		body[indx].p_linear = 0;
+		for (uint j = 0; j < 3; j++) {
+			body[indx].p_linear += pow(body[indx].ric_dot[j], 2);
+		}
+		body[indx].p_linear *= 0.5*body[indx].mi;
+		body[indx].p_rotate = 0;
+		for (uint j = 0; j < 3; j++) {
+			body[indx].p_rotate += body[indx].wi[j] * body[indx].Jic_wi[j];
+		}
+		body[indx].p_rotate *= 0.5;
+		body[indx].p = body[indx].p_linear + body[indx].p_rotate;
+	}
+
+	for(uint indx = 1; indx <= num_body; indx++){
+		body[indx].r_hat = body[indx].K*(body[indx].y - body[indx].p);
+
+		body[indx].y_old = body[indx].y;
+		body[indx].yp_old = body[indx].yp;
+	}
 
 	t_current += h;
 }
 
 void RobotArm::high_pass_filter(double *cur, double *timeZone, double *cur_filter, double ts){
-	w_cut = 2*M_PI*f_cut;
-	tau = 1 / w_cut;
-	tau_ts = 1/(tau + ts);
-	a1 = -tau*tau_ts;
-	b0 = tau*tau_ts;
-	b1 = -tau*tau_ts;
-	a2 = 0;
-	b2 = 0;
-	sum0 = 0;
+    w_cut = 2*M_PI*f_cut;
+    tau = 1 / w_cut;
+    tau_ts = 1/(tau + ts);
+    a1 = -tau*tau_ts;
+    b0 = tau*tau_ts;
+    b1 = -tau*tau_ts;
+    a2 = 0;
+    b2 = 0;
+    sum0 = 0;
 
-	sum0 = -a1*timeZone[1] - a2*timeZone[0];
-	timeZone[2] = cur[0] + sum0;
-	cur_filter[0] = b0*timeZone[2] + b1*timeZone[1] + b2*timeZone[0];
+    sum0 = -a1*timeZone[1] - a2*timeZone[0];
+    timeZone[2] = cur[0] + sum0;
+    cur_filter[0] = b0*timeZone[2] + b1*timeZone[1] + b2*timeZone[0];
 
-	timeZone[0] = timeZone[1];
-	timeZone[1] = timeZone[2];
+    timeZone[0] = timeZone[1];
+    timeZone[1] = timeZone[2];
 }
+

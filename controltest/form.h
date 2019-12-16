@@ -22,28 +22,20 @@ class Form : public QWidget
 public:
     explicit Form(QWidget *parent = 0);
     ~Form();
-    
-private slots:
-	void timeout();
+
+public slots:
 	void btnStartClicked();
 	void btnStopClicked();
-	void btnSetGainClicked();
-	void btnGetGainClicked();
-	void btnTurnOnClicked();
-	void btnTurnOffClicked();
-	void btnUpClicked();
-	void btnDownClicked();
 
+	void timeout();
+    
 private:
     Ui::Form *ui;
-    QTimer *timer;
-
-    bool flag;
-	double data[600*6];
-    unsigned int indx;
-	long value;
-
-    FILE *fp;
+	QTimer *timer;
+	bool flag;
+	double data[100*4*6];
+	unsigned indx;
+	FILE *fp;
 };
 
 #endif // FORM_H
