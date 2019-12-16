@@ -384,7 +384,7 @@ void RobotArm::systemEQM(){
 
     Q = 0;
     Q = Q_g + Q_c;
-    body[1].qi_ddot = Q/M;
+//    body[1].qi_ddot = Q/M;
 }
 
 void RobotArm::residual(){
