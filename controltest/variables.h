@@ -5,23 +5,23 @@
 #include "robotarm.h"
 #include "cuiapi.h"
 
-#include <math.h>
+//#include <math.h>
 
 static long int pos[6] = {0,}, vel[6] = {0,}, enc_diff[6] = {0,};
-static double diff[6] = {0,};
-static double actual_torque[6] = {0,}, k[6] = {696.602,};
-static double r_hat_limit_p[6] = {10,};
-static double r_hat_limit_n[6] = {-10,};
+static float diff[6] = {0,};
+static float actual_torque[6] = {0,}, k[6] = {696.602f,};
+static float r_hat_limit_p[6] = {10,};
+static float r_hat_limit_n[6] = {-10,};
 static int collision[6] = {0,};
-static double pos_rad[6] = {0,}, vel_rad[6] = {0,};
-static double offset[6] = {38.139,};
-static double r_hat[6] = {0,};
+static float pos_rad[6] = {0,}, vel_rad[6] = {0,};
+static float offset[6] = {38.139f,};
+static float r_hat[6] = {0,};
 
-static double ENC2DEG = 360.0/262143.0;
-static double DEG2RAD = M_PI/180.0;
-static double RAD2DEG = 180.0/M_PI;
-static double VEL2RPM = 0.01;
-static double RPM2DEG = 6;
+static float ENC2DEG = 360.0f/262143.0f;
+static float DEG2RAD = PI/180.0f;
+static float RAD2DEG = 180.0f/PI;
+static float VEL2RPM = 0.01f;
+static float RPM2DEG = 6;
 
 static RobotArm robot(6,6);
 
@@ -31,7 +31,7 @@ static const unsigned int max_indx = 100;
 static unsigned int indx;
 struct TP_data{
 	unsigned int indx;
-	double pos[6], vel[6], tor[6], r_hat[6];
+	float pos[6], vel[6], tor[6], r_hat[6];
 };
 static TP_data tpData[max_indx];
 

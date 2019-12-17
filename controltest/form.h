@@ -33,7 +33,7 @@ private:
     Ui::Form *ui;
 	QTimer *timer;
 	bool flag;
-	double data[100*4*6];
+	float data[100*4*6];
 	unsigned indx;
 	FILE *fp;
 };

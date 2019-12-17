@@ -33,7 +33,7 @@ void Form::btnStartClicked()
 {
 	flag = true;
 	set_flag(flag);
-	fp = fopen("/mnt/mtd5/KETI_data.txt", "w+");
+	fp = fopen("/mnt/mtd5/KETI_logging.txt", "w+");
 }
 
 void Form::btnStopClicked()
@@ -49,10 +49,10 @@ void Form::timeout()
 		get_data(data, &indx);
 		for(uint i = 0; i < indx; i++){
 			fprintf(fp, "%d\t", i);
-			for(uint ii = 0; ii < 6; ii++) fprintf(fp, "%f\t", data[(i+1)*ii]);
-			for(uint ii = 0; ii < 6; ii++) fprintf(fp, "%f\t", data[(i+1)*ii + 6]);
-			for(uint ii = 0; ii < 6; ii++) fprintf(fp, "%f\t", data[(i+1)*ii + 12]);
-			for(uint ii = 0; ii < 6; ii++) fprintf(fp, "%f\t", data[(i+1)*ii + 18]);
+			for(uint ii = 0; ii < 6; ii++) fprintf(fp, "%f\t", static_cast<double>(data[(i+1)*ii]));
+			for(uint ii = 0; ii < 6; ii++) fprintf(fp, "%f\t", static_cast<double>(data[(i+1)*ii + 6]));
+			for(uint ii = 0; ii < 6; ii++) fprintf(fp, "%f\t", static_cast<double>(data[(i+1)*ii + 12]));
+			for(uint ii = 0; ii < 6; ii++) fprintf(fp, "%f\t", static_cast<double>(data[(i+1)*ii + 18]));
 			fprintf(fp, "\n");
 		}
 	}

@@ -9,7 +9,7 @@ QT += core gui
 TEMPLATE = lib
 CONFIG += plugin
 
-TARGET = controltest
+TARGET = KETI_CD
 
 DESTDIR = ../lib
 

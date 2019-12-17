@@ -66,7 +66,7 @@ int cx_cmdtor()
 	}
 }
 
-void get_data(double *req_data, uint *data_size)
+void get_data(float *req_data, uint *data_size)
 {
 	*data_size = indx;
 	for(uint i =0; i < *data_size; i++){
