@@ -36,6 +36,10 @@ private:
 	float data[100*4*6];
 	unsigned indx;
 	FILE *fp;
+    long enc[6];
+    float rhat[6];
+    long diff[6];
+    float pos_rad[6];
 };
 
 #endif // FORM_H

@@ -38,19 +38,20 @@ void* cui_get_subwidget()
 
 int cx_cmdtor()
 {
-	crbapi::get_user_input1(0, enc_diff, 1);
+	crbapi::get_user_input1(0, enc_diff, 6);
 	crbapi::get_cur_enc(0, pos);
-	crbapi::get_cur_velocity(0, vel, 1);
+	crbapi::get_cur_velocity(0, vel, 6);
 
 	for(int i = 0; i < 6; i++){
-		diff[i] = 0;//enc_diff[i]*ENC2DEG*DEG2RAD;
-		actual_torque[i] = 0;//k[i]*diff[i];
-		pos_rad[i] = 0;//(pos[i]*ENC2DEG - offset[i])*DEG2RAD;
-		vel_rad[i] = 0;//vel[i]*VEL2RPM*RPM2DEG*DEG2RAD;
+		diff[i] = enc_diff[i]*ENC2DEG*DEG2RAD;
+        if (i < 3) diff[i] = 0;
+		actual_torque[i] = k[i]*diff[i];
+        pos_rad[i] = (pos[i] - offset[i])*ENC2DEG*DEG2RAD;
+		vel_rad[i] = vel[i]*VEL2RPM*RPM2DEG*DEG2RAD;
 	}
 
 	robot.run_DOB_DTP(pos_rad, vel_rad, actual_torque, r_hat_limit_p, r_hat_limit_n, collision, r_hat);
-	crbapi::set_collision_array(0, collision, 1); // KETI
+	crbapi::set_collision_array(0, collision, 12); // KETI
 	//		crbapi::get_collision_array(0, &collision, 1); // KIRO
 
 	if (flag){
@@ -58,7 +59,7 @@ int cx_cmdtor()
 		for(int i = 0; i < 6; i++)	tpData[indx].pos[i] = pos_rad[i];
 		for(int i = 0; i < 6; i++)	tpData[indx].vel[i] = vel_rad[i];
 		for(int i = 0; i < 6; i++)	tpData[indx].tor[i] = actual_torque[i];
-		for(int i = 0; i < 6; i++)	tpData[indx].r_hat[i] = r_hat[i];
+        for(int i = 0; i < 6; i++)	tpData[indx].r_hat[i] = collision[i + 6];
 
 		indx++;
 
@@ -80,4 +81,29 @@ void get_data(float *req_data, uint *data_size)
 
 void set_flag(bool in_flag){
 	flag = in_flag;
+}
+
+void get_enc(long *enc){
+//	enc = &pos[0];
+    for(int i = 0; i < 6; i++){
+        enc[i] = pos[i];
+    }
+}
+
+void get_rhat(float *rhat){
+    for(int i = 0; i < 6; i++){
+        rhat[i] = r_hat[i];
+    }
+}
+
+void get_enc_diff(long *diff){
+    for(int i = 0; i < 6; i++){
+        diff[i] = enc_diff[i];
+    }
+}
+
+void get_pos(float *pos){
+    for(int i = 0; i < 6; i++){
+        pos[i] = pos_rad[i];
+    }
 }

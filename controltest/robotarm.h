@@ -21,7 +21,7 @@ public:
     RobotArm(uint numbody, uint DOF);
     ~RobotArm();
 	void run_DOB_DTP(float *qi, float *qi_dot, float *Ta, float *limit_p, float *limit_n, int *collision, float *r_hat);
-	void run_dynamics(float *qi, float *qi_dot);
+    void run_dynamics(float *qi, float *qi_dot, float *qi_ddot);
 	void get_M(float *M_req);
 	void get_Q(float *Q_req);
 
@@ -80,6 +80,7 @@ private:
     // system variable
 	float h, t_current;
 	float g;
+    float alpha;
 
     // EQM Mass & Force
 	float M[36], Q_g[6], Q_c[6], Q[6];
@@ -93,6 +94,6 @@ private:
     void kinematics();
     void dynamics();
     void residual();
-	void high_pass_filter(float cur, float *timeZone, float cur_filter, float ts, float f_cut);
+    void high_pass_filter(float cur, float *timeZone, float* cur_filter, float ts, float f_cut);
 };
 

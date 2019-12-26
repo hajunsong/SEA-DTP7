@@ -152,7 +152,7 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[1].r_hat = 0;
 	body[1].y = 0;
 	body[1].yp = 0;
-	body[1].K = 100;
+    body[1].K = 200;
 	body[1].p_linear = 0;
 	body[1].p_rotate = 0;
 	body[1].p = 0;
@@ -191,7 +191,7 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[2].r_hat = 0;
 	body[2].y = 0;
 	body[2].yp = 0;
-	body[2].K = 100;
+    body[2].K = 200;
 	body[2].p_linear = 0;
 	body[2].p_rotate = 0;
 	body[2].p = 0;
@@ -231,7 +231,7 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[3].r_hat = 0;
 	body[3].y = 0;
 	body[3].yp = 0;
-	body[3].K = 100;
+    body[3].K = 200;
 	body[3].p_linear = 0;
 	body[3].p_rotate = 0;
 	body[3].p = 0;
@@ -271,7 +271,7 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[4].r_hat = 0;
 	body[4].y = 0;
 	body[4].yp = 0;
-	body[4].K = 100;
+    body[4].K = 200;
 	body[4].p_linear = 0;
 	body[4].p_rotate = 0;
 	body[4].p = 0;
@@ -311,7 +311,7 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[5].r_hat = 0;
 	body[5].y = 0;
 	body[5].yp = 0;
-	body[5].K = 100;
+    body[5].K = 200;
 	body[5].p_linear = 0;
 	body[5].p_rotate = 0;
 	body[5].p = 0;
@@ -351,7 +351,7 @@ RobotArm::RobotArm(uint numbody, uint DOF) {
 	body[6].r_hat = 0;
 	body[6].y = 0;
 	body[6].yp = 0;
-	body[6].K = 100;
+    body[6].K = 200;
 	body[6].p_linear = 0;
 	body[6].p_rotate = 0;
 	body[6].p = 0;
@@ -367,39 +367,43 @@ RobotArm::~RobotArm() {
 
 void RobotArm::run_DOB_DTP(float *qi, float *qi_dot, float *Ta, float *limit_p, float *limit_n, int *collision, float *r_hat){
 	for(int i = 0; i < 6; i++){
-		body[i + 1].qi = 0;//qi[i];
-		body[i + 1].qi_dot = 0;//qi_dot[i];
-		body[i + 1].Ta = 0;//Ta[i];
+		body[i + 1].qi = qi[i];
+		body[i + 1].qi_dot = qi_dot[i];
+        body[i + 1].Ta = Ta[i];
 	}
 
 	kinematics();
 	dynamics();
 	residual();
 
-	for(int i = 0; i < 6; i++){
-		r_hat[i] = 0;//body[i + 1].r_hat;
-	}
+//	for(int i = 0; i < 6; i++){
+//		r_hat[i] = body[i + 1].r_hat;
+//	}
+
+    alpha = 1.05;
 
 	for(int i = 1; i <= 6; i++){
-		high_pass_filter(body[i].r_hat, body[i].time_zone, body[i].r_hat_filter, h, body[i].f_cut);
+        high_pass_filter(body[i].r_hat, body[i].time_zone, &body[i].r_hat_filter, h, body[i].f_cut);
 	}
 
-	for(unsigned int i = 0; i < num_body; i++){
-		if (body[i+1].r_hat_filter > limit_p[i] || body[i+1].r_hat_filter < limit_n[i]){
-			collision[i] = 1;
+    for(unsigned int i = 3; i < num_body; i++){
+        if (body[i+1].r_hat_filter > limit_p[i]*alpha || body[i+1].r_hat_filter < limit_n[i]*alpha){
+            collision[i] = 1;
 		}
 		else{
-			collision[i] = 0;
+            collision[i] = 0;
 		}
 	}
 
 	for(unsigned int i = 0; i < num_body; i++){
-		r_hat[i] = body[i+1].r_hat_filter;
+        r_hat[i] = body[i+1].r_hat;
 		collision[i+6] = static_cast<int>(body[i+1].r_hat_filter*1000);
 	}
+
+
 }
 
-void RobotArm::run_dynamics(float *qi, float *qi_dot)
+void RobotArm::run_dynamics(float *qi, float *qi_dot, float *qi_ddot)
 {
 	for(int i = 1; i <= 6; i++){
 		body[i].qi = qi[i - 1];
@@ -408,6 +412,15 @@ void RobotArm::run_dynamics(float *qi, float *qi_dot)
 
 	kinematics();
 	dynamics();
+    residual();
+
+    for(int i = 1; i <= 6; i++){
+        high_pass_filter(body[i].r_hat, body[i].time_zone, &body[i].r_hat_filter, h, body[i].f_cut);
+    }
+
+    for(int i = 1; i <= 6; i++){
+        qi_ddot[i-1] = body[i].r_hat_filter;
+    }
 }
 
 void RobotArm::get_M(float *M_req)
@@ -641,7 +654,7 @@ void RobotArm::residual(){
 	t_current += h;
 }
 
-void RobotArm::high_pass_filter(float cur, float *timeZone, float cur_filter, float ts, float f_cut){
+void RobotArm::high_pass_filter(float cur, float *timeZone, float *cur_filter, float ts, float f_cut){
 	w_cut = 2*PI*f_cut;
     tau = 1 / w_cut;
     tau_ts = 1/(tau + ts);
@@ -654,7 +667,7 @@ void RobotArm::high_pass_filter(float cur, float *timeZone, float cur_filter, fl
 
     sum0 = -a1*timeZone[1] - a2*timeZone[0];
 	timeZone[2] = cur + sum0;
-	cur_filter = b0*timeZone[2] + b1*timeZone[1] + b2*timeZone[0];
+    *cur_filter = b0*timeZone[2] + b1*timeZone[1] + b2*timeZone[0];
 
     timeZone[0] = timeZone[1];
     timeZone[1] = timeZone[2];

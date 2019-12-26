@@ -9,13 +9,15 @@
 
 static long int pos[6] = {0,}, vel[6] = {0,}, enc_diff[6] = {0,};
 static float diff[6] = {0,};
-static float actual_torque[6] = {0,}, k[6] = {696.602f,};
-static float r_hat_limit_p[6] = {10,};
-static float r_hat_limit_n[6] = {-10,};
-static int collision[6] = {0,};
+static float actual_torque[6] = {0,};
+static float k[6] = {3307.0f,3786.0f,3307.0f,1122.0f,1122.0f,1122.0f}; // 20 : 1122, 60 : 3307, 100 : 3786
+static float r_hat_limit_p[6] = {0.102, 0.479, 0.149, 0.652, 0.421, 3.147};
+static float r_hat_limit_n[6] = {-0.135, -0.467, -0.126, -0.639, -0.403, -3.037};
+static int collision[12] = {0,};
 static float pos_rad[6] = {0,}, vel_rad[6] = {0,};
-static float offset[6] = {38.139f,};
+static float offset[6] = {48279, 170, -22246, -65879, -4994, -115157};
 static float r_hat[6] = {0,};
+static bool coll_flag = false;
 
 static float ENC2DEG = 360.0f/262143.0f;
 static float DEG2RAD = PI/180.0f;
