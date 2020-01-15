@@ -384,16 +384,24 @@ void RobotArm::run_DOB_DTP(float *qi, float *qi_dot, float *Ta, float *limit_p, 
 
 	for(int i = 1; i <= 6; i++){
         high_pass_filter(body[i].r_hat, body[i].time_zone, &body[i].r_hat_filter, h, body[i].f_cut);
+        collision[i-1] = 0;
 	}
 
-    for(unsigned int i = 3; i < num_body; i++){
-        if (body[i+1].r_hat_filter > limit_p[i]*alpha || body[i+1].r_hat_filter < limit_n[i]*alpha){
-            collision[i] = 1;
-		}
-		else{
-            collision[i] = 0;
-		}
-	}
+//    for(unsigned int i = 4; i < num_body; i++){
+//        if (body[i+1].r_hat_filter > limit_p[i]*alpha || body[i+1].r_hat_filter < limit_n[i]*alpha){
+//            collision[i] = 0;
+//        }
+//        else{
+//            collision[i] = 0;
+//        }
+//    }
+
+    if (body[6].r_hat_filter > limit_p[5]*alpha || body[6].r_hat_filter < limit_n[5]*alpha){
+        collision[5] = 1;
+    }
+    else{
+        collision[5] = 0;
+    }
 
 	for(unsigned int i = 0; i < num_body; i++){
         r_hat[i] = body[i+1].r_hat;

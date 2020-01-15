@@ -21,7 +21,7 @@ CRBLIB_DIR = $$_PRO_FILE_PWD_/../coreDev/crobot
 INCLUDEPATH += $${CRBLIB_DIR}/include
 
 
-LIBS += -L$$CRBLIB_DIR/lib -lcrobot_poky -lm
+LIBS += -L$$CRBLIB_DIR/lib -Lcrobot_poky -lm
 
 INCLUDEPATH += ../coreDev/cui/include/ \
             ../coreDev/include/
